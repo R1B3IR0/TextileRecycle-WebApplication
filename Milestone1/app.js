@@ -7,6 +7,8 @@ var moongoose = require('mongoose');
 
 moongoose.set('strictQuery', true);
 
+moongoose.Promise = global.Promise;
+
 // Connect to MongoDB
 moongoose.connect('mongodb+srv://8200593:paw@cluster0.hnlid94.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => console.log('Connected to MongoDB...'))
@@ -29,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 
 // catch 404 and forward to error handler

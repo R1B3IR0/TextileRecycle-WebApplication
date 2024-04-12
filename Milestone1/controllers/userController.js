@@ -4,37 +4,85 @@ const path = require("path");
 
 var userController = {};
 
-//register a user
-userController.createUser = async (req, res) => {
-  try {
-    //extract user data from request body
-    const user = new User({
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
-    });
-    //check if user already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) return res.status(400).send("User already exists");
-
-    //create a new user
-    const newUser = new User({
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
-    });
-
-    //save the user to the database
-    await newUser.save();
-
-    //return success message
-    return res
-      .status(201)
-      .json({ message: "User created successfully", user: newUser });
-  } catch (error) {
-    console.log("Error creating user: ", error);
-    return res.status(500).send("Error creating user");
-  }
+userController.formCreate = function (req, res) {
+  res.render("../views/users/register");
 };
 
+userController.registUser = function (req, res) {
+  var user = new User(req.body);
+
+  user.save(function (err) {
+    if (err) {
+      console.log(err);
+      res.render("../views/users/register");
+    } else {
+      console.log("Successfully created an user.");
+      res.redirect("../users/showAll");
+    }
+  });
+};
+
+//edit an user
+userController.edit = function (req, res) {
+  User.findOne({ _id: req.params.id }).exec(function (err, user) {
+    if (err) {
+      console.log("Error:", err);
+    }
+    else {
+      res.render("../users/edit", { user: user });
+    }
+  }
+  );
+}
+
+//update an user
+userController.update = function (req, res) {
+  User.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name, email: req.body.email, password: req.body.password } }, { new: true }, function (err, user) {
+    if (err) {
+      console.log(err);
+      res.render("..//users/edit", { user: req.body });
+    }
+    res.redirect("../users/show" + user._id);
+  });
+};
+
+//delete an user
+userController.delete = function (req, res) {
+  User.remove({ _id: req.params.id }, function (err) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log("User deleted!");
+      res.redirect("../users/showAll");
+    }
+  });
+};
+
+//show all users
+userController.showAll = function (req, res) {
+  User.find({}).exec(function (err, users) {
+    if (err) {
+      console.log("Error:", err);
+    }
+    else {
+      res.render("../views/users/showAll", { users: users });
+    }
+  });
+};
+
+//show user by id
+userController.show = function (req, res) {
+  User.findOne({ _id: req.params.id }).exec(function (err, user) {
+    if (err) {
+      console.log("Error:", err);
+    }
+    else {
+      res.render("../views/users/show", { user: user });
+    }
+  });
+};
+
+
 module.exports = userController;
+

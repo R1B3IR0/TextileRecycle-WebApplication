@@ -5,13 +5,13 @@ var userSchema = new Schema({
     name: {
         type: String,
         required: true,
-        minlength: 5,
+        minlength: 1,
         maxlength: 50
     },
     email: {
         type: String,
         required: true,
-        minlength: 5,
+        minlength: 3,
         maxlength: 255
     },
     password: {
@@ -19,7 +19,13 @@ var userSchema = new Schema({
         required: true,
         minlength: 3,
         maxlength: 1024
+    },
+    role: {
+        type: String,
+        default: 'user'
     }
 });
 
 var User = moongoose.model('User', userSchema);
+
+module.exports = User;
