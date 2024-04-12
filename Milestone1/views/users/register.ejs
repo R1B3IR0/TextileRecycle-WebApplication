@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+    <body>
+        <div class="register-container">
+            <h2>Registar Utilizador</h2>
+            <form action="/users/register" method="POST">
+                <div class="form-group">
+                    <label for="name">Nome:</label>
+                    <input type="text" name="name" id="name" placeholder="Coloque o seu nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" placeholder="Coloque o seu email" required>
+                </div>
+                <div class="form-group">
+                    <label for="dateOfBirth">Data de Nascimento:</label>
+                    <input type="date" name="dateOfBirth" id="dateOfBirth" required>
+                </div>
+                <div class="form-group">
+                    <label for="cellphone">Telemóvel:</label>
+                    <div class="cellphone-container">
+                        <div class="country-indicative">
+                            <select name="countryIndicative" id="countryIndicative">
+                                <option value="+351">+351 (Portugal)</option>
+                                <option value="+44">+44 (UK)</option>
+                                <option value="+1">+1(USA)</option>
+                                <option value="+61">+61 (Australia)</option>
+                                <option value="+33">+33 (France)</option>
+                                <option value="+49">+49 (Germany)</option>
+                                <option value="+81">+81 (Japan)</option>
+                                <option value="+82">+82 (South Korea)</option>
+                                <option value="+86">+86 (China)</option>
+                                <option value="+91">+91 (India)</option>
+                            </select>
+                            <input type="text" name="cellphoneIndicative" id="cellphoneIndicative" placeholder="Country Indicative" style="border: none;"></div>
+                        <input type="text" name="cellphoneNumber" id="cellphoneNumber" placeholder="Coloque o seu número de telemóvel">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Palavra-passe:</label>
+                    <input type="password" name="password" id="password" placeholder="Coloque a sua palavra-passe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">Role:</label>
+                    <select name="role" id="role">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Registar</button>
+            </form>
+        </div>
+    </body>
+    <a href="/users/showAll">Voltar</a>
+
+</html>

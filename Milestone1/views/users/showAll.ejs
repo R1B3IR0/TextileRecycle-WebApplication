@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Users</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <div class="user-container">
+        <h2>Utilizadores</h2>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Detalhes</th>
+                <th>Editar</th>
+                <th>Remover</th>
+            </tr>
+            <% users.forEach(function(user) { %>
+            <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.role %></td>
+                <td><a href="/users/<%= user.id %>">Detalhes</a></td>
+                <td><a href="/users/<%= user.id %>/edit">Editar</a></td>
+                <td><a href="/users/<%= user.id %>/remove">Remover</a></td>
+            </tr>
+            <% }); %>
+        </table>
+    </div>
+</body>
+
+</html>
