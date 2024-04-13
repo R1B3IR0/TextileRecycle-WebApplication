@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Edit</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <div class="edit-user-container">
+        <h2>Edit User</h2>
+        <form action="/users/edit/<%=user._id%>" method="post">
+            <input type="hidden" name="_id" id="_id" value="<%= user._id %>"<%= user._id %>>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" placeholder="Coloque o seu nome" value="<%= user.name %>" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" placeholder="Coloque o seu email" value="<%= user.email %>" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Coloque a sua palavra-passe" value="<%= user.password %>" required>
+            </div>        
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select name="role" id="role">
+                    <option value="Admin" <% if(user.role == 'admin') { %>selected<% } %>>Admin</option>
+                    <option value="User" <% if(user.role == 'user') { %>selected<% } %>>User</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Update</button>
+        </form>
+        <!-- Button to go back -->
+        <a href="/users" onclick="history.go(-1);">Go Back</a>
+    </div>
+</body>
+</html>
