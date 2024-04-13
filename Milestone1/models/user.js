@@ -1,31 +1,10 @@
-var moongoose = require('mongoose');
-var Schema = moongoose.Schema;	
+var mongoose = require('mongoose');
 
-var userSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 50
-    },
-    email: {
-        type: String,
-        required: true,
-        minlength: 3,
-        maxlength: 255
-    },
-    password: {
-        type: String,
-        required: true,
-        minlength: 3,
-        maxlength: 1024
-    },
-    role: {
-        type: String,
-        default: 'user'
-    }
+var UserSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    role: { type: String, enum: ['Admin', 'User'], required: true }
 });
 
-var User = moongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports = mongoose.model('User', UserSchema);

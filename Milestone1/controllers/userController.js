@@ -1,88 +1,90 @@
-var moongoose = require("mongoose");
+var mongoose = require("mongoose");
 var User = require("../models/user");
-const path = require("path");
 
 var userController = {};
 
-userController.formCreate = function (req, res) {
-  res.render("../views/users/register");
+// show all users
+userController.showAll = function(req, res) {
+  User.find({}).exec(function(err, dbusers){
+    if(err){
+      console.log('Erro a ler');
+      res.redirect('/error')
+    } else {
+      console.log(dbusers);
+      res.render('../views/users/userList', {users: dbusers});
+    }
+  });
 };
 
-userController.registUser = function (req, res) {
+// show 1 user by id
+userController.show = function(req, res) {
+  User.findOne({_id: req.params.id}).exec(function(err, dbuser){
+    if(err){
+      console.log('Erro a ler');
+      res.redirect('/error')
+    } else {
+      res.render('../views/users/userViewDetails', {user: dbuser});
+    }
+  });
+};
+
+// form to create 1 user
+userController.formCreate = function (req, res) {
+  res.render("../views/users/createForm");
+};
+
+// create 1 item as a response to a post in a form
+userController.create = function (req, res) {
   var user = new User(req.body);
 
-  user.save(function (err) {
+  console.log("Attempting to create user:", user);
+  user.save(function(err) {
     if (err) {
-      console.log(err);
-      res.render("../views/users/register");
+      console.error("Error saving user:", err);
+      res.render("../views/users/createForm");
     } else {
       console.log("Successfully created an user.");
-      res.redirect("../users/showAll");
+      res.redirect("/users");
     }
   });
 };
 
-//edit an user
+// show form to edit an user
+userController.formEdit = function (req, res) {
+  User.findOne({ _id: req.params.id }).exec(function (err, dbuser) {
+    if (err) {
+      console.log("Error a ler");
+      res.redirect("/error");
+    } else {
+      res.render("../views/users/userEditDetails", { user: dbuser});
+    }
+  });
+};
+
+// update 1 user as a reply to a post in a form edit 
 userController.edit = function (req, res) {
-  User.findOne({ _id: req.params.id }).exec(function (err, user) {
+  User.findByIdAndUpdate(req.body._id, req.body, function(err, dbuser) {
     if (err) {
-      console.log("Error:", err);
+      console.log("Erro a gravar");
+      res.redirect("/error");
+    } else {
+      console.log("User updated!");
+      res.redirect("/users/show/"+req.body._id);
     }
-    else {
-      res.render("../users/edit", { user: user });
-    }
-  }
-  );
-}
-
-//update an user
-userController.update = function (req, res) {
-  User.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name, email: req.body.email, password: req.body.password } }, { new: true }, function (err, user) {
-    if (err) {
-      console.log(err);
-      res.render("..//users/edit", { user: req.body });
-    }
-    res.redirect("../users/show" + user._id);
   });
 };
 
-//delete an user
+//delete 1 user
 userController.delete = function (req, res) {
-  User.remove({ _id: req.params.id }, function (err) {
+  User.remove({ _id: req.params.id}).exec((err)=>{
     if (err) {
-      console.log(err);
-    }
-    else {
+      console.log("Erro a apagar");
+      res.redirect("/error");
+    } else {
       console.log("User deleted!");
-      res.redirect("../users/showAll");
+      res.redirect("/users");
     }
   });
 };
-
-//show all users
-userController.showAll = function (req, res) {
-  User.find({}).exec(function (err, users) {
-    if (err) {
-      console.log("Error:", err);
-    }
-    else {
-      res.render("../views/users/showAll", { users: users });
-    }
-  });
-};
-
-//show user by id
-userController.show = function (req, res) {
-  User.findOne({ _id: req.params.id }).exec(function (err, user) {
-    if (err) {
-      console.log("Error:", err);
-    }
-    else {
-      res.render("../views/users/show", { user: user });
-    }
-  });
-};
-
 
 module.exports = userController;
-
