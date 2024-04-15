@@ -11,7 +11,7 @@ mongoose.set('strictQuery', true);
 
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://8170538:5qVHnFGFDHGirbXd@cluster0.kukd408.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {useNewUrlParser: true, useUnifiedTopology: true})
-  .then(() =>  console.log('connection succesful'))
+  .then(() =>  console.log('connection successful to database'))
   .catch((err) => console.error(err));
 
 
