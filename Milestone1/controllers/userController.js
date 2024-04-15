@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var User = require("../models/user");
+var bcrypt = require('bcryptjs');
 
 var userController = {};
 
@@ -33,19 +34,30 @@ userController.formCreate = function (req, res) {
   res.render("../views/users/createForm");
 };
 
-// create 1 item as a response to a post in a form
-userController.create = function (req, res) {
-  var user = new User(req.body);
-
-  console.log("Attempting to create user:", user);
-  user.save(function(err) {
+// create 1 user as a response to a post in a form
+userController.create = function (req, res) {  
+  // hash password given by user
+  bcrypt.hash(req.body.password, 8, function(err, hashedPassword) {
     if (err) {
-      console.error("Error saving user:", err);
-      res.render("../views/users/createForm");
-    } else {
-      console.log("Successfully created an user.");
-      res.redirect("/users");
+      console.error("Error hashing password:", err);
+      res.status(500).send("Error creating user");
+      return;
     }
+    // atribution of hashed password to the password field of the user
+    req.body.password = hashedPassword;
+    
+    var user = new User(req.body);
+
+    console.log("Attempting to create user:", user);
+    user.save(function(err) {
+      if (err) {
+        console.error("Error saving user:", err);
+        res.render("../views/users/createForm");
+      } else {
+        console.log("Successfully created an user.");
+        res.redirect("/users");
+      }
+   });
   });
 };
 
