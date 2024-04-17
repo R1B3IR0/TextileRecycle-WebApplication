@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Details</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <h1>Donation Details</h1>
+    <p><strong>ID:</strong> <%= donation._id %></p>
+    <p><strong>Donator:</strong> <%= donation.donator %></p>
+    <p><strong>Donation Date:</strong> <%= donation.donationDate %></p>
+    <p><strong>Type of Donation:</strong> <%= donation.typeOfDonation %></p>
+    <% if (donation.typeOfDonation === 'Dinheiro') { %>
+        <p><strong>Amount:</strong> <%= donation.amount %></p>
+    <% } else if (donation.typeOfDonation === 'Doação Têxtil') { %>
+        <p><strong>Type of Clothing:</strong> <%= donation.typeOfClothing %></p>
+    <% } %>
+</body>
+</html>
