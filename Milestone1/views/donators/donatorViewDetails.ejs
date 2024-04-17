@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+<div class="view-all-container">
+    <h1>Donor Detail</h1>
+    <table>
+        <tbody>
+        <tr>
+            <td>ID</td>
+            <td>:</td>
+            <td><%= donator._id %></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td><%= donator.name %></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>:</td>
+            <td><%= donator.email %></td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td>:</td>
+            <td><%= donator.contact %></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>:</td>
+            <td><%= donator.address %></td>
+        </tr>
+        <tr>
+            <td>GoodWill Gems</td>
+            <td>:</td>
+            <td><%= donator.points %></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<h3><a href="/donators">See all Donors</a></h3>
+</body>
+</html>
