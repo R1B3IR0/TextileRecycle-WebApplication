@@ -18,7 +18,6 @@ mongoose.connect('mongodb+srv://8170538:5qVHnFGFDHGirbXd@cluster0.kukd408.mongod
 var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
 
-var donationsRouter = require('./routes/donations');
 
 
 var app = express();
