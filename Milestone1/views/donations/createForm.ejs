@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label for="beneficiary">Entidade Beneficiária:</label>
                 <input type="text" name="beneficiary" id="beneficiary" placeholder="Entidade Beneficiária" required>
-            </div>            
+            </div>
             <div class="form-group">
                 <label for="donationDate">Data da doação:</label>
                 <input type="date" name="donationDate" id="donationDate" required>
@@ -51,6 +51,17 @@
                 </select>
             </div>
             <br>
+            <div class="form-group" id="typeOfClothingStateDiv" style="display: none;">
+                <label for="typeOfClothingState">Estado do tipo de roupa:</label>
+                <select name="typeOfClothingState" id="typeOfClothingState">
+                    <option value="Novo com etiquetas">Novo com etiquetas</option>
+                    <option value="Novo sem etiquetas">Novo sem etiquetas</option>
+                    <option value="Muito bom">Muito bom</option>
+                    <option value="Bom">Bom</option>
+                    <option value="Satisfatório">Satisfatório</option>
+                </select>
+            </div>
+            
             <button type="submit" class="submit-btn">Criar doação</button>
         </form>
         <br>
@@ -63,7 +74,7 @@
             var selectedValue = document.getElementById("typeOfDonation").value;
             var amountDiv = document.getElementById("amountDiv");
             var typeOfClothingDiv = document.getElementById("typeOfClothingDiv");
-            
+
             // Esconde ambos os blocos
             amountDiv.style.display = "none";
             typeOfClothingDiv.style.display = "none";
@@ -80,10 +91,25 @@
         showRelevantBlock();
 
         // Event listener para alterações no tipo de doação
-        document.getElementById("typeOfDonation").addEventListener("change", function() {
+        document.getElementById("typeOfDonation").addEventListener("change", function () {
             // Chama a função para exibir o bloco relevante
             showRelevantBlock();
         });
     </script>
+    <script>
+        // Event listener para alterações no tipo de doação
+        document.getElementById("typeOfDonation").addEventListener("change", function () {
+            showRelevantBlock();
+
+            // Exibe o bloco de estado do tipo de roupa apenas se o tipo de doação for "Doação Têxtil"
+            var typeOfClothingStateDiv = document.getElementById("typeOfClothingStateDiv");
+            if (this.value === "Doação Têxtil") {
+                typeOfClothingStateDiv.style.display = "block";
+            } else {
+                typeOfClothingStateDiv.style.display = "none";
+            }
+        });
+    </script>
 </body>
+
 </html>
