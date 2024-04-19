@@ -18,7 +18,7 @@ mongoose.connect('***REMOVED***/?retryWrites=true&w=majority&appName=Cluster0', 
 var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
 var donationsRouter = require('./routes/donations');
-
+var donatorRouter = require('./routes/donators');
 
 var app = express();
 
@@ -36,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', authRouter);
 app.use('/users', usersRouter);
 app.use('/donations', donationsRouter);
+app.use('/donators', donatorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
