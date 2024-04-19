@@ -19,6 +19,14 @@ const DonationSchema = new mongoose.Schema({
     select: false, // Não selecionável por padrão
   },
   typeOfClothing: {
+    state : {
+      type: String,
+      enum: ["Novo com etiquetas", "Novo sem etiquetas","Muito bom", "Bom", "Satisfatório"],
+      select: false, // Não selecionável por padrão
+      required: function() {
+        return this.typeOfDonation === "Doação Têxtil";
+      }
+    },
     type: String,
     enum: [
       "Fatos e blazers",
@@ -31,6 +39,9 @@ const DonationSchema = new mongoose.Schema({
       "Outros",
     ],
     select: false, // Não selecionável por padrão
+    required: function() {
+      return this.typeOfDonation === "Doação Têxtil";
+    }
   },
 });
 
