@@ -18,7 +18,6 @@ mongoose.connect('***REMOVED***/?retryWrites=true&w=majority&appName=Cluster0', 
 var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
 
-var donationsRouter = require('./routes/donations');
 
 
 var app = express();
