@@ -17,8 +17,8 @@
                 <input type="text" name="donator" id="donator" placeholder="Doador" required>
             </div>
             <div class="form-group">
-                <label for="beneficiary">Entidade Beneficiária:</label>
-                <input type="text" name="beneficiary" id="beneficiary" placeholder="Entidade Beneficiária" required>
+                <label for="entity">Entidade Beneficiária:</label>
+                <input type="text" name="entity" id="entity" placeholder="Entidade Beneficiária" required>
             </div>
             <div class="form-group">
                 <label for="donationDate">Data da doação:</label>
@@ -33,13 +33,16 @@
                     <option value="Dinheiro">Dinheiro</option>
                 </select>
             </div>
-            <div id="amountDiv">
+
+            <div id="amountDiv" style="display: none;">
                 <label for="amount">Quantia:</label>
                 <input type="number" name="amount" id="amount">
             </div>
+
             <div id="typeOfClothingDiv" style="display: none;">
-                <label for="typeOfClothing">Tipo de Doação Têxtil:</label>
-                <select name="typeOfClothing" id="typeOfClothing">
+                <label for="typeOfClothing.category">Tipo de Doação Têxtil:</label>
+                <select name="typeOfClothing.category" id="typeOfClothing">
+                    <option value="">Escolha o tipo de roupa</option>
                     <option value="Fatos e blazers">Fatos e blazers</option>
                     <option value="Calças">Calças</option>
                     <option value="Meias e Roupa Interior">Meias e Roupa Interior</option>
@@ -51,9 +54,10 @@
                 </select>
             </div>
             <br>
-            <div class="form-group" id="typeOfClothingStateDiv" style="display: none;">
-                <label for="typeOfClothingState">Estado do tipo de roupa:</label>
-                <select name="typeOfClothingState" id="typeOfClothingState">
+            <div id="typeOfClothingStateDiv" style="display: none;">
+                <label for="typeOfClothing.state">Estado do tipo de roupa:</label>
+                <select name="typeOfClothing.state" id="typeOfClothingState">
+                    <option value="">Escolha o estado da roupa</option>
                     <option value="Novo com etiquetas">Novo com etiquetas</option>
                     <option value="Novo sem etiquetas">Novo sem etiquetas</option>
                     <option value="Muito bom">Muito bom</option>
@@ -61,55 +65,15 @@
                     <option value="Satisfatório">Satisfatório</option>
                 </select>
             </div>
-            
-            <button type="submit" class="submit-btn">Criar doação</button>
+            <br>
+            <button type="submit" class="submit-btn">Criar Doação</button>
         </form>
-        <br>
-        <a href="/donations" onclick="history.go(-1);">Voltar</a>
-    </div>
+        <div class="back-button">
+            <a href="/donations" onclick="history.go(-1);">Voltar</a>
+        </div>
 
-    <script>
-        // Função para exibir apenas o bloco relevante com base no tipo de doação selecionado
-        function showRelevantBlock() {
-            var selectedValue = document.getElementById("typeOfDonation").value;
-            var amountDiv = document.getElementById("amountDiv");
-            var typeOfClothingDiv = document.getElementById("typeOfClothingDiv");
-
-            // Esconde ambos os blocos
-            amountDiv.style.display = "none";
-            typeOfClothingDiv.style.display = "none";
-
-            // Exibe apenas o bloco relevante com base no tipo de doação selecionado
-            if (selectedValue === "Dinheiro") {
-                amountDiv.style.display = "block";
-            } else if (selectedValue === "Doação Têxtil") {
-                typeOfClothingDiv.style.display = "block";
-            }
-        }
-
-        // Chamada para exibir o bloco relevante quando a página é carregada
-        showRelevantBlock();
-
-        // Event listener para alterações no tipo de doação
-        document.getElementById("typeOfDonation").addEventListener("change", function () {
-            // Chama a função para exibir o bloco relevante
-            showRelevantBlock();
-        });
-    </script>
-    <script>
-        // Event listener para alterações no tipo de doação
-        document.getElementById("typeOfDonation").addEventListener("change", function () {
-            showRelevantBlock();
-
-            // Exibe o bloco de estado do tipo de roupa apenas se o tipo de doação for "Doação Têxtil"
-            var typeOfClothingStateDiv = document.getElementById("typeOfClothingStateDiv");
-            if (this.value === "Doação Têxtil") {
-                typeOfClothingStateDiv.style.display = "block";
-            } else {
-                typeOfClothingStateDiv.style.display = "none";
-            }
-        });
-    </script>
+        <script src="/scripts/showBlockTypeOfDonation.js"></script>
+        <script src="/scripts/switchTypeOfDonation.js"></script>
 </body>
 
 </html>

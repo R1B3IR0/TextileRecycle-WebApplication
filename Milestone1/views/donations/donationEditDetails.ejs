@@ -7,24 +7,35 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
+    <div class="view-all-container">
     <h1>Edit Donation</h1>
-    <form action="/donations/edit" method="post">
+    <form action="/donations/edit" method="post" class="form-container">
         <input type="hidden" name="_id" value="<%= donation._id %>">
-        <label for="donator">Donator:</label>
-        <input type="text" id="donator" name="donator" value="<%= donation.donator %>" required><br>
-        <label for="donationDate">Donation Date:</label>
-        <input type="date" id="donationDate" name="donationDate" value="<%= donation.donationDate.toISOString().split('T')[0] %>" required><br>
-        <label for="typeOfDonation">Type of Donation:</label>
-        <select id="typeOfDonation" name="typeOfDonation" required>
-            <option value="Doação Têxtil" <%= donation.typeOfDonation === 'Doação Têxtil' ? 'selected' : '' %>>Doação Têxtil</option>
-            <option value="Dinheiro" <%= donation.typeOfDonation === 'Dinheiro' ? 'selected' : '' %>>Dinheiro</option>
-        </select><br>
-        <div id="amountDiv" <% if (donation.typeOfDonation !== 'Dinheiro') { %>style="display: none;"<% } %>>
-            <label for="amount">Amount:</label>
+        <div class="form-group">
+            <label for="donator">Doador:</label>
+            <input type="text" id="donator" name="donator" value="<%= donation.donator %>" required><br>
+        </div>
+        <div class="form-group">
+            <label for="entity">Entidade Beneficiária:</label>
+            <input type="text" id="entity" name="entity" value="<%= donation.entity %>" required><br>
+        </div>
+        <div class="form-group">
+            <label for="donationDate">Data da doação::</label>
+            <input type="date" id="donationDate" name="donationDate" value="<%= donation.donationDate.toISOString().split('T')[0] %>" required><br>
+        </div>
+        <div class="form-group">
+            <label for="typeOfDonation">Tipo de doação:</label>
+            <select id="typeOfDonation" name="typeOfDonation" required>
+                <option value="Doação Têxtil" <%= donation.typeOfDonation === 'Doação Têxtil' ? 'selected' : '' %>>Doação Têxtil</option>
+                <option value="Dinheiro" <%= donation.typeOfDonation === 'Dinheiro' ? 'selected' : '' %>>Dinheiro</option>
+            </select><br>
+        </div>
+        <div id="amountDiv" class="form-group" <% if (donation.typeOfDonation !== 'Dinheiro') { %>style="display: none;"<% } %>>
+            <label for="amount">Quantia:</label>
             <input type="number" id="amount" name="amount" value="<%= donation.amount %>"><br>
         </div>
-        <div id="typeOfClothingDiv" <% if (donation.typeOfDonation !== 'Doação Têxtil') { %>style="display: none;"<% } %>>
-            <label for="typeOfClothing">Type of Clothing:</label>
+        <div id="typeOfClothingDiv" class="form-group" <% if (donation.typeOfDonation !== 'Doação Têxtil') { %>style="display: none;"<% } %>>
+            <label for="typeOfClothing">Tipo de doação têxtil:</label>
             <select id="typeOfClothing" name="typeOfClothing">
                 <option value="Fatos e blazers" <%= donation.typeOfClothing === 'Fatos e blazers' ? 'selected' : '' %>>Fatos e blazers</option>
                 <option value="Calças" <%= donation.typeOfClothing === 'Calças' ? 'selected' : '' %>>Calças</option>
@@ -36,20 +47,23 @@
                 <option value="Outros" <%= donation.typeOfClothing === 'Outros' ? 'selected' : '' %>>Outros</option>
             </select><br>
         </div>
-        <button type="submit">Update Donation</button>
+        <div id="typeOfClothingStateDiv" class="form-group state" <% if (donation.typeOfDonation !== 'Doação Têxtil') { %>style="display: none;"<% } %>>
+            <label for="typeOfClothingState">Estado:</label>
+            <select id="typeOfClothingState" name="typeOfClothingState">
+                <option value="Novo com etiquetas" <%= donation.typeOfClothingState === 'Novo com etiquetas' ? 'selected' : '' %>>Novo com etiquetas</option>
+                <option value="Novo sem etiquetas" <%= donation.typeOfClothingState === 'Novo sem etiquetas' ? 'selected' : '' %>>Novo sem etiquetas</option>
+                <option value="Muito bom" <%= donation.typeOfClothingState === 'Muito bom' ? 'selected' : '' %>>Muito bom</option>
+                <option value="Bom" <%= donation.typeOfClothingState === 'Bom' ? 'selected' : '' %>>Bom</option>
+                <option value="Satisfatório" <%= donation.typeOfClothingState === 'Satisfatório' ? 'selected' : '' %>>Satisfatório</option>
+            </select><br>
+        </div>
+        
+        <button type="submit" class="submit-btn">Atualizar doação</button>
     </form>
-    <script>
-        document.getElementById("typeOfDonation").addEventListener("change", function() {
-            var amountDiv = document.getElementById("amountDiv");
-            var typeOfClothingDiv = document.getElementById("typeOfClothingDiv");
-            if (this.value === "Dinheiro") {
-                amountDiv.style.display = "block";
-                typeOfClothingDiv.style.display = "none";
-            } else if (this.value === "Doação Têxtil") {
-                amountDiv.style.display = "none";
-                typeOfClothingDiv.style.display = "block";
-            }
-        });
-    </script>
+    <script src="/scripts/editDonation.js"></script>
+</div>
+    <div class="back-button">
+        <a href="/donations">Voltar</a>
+    </div>
 </body>
 </html>
