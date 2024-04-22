@@ -5,6 +5,10 @@ const DonationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  entity: {
+    type: String,
+    required: true,
+  },
   donationDate: {
     type: Date,
     required: true,
@@ -16,42 +20,39 @@ const DonationSchema = new mongoose.Schema({
   },
   amount: {
     type: Number,
-    select: false, // Não selecionável por padrão
-  },
-  typeOfClothing: {
-    state : {
-      type: String,
-      enum: ["Novo com etiquetas", "Novo sem etiquetas","Muito bom", "Bom", "Satisfatório"],
-      select: false, // Não selecionável por padrão
-      required: function() {
-        return this.typeOfDonation === "Doação Têxtil";
-      }
-    },
-    type: String,
-    enum: [
-      "Fatos e blazers",
-      "Calças",
-      "Meias e Roupa Interior",
-      "Tops e t-shirts",
-      "Camisolas e sweaters",
-      "Casacos",
-      "Pijamas",
-      "Outros",
-    ],
-    select: false, // Não selecionável por padrão
     required: function() {
-      return this.typeOfDonation === "Doação Têxtil";
-    }
+      return this.typeOfDonation === "Dinheiro";
+    },
   },
 });
 
-// Configuração para tornar os campos selecionáveis dependendo do tipo de doação
-DonationSchema.pre("findOne", function () {
-  if (this.typeOfDonation === "Dinheiro") {
-    this.select("+amount");
-  } else if (this.typeOfDonation === "Doação Têxtil") {
-    this.select("+typeOfClothing");
-  }
+// Conditionally add typeOfClothing based on typeOfDonation
+DonationSchema.add({
+  typeOfClothing: {
+    state: {
+      type: String,
+      enum: ["Novo com etiquetas", "Novo sem etiquetas", "Muito bom", "Bom", "Satisfatório"],
+      required: function() {
+        return this.typeOfDonation === "Doação Têxtil";
+      },
+    },
+    category: {
+      type: String,
+      enum: [
+        "Fatos e blazers",
+        "Calças",
+        "Meias e Roupa Interior",
+        "Tops e t-shirts",
+        "Camisolas e sweaters",
+        "Casacos",
+        "Pijamas",
+        "Outros",
+      ],
+      required: function() {
+        return this.typeOfDonation === "Doação Têxtil";
+      },
+    },
+  },
 });
 
 module.exports = mongoose.model("Donation", DonationSchema);
