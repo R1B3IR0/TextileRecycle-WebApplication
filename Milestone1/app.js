@@ -13,10 +13,14 @@ mongoose.set('strictQuery', true);
 mongoose.connect('***REMOVED***/?retryWrites=true&w=majority&appName=Cluster0', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
-
+  
 
 var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
+
+
+var entitiesRouter = require('./routes/entities');
+var dashboardRouter = require('./routes/dashboard');
 
 var app = express();
 
@@ -33,6 +37,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', authRouter);
 app.use('/users', usersRouter);
+
+
+
+
+app.use('/entities', entitiesRouter);
+app.use('/dashboard', dashboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
