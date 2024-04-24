@@ -31,7 +31,7 @@ DonationSchema.add({
   typeOfClothing: {
     state: {
       type: String,
-      enum: ["Novo com etiquetas", "Novo sem etiquetas", "Muito bom", "Bom", "Satisfatório"],
+      enum: ["", "Novo com etiquetas", "Novo sem etiquetas", "Muito bom", "Bom", "Satisfatório"],
       required: function() {
         return this.typeOfDonation === "Doação Têxtil";
       },
@@ -39,6 +39,7 @@ DonationSchema.add({
     category: {
       type: String,
       enum: [
+        "",
         "Fatos e blazers",
         "Calças",
         "Meias e Roupa Interior",
