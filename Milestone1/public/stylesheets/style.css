@@ -76,6 +76,7 @@ p {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  margin-bottom: 15px;
 }
 
 .user-container {
@@ -149,4 +150,38 @@ table tr:hover {
   padding: 5px;
 }
 
+<<<<<<< HEAD
+=======
+.back-button {
+  margin-top: 20px; /* Ajuste conforme necessário */
+}
+
+.back-button a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; /* Cor de fundo - você pode ajustar conforme necessário */
+  color: #fff; /* Cor do texto - você pode ajustar conforme necessário */
+  text-decoration: none;
+  border-radius: 5px; /* Borda arredondada - você pode ajustar conforme necessário */
+  transition: background-color 0.3s ease; /* Transição suave de cor de fundo */
+}
+
+.back-button a:hover {
+  background-color: #0056b3; /* Cor de fundo ao passar o mouse - você pode ajustar conforme necessário */
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff; /* Cor de fundo - você pode ajustar conforme necessário */
+  color: #fff; /* Cor do texto - você pode ajustar conforme necessário */
+  border: none;
+  border-radius: 5px; /* Borda arredondada - você pode ajustar conforme necessário */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transição suave de cor de fundo */
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3; /* Cor de fundo ao passar o mouse - você pode ajustar conforme necessário */
+}
+>>>>>>> master
 

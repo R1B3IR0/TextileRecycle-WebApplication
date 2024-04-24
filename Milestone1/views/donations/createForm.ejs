@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Donation</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+    <div class="register-container">
+        <h2>Criar Doação</h2>
+        <form action="/donations/create" method="post">
+            <div class="form-group">
+                <label for="donator">Doador:</label>
+                <input type="text" name="donator" id="donator" placeholder="Doador" required>
+            </div>
+            <div class="form-group">
+                <label for="entity">Entidade Beneficiária:</label>
+                <input type="text" name="entity" id="entity" placeholder="Entidade Beneficiária" required>
+            </div>
+            <div class="form-group">
+                <label for="donationDate">Data da doação:</label>
+                <input type="date" name="donationDate" id="donationDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="typeOfDonation">Tipo de doação:</label>
+                <select name="typeOfDonation" id="typeOfDonation" required>
+                    <option value="">Escolha o tipo de doação</option>
+                    <option value="Doação Têxtil">Doação Têxtil</option>
+                    <option value="Dinheiro">Dinheiro</option>
+                </select>
+            </div>
+
+            <div id="amountDiv" style="display: none;">
+                <label for="amount">Quantia:</label>
+                <input type="number" name="amount" id="amount">
+            </div>
+
+            <div id="typeOfClothingDiv" style="display: none;">
+                <label for="typeOfClothing.category">Tipo de Doação Têxtil:</label>
+                <select name="typeOfClothing.category" id="typeOfClothing">
+                    <option value="">Escolha o tipo de roupa</option>
+                    <option value="Fatos e blazers">Fatos e blazers</option>
+                    <option value="Calças">Calças</option>
+                    <option value="Meias e Roupa Interior">Meias e Roupa Interior</option>
+                    <option value="Tops e t-shirts">Tops e t-shirts</option>
+                    <option value="Camisolas e sweaters">Camisolas e sweaters</option>
+                    <option value="Casacos">Casacos</option>
+                    <option value="Pijamas">Pijamas</option>
+                    <option value="Outros">Outros</option>
+                </select>
+            </div>
+            <br>
+            <div id="typeOfClothingStateDiv" style="display: none;">
+                <label for="typeOfClothing.state">Estado do tipo de roupa:</label>
+                <select name="typeOfClothing.state" id="typeOfClothingState">
+                    <option value="">Escolha o estado da roupa</option>
+                    <option value="Novo com etiquetas">Novo com etiquetas</option>
+                    <option value="Novo sem etiquetas">Novo sem etiquetas</option>
+                    <option value="Muito bom">Muito bom</option>
+                    <option value="Bom">Bom</option>
+                    <option value="Satisfatório">Satisfatório</option>
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="submit-btn">Criar Doação</button>
+        </form>
+        <div class="back-button">
+            <a href="/donations" onclick="history.go(-1);">Voltar</a>
+        </div>
+
+        <script src="/scripts/showBlockTypeOfDonation.js"></script>
+        <script src="/scripts/switchTypeOfDonation.js"></script>
+</body>
+
+</html>
