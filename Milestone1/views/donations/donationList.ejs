@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Donations</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <div class="view-all-container">
+        <h2>Todas as Doações</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Doador</th>
+                <th>Data da Doação</th>
+                <th>Tipo de Doação</th>
+                <th>Detalhes</th>
+                <th>Editar</th>
+                <th>Remover</th>
+            </tr>
+            <% donations.forEach(function(donation) { %>
+            <tr>
+                <td><%= donation._id %></td>
+                <td><%= donation.donator %></td>
+                <td><%= donation.donationDate %></td>
+                <td><%= donation.typeOfDonation %></td>
+                <td><a href="/donations/show/<%= donation._id %>">Detalhes</a></td>
+                <td><a href="/donations/edit/<%= donation._id %>">Editar</a></td>
+                <td><a href="/donations/delete/<%= donation._id %>" onclick="return confirmDelete()">Remover</a></td>
+            </tr>
+            <% }); %>
+        </table>
+        <script src="/scripts/confirmationToDelete.js"></script>
+    </div>
+    <div class="back-button">
+        <a href="/donations/create">Criar Doação</a>
+</body>
+
+</html>

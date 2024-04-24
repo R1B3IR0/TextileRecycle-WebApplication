@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Details</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <div class="view-all-container">
+        <h1>Donation Details</h1>
+        <table>
+            <tbody>
+                <tr>
+                    <td>ID</td>
+                    <td>:</td>
+                    <td><%= donation._id %></td>
+                </tr>
+                <tr>
+                    <td>Doador</td>
+                    <td>:</td>
+                    <td><%= donation.donator %></td>
+                </tr>
+                <tr>
+                    <td>Entidade Beneficiária</td>
+                    <td>:</td>
+                    <td><%= donation.entity %></td>
+                <tr>
+                    <td>Data da doação</td>
+                    <td>:</td>
+                    <td><%= donation.donationDate %></td>
+                </tr>
+                <tr>
+                    <td>Tipo da Doação</td>
+                    <td>:</td>
+                    <td><%= donation.typeOfDonation %></td>
+                </tr>
+                <% if (donation.typeOfDonation === 'Dinheiro') { %>
+                    <tr>
+                        <td>Amount</td>
+                        <td>:</td>
+                        <td><%= donation.amount %></td>
+                    </tr>
+                <% } else if (donation.typeOfDonation === 'Doação Têxtil') { %>
+                    <tr>
+                        <td>Categoria</td>
+                        <td>:</td>
+                        <td><%= donation.typeOfClothing && donation.typeOfClothing.category ? donation.typeOfClothing.category : 'N/A' %></td>
+                    </tr>
+                    <tr>
+                        <td>Estado</td>
+                        <td>:</td>
+                        <td><%= donation.typeOfClothing && donation.typeOfClothing.state ? donation.typeOfClothing.state : 'N/A' %></td>
+                    </tr>                    
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+    <div class="back-button">
+        <a href="/donations">Voltar</a>
+</body>
+</html>

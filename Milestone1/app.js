@@ -11,12 +11,14 @@ mongoose.set('strictQuery', true);
 
 // Connect to MongoDB
 mongoose.connect('***REMOVED***/?retryWrites=true&w=majority&appName=Cluster0', {useNewUrlParser: true, useUnifiedTopology: true})
-  .then(() =>  console.log('connection succesful'))
+  .then(() =>  console.log('connection successful to database'))
   .catch((err) => console.error(err));
   
 
 var authRouter = require('./routes/auth');
 var usersRouter = require('./routes/users');
+var donationsRouter = require('./routes/donations');
+var donatorRouter = require('./routes/donators');
 
 
 var entitiesRouter = require('./routes/entities');
@@ -37,6 +39,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', authRouter);
 app.use('/users', usersRouter);
+app.use('/donations', donationsRouter);
+app.use('/donators', donatorRouter);
 
 
 
