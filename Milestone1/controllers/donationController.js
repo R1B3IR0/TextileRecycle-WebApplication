@@ -34,10 +34,18 @@ donationController.formCreate = function (req, res) {
 };
 
 // Cria uma doação em resposta a um post em um formulário
-donationController.create = function (req, res) {  
-  var donation = new Donation(req.body); // Cria uma nova instância de Donation com os dados do formulário
+donationController.create = function (req, res) {
+    // Create a new donation instance with the data from the form
+    var donationData = req.body;
 
-  console.log("Attempting to create donation:", donation);
+    // Omit typeOfClothing for donations of type 'Dinheiro'
+    if (donationData.typeOfDonation === 'Dinheiro') {
+        delete donationData.typeOfClothing;
+    }
+
+    var donation = new Donation(donationData);
+
+    console.log("Attempting to create donation:", donation);
   donation.save(function(err) { // Salva a doação no banco de dados
     if (err) {
       console.error("Error saving donation:", err);
