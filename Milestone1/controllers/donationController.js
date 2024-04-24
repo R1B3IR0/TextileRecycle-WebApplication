@@ -35,26 +35,39 @@ donationController.formCreate = function (req, res) {
 
 // Cria uma doação em resposta a um post em um formulário
 donationController.create = function (req, res) {
+    // Log the request body to check its contents
+    console.log("Request body:", req.body);
+
     // Create a new donation instance with the data from the form
     var donationData = req.body;
 
     // Omit typeOfClothing for donations of type 'Dinheiro'
     if (donationData.typeOfDonation === 'Dinheiro') {
+        console.log("Donation type is Dinheiro. Omitting typeOfClothing.");
         delete donationData.typeOfClothing;
     }
+    // Delete amount for donations of type 'Doação Têxtil'
+    if (donationData.typeOfDonation === 'Doação Têxtil') {
+        console.log("Donation type is Doação Têxtil. Deleting amount.");
+        delete donationData.amount;
+        // Add typeOfClothing and state fields
+        donationData.typeOfClothing = req.body['typeOfClothing.category'];
+        donationData.state = req.body['typeOfClothing.state'];
+    }
+
 
     var donation = new Donation(donationData);
 
     console.log("Attempting to create donation:", donation);
-  donation.save(function(err) { // Salva a doação no banco de dados
-    if (err) {
-      console.error("Error saving donation:", err);
-      res.render("../views/donations/createForm");
-    } else {
-      console.log("Successfully created a donation.");
-      res.redirect("/donations");
-    }
-  });
+    donation.save(function(err) {
+        if (err) {
+            console.error("Error saving donation:", err);
+            res.render("../views/donations/createForm");
+        } else {
+            console.log("Successfully created a donation.");
+            res.redirect("/donations");
+        }
+    });
 };
 
 // Formulário para editar uma doação

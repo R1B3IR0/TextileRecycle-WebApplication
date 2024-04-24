@@ -23,30 +23,30 @@ const DonationSchema = new mongoose.Schema({
 // Conditionally add typeOfClothing based on typeOfDonation
 DonationSchema.add({
     typeOfClothing: {
-        type: {
-            type: String,
-            enum: [
-                "Fatos e blazers",
-                "Calças",
-                "Meias e Roupa Interior",
-                "Tops e t-shirts",
-                "Camisolas e sweaters",
-                "Casacos",
-                "Pijamas",
-                "Outros",
-            ],
-            required: function () {
-                return this.typeOfDonation === "Doação Têxtil";
-            },
+        type: String,
+        enum: [
+            "Fatos e blazers",
+            "Calças",
+            "Meias e Roupa Interior",
+            "Tops e t-shirts",
+            "Camisolas e sweaters",
+            "Casacos",
+            "Pijamas",
+            "Outros",
+        ],
+        required: function () {
+            return this.typeOfDonation === "Doação Têxtil";
         },
-        state: {
-            type: String,
-            enum: ["Novo com etiquetas", "Novo sem etiquetas", "Muito bom", "Bom", "Satisfatório"],
-            required: function () {
-                return this.typeOfDonation === "Doação Têxtil";
-            },
-        }
     },
+    state: {
+        type: String,
+        enum: ["Novo com etiquetas", "Novo sem etiquetas", "Muito bom", "Bom", "Satisfatório"],
+        required: function () {
+            return this.typeOfDonation === "Doação Têxtil";
+        },
+    },
+});
+DonationSchema.add({
     amount: {
         type: Number,
         required: function () {
