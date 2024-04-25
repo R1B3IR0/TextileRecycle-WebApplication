@@ -9,71 +9,137 @@
 </head>
 
 <body>
-    <div class="register-container">
-        <h2>Criar Doação</h2>
-        <form action="/donations/create" method="post">
-            <div class="form-group">
-                <label for="donator">Doador:</label>
-                <input type="text" name="donator" id="donator" placeholder="Doador" required>
-            </div>
-            <div class="form-group">
-                <label for="entity">Entidade Beneficiária:</label>
-                <input type="text" name="entity" id="entity" placeholder="Entidade Beneficiária" required>
-            </div>
-            <div class="form-group">
-                <label for="donationDate">Data da doação:</label>
-                <input type="date" name="donationDate" id="donationDate" required>
-            </div>
-
-            <div class="form-group">
-                <label for="typeOfDonation">Tipo de doação:</label>
-                <select name="typeOfDonation" id="typeOfDonation" required>
-                    <option value="">Escolha o tipo de doação</option>
-                    <option value="Doação Têxtil">Doação Têxtil</option>
-                    <option value="Dinheiro">Dinheiro</option>
-                </select>
-            </div>
-
-            <div id="amountDiv" style="display: none;">
-                <label for="amount">Quantia:</label>
-                <input type="number" name="amount" id="amount">
-            </div>
-
-            <div id="typeOfClothingDiv" style="display: none;">
-                <label for="typeOfClothing.category">Tipo de Doação Têxtil:</label>
-                <select name="typeOfClothing.category" id="typeOfClothing">
-                    <option value="">Escolha o tipo de roupa</option>
-                    <option value="Fatos e blazers">Fatos e blazers</option>
-                    <option value="Calças">Calças</option>
-                    <option value="Meias e Roupa Interior">Meias e Roupa Interior</option>
-                    <option value="Tops e t-shirts">Tops e t-shirts</option>
-                    <option value="Camisolas e sweaters">Camisolas e sweaters</option>
-                    <option value="Casacos">Casacos</option>
-                    <option value="Pijamas">Pijamas</option>
-                    <option value="Outros">Outros</option>
-                </select>
-            </div>
-            <br>
-            <div id="typeOfClothingStateDiv" style="display: none;">
-                <label for="typeOfClothing.state">Estado do tipo de roupa:</label>
-                <select name="typeOfClothing.state" id="typeOfClothingState">
-                    <option value="">Escolha o estado da roupa</option>
-                    <option value="Novo com etiquetas">Novo com etiquetas</option>
-                    <option value="Novo sem etiquetas">Novo sem etiquetas</option>
-                    <option value="Muito bom">Muito bom</option>
-                    <option value="Bom">Bom</option>
-                    <option value="Satisfatório">Satisfatório</option>
-                </select>
-            </div>
-            <br>
-            <button type="submit" class="submit-btn">Criar Doação</button>
-        </form>
-        <div class="back-button">
-            <a href="/donations" onclick="history.go(-1);">Voltar</a>
+<div class="register-container">
+    <h2>Criar Doação</h2>
+    <form action="/donations/create" method="post">
+        <div class="form-group">
+            <label for="donator">Doador:</label>
+            <input type="text" name="donator" id="donator" placeholder="Doador" required>
+        </div>
+        <div class="form-group">
+            <label for="entity">Entidade Beneficiária:</label>
+            <input type="text" name="entity" id="entity" placeholder="Entidade Beneficiária" required>
+        </div>
+        <div class="form-group">
+            <label for="donationDate">Data da doação:</label>
+            <input type="date" name="donationDate" id="donationDate" required>
         </div>
 
-        <script src="/scripts/showBlockTypeOfDonation.js"></script>
-        <script src="/scripts/switchTypeOfDonation.js"></script>
+        <div class="form-group">
+            <label for="typeOfDonation">Tipo de doação:</label>
+            <select name="typeOfDonation" id="typeOfDonation" required>
+                <option value="">Escolha o tipo de doação</option>
+                <option value="Doação Têxtil">Doação Têxtil</option>
+                <option value="Dinheiro">Dinheiro</option>
+            </select>
+        </div>
+
+        <div id="amountDiv" style="display: none;">
+            <label for="amount">Quantia:</label>
+            <input type="number" name="amount" id="amount">
+        </div>
+
+        <div id="typeOfClothingDiv" style="display: none;">
+            <label for="typeOfClothing.category">Tipo de Doação Têxtil:</label>
+            <select name="typeOfClothing.category" id="typeOfClothing">
+                <option value="">Escolha o tipo de roupa</option>
+                <option value="Fatos e blazers">Fatos e blazers</option>
+                <option value="Calças">Calças</option>
+                <option value="Meias e Roupa Interior">Meias e Roupa Interior</option>
+                <option value="Tops e t-shirts">Tops e t-shirts</option>
+                <option value="Camisolas e sweaters">Camisolas e sweaters</option>
+                <option value="Casacos">Casacos</option>
+                <option value="Pijamas">Pijamas</option>
+                <option value="Outros">Outros</option>
+            </select>
+        </div>
+        <br>
+        <div id="typeOfClothingStateDiv" style="display: none;">
+            <label for="typeOfClothing.state">Estado do tipo de roupa:</label>
+            <select name="typeOfClothing.state" id="typeOfClothing.state">
+                <option value="">Escolha o estado da roupa</option>
+                <option value="Novo com etiquetas">Novo com etiquetas</option>
+                <option value="Novo sem etiquetas">Novo sem etiquetas</option>
+                <option value="Muito bom">Muito bom</option>
+                <option value="Bom">Bom</option>
+                <option value="Satisfatório">Satisfatório</option>
+            </select>
+            <p>
+            <button id="submitButton" type="submit" class="submit-btn" style=" display:none">Criar Doação</button>
+
+        </div>
+        </br>
+    </form>
+    <script src="/scripts/showBlockTypeOfDonation.js"></script>
+    <script src="/scripts/switchTypeOfDonation.js"></script>
+    <div onclick="history.go(-1);" href="/donations" id="paypal-button-container" style="display:none"></div>
+    <div class="back-button" style="text-align: right;">
+        <a href="/donations" onclick="history.go(-1);">Voltar</a>
+    </div>
+</div>
+<script src="https://www.paypal.com/sdk/js?client-id=Aam9--W1eErGEHOOk4QgvOdxkLpkECTs3J88-4aNvl7SeANFiLl0rg3c52NV5usNfnyS16zBB2r01hVw&currency=EUR"></script>
+<script>
+    document.getElementById('typeOfDonation').addEventListener('change', function () {
+        var donationType = this.value;
+        var amountDiv = document.getElementById('amountDiv');
+
+        if (donationType === 'Dinheiro') {
+            amountDiv.style.display = 'block';
+            paypalButtonContainer.style.display = 'block';
+        } else {
+            amountDiv.style.display = 'none';
+            paypalButtonContainer.style.display = 'none';
+        }
+    });
+
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: document.getElementById('amount').value
+                    }
+                }]
+            });
+        },
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+                alert('Transaction completed by ' + details.payer.name.given_name);
+
+                // Create a donation object with the required data
+                var donationData = {
+                    donator: document.getElementById('donator').value, // Example value, replace with actual data
+                    entity: document.getElementById('entity').value, // Example value, replace with actual data
+                    donationDate: document.getElementById('donationDate').value, // Example value, replace with actual data
+                    typeOfDonation: document.getElementById('typeOfDonation').value, // Example value, replace with actual data
+                    amount: document.getElementById('amount').value // Get the amount from the input field
+                };
+
+                // Send an HTTP POST request to the server to create the donation
+                fetch('/donations/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(donationData)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            console.log('Donation created successfully.');
+                            // Redirect to the donations page
+                            window.location.href = '/donations';
+                        } else {
+                            throw new Error('Failed to create donation.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error creating donation:', error);
+                    });
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
+
 </body>
 
 </html>
