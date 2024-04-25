@@ -5,8 +5,6 @@ var DonatorSchema = new Schema({
     contact: {type: String, required: true},
     address: {type: String, required: true},
     points: {type: Number, default: 0},
-    //entity: {type: entity, required: true},   // This is a reference to the Entity model
-
 });
 
 module.exports = model('Donator', DonatorSchema);
