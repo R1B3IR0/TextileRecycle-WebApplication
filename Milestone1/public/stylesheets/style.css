@@ -150,8 +150,7 @@ table tr:hover {
   padding: 5px;
 }
 
-<<<<<<< HEAD
-=======
+
 .back-button {
   margin-top: 20px; /* Ajuste conforme necessário */
 }
@@ -183,5 +182,5 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #0056b3; /* Cor de fundo ao passar o mouse - você pode ajustar conforme necessário */
 }
->>>>>>> master
+
 
