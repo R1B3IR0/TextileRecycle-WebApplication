@@ -11,7 +11,7 @@ const DonationSchema = new mongoose.Schema({
   },
   donationDate: {
     type: Date,
-    required: true,
+    default : Date.now, 
   },
   typeOfDonation: {
     type: String,
