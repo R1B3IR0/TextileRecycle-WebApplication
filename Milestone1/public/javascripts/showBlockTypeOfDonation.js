@@ -21,6 +21,7 @@ function showRelevantBlock() {
     }
 }
 
+
 // Chamada para exibir o bloco relevante quando a página é carregada
 showRelevantBlock();
 

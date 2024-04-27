@@ -17,6 +17,6 @@ router.get('/edit/:id', entityController.formUpdate);
 // Save edited entity
 router.post('/edit/:id', entityController.update);
 // Delete entity
-router.delete('/delete/:id', entityController.delete);
+router.get('/delete/:id', entityController.delete);
 
 module.exports = router;
