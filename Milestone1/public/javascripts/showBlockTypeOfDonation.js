@@ -4,6 +4,8 @@ function showRelevantBlock() {
     var amountDiv = document.getElementById("amountDiv");
     var typeOfClothingDiv = document.getElementById("typeOfClothingDiv");
 
+
+
     // Esconde ambos os blocos
     amountDiv.style.display = "none";
     typeOfClothingDiv.style.display = "none";

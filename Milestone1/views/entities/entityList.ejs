@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Entities</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+<div class="entity-container">
+    <h2>Entities</h2>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Contacto</th>
+            <th>Morada</th>
+            <th>Pontos</th>
+            <th>Editar</th>
+            <th>Remover</th>
+        </tr>
+        <% donators.forEach(function(donator) { %>
+            <tr>
+                <td><%= donator.name %></td>
+                <td><%= donator.email %></td>
+                <td><%= donator.contact %></td>
+                <td><%= donator.address %></td>
+                <td><%= donator.points %></td>
+                <td><a href="/donators/show/<%= donator._id %>">Detalhes</a></td>
+                <td><a href="/donators/edit/<%= donator._id %>">Editar</a></td>
+                <td><a href="/donators/delete/<%= donator._id %>">Remover</a></td>
+            </tr>
+        <% }); %>
+    </table>
+</div>
+</body>
+
+</html>
