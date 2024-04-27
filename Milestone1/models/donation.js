@@ -2,11 +2,13 @@ const mongoose = require("mongoose");
 
 const DonationSchema = new mongoose.Schema({
     donator: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Donator",
         required: true,
     },
     entity: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Entity",
         required: true,
     },
     donationDate: {
@@ -17,6 +19,15 @@ const DonationSchema = new mongoose.Schema({
         type: String,
         enum: ["Doação Têxtil", "Dinheiro"],
         required: true,
+    },
+    imageProof: {
+        data: Buffer,
+        type: String
+    },
+    status: {
+        type: String,
+        enum: ["Pendente", "Aprovado", "Rejeitado"],
+        default: "Pendente"
     }
 });
 
