@@ -56,7 +56,7 @@ donatorController.formEdit = function (req, res) {
       console.log('Erro a ler');
       res.redirect('/error')
     } else {
-      res.render('../views/donators/editForm', {donator: dbdonator});
+      res.render('../views/donators/donatorEditDetails', {donator: dbdonator});
     }
   });
 };
