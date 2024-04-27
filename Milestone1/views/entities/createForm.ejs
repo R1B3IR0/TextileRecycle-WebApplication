@@ -19,23 +19,33 @@
             <input type="text" name="description" id="description" placeholder="uma breve descrição" required>
         </div>
         <div class="form-group">
+            <label for="contact">Contacto</label>
+            <input type="text" name="contact" id="contact" placeholder="eg. 911111111" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" placeholder="eg. santacasa@gmail.com" required>
+        </div>
+
+        <div class="form-group">
             <label for="countryCode">Código do País</label>
-            <input type="text" name="address[countryCode]" id="countryCode" placeholder="Código do País" required>
+            <input type="text" name="address.countryCode" id="countryCode" placeholder="Código do País" required>
         </div>
         <div class="form-group">
             <label for="postalCode">Código Postal</label>
-            <input type="text" name="address[postalCode]" id="postalCode" placeholder="Código Postal" required>
+            <input type="text" name="address.postalCode" id="postalCode" placeholder="Código Postal" required>
         </div>
         <div class="form-group">
             <label for="addressLocality">Localidade</label>
-            <input type="text" name="address[addressLocality]" id="addressLocality" placeholder="Localidade" required>
+            <input type="text" name="address.addressLocality" id="addressLocality" placeholder="Localidade" required>
         </div>
         <div class="form-group">
             <label for="streetAddress">Endereço</label>
-            <input type="text" name="address[streetAddress]" id="streetAddress" placeholder="Endereço" required>
+            <input type="text" name="address.streetAddress" id="streetAddress" placeholder="Endereço" required>
         </div>
         <button type="submit">Criar</button>
     </form>
+    <a href="/entities" onclick="history.go(-1);">Back</a>
 </div>
 </body>
 </html>
