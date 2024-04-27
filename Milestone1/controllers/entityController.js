@@ -1,7 +1,6 @@
-var mongoose = require("mongoose");
-var Entity = require("../models/entity");
-
-var entityController = {};
+let mongoose = require("mongoose");
+let Entity = require("../models/entity");
+let entityController = {};
 
 // show all entities
 entityController.showAll = function(req, res) {
@@ -10,7 +9,7 @@ entityController.showAll = function(req, res) {
       console.log('Erro a ler');
       res.redirect('/error')
     } else {
-      console.log(entities);
+      console.log(dbentities);
       res.render('../views/entities/entityList', {entities: dbentities});
     }
   });
@@ -34,7 +33,8 @@ entityController.formCreate = function (req, res) {
 };
 
 // create 1 entity as a response to a post in a form
-entityController.create = function (req, res) {  
+entityController.create = function (req, res) {
+
   var entity = new Entity(req.body);
 
   console.log("Attempting to create entity:", entity);
