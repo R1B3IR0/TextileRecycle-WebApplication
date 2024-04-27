@@ -1,10 +1,7 @@
 var mongoose = require('mongoose');
 
 var EntitySchema = new mongoose.Schema({
-<<<<<<< HEAD
-=======
     // In future try to add an image field to the entity schema
->>>>>>> miguel
     name: {type: String, required: true},
     contact: {type: String, required: true},
     email: {type: String, required: true},

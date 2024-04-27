@@ -16,17 +16,6 @@ entityController.showAll = function (req, res) {
 };
 
 // show 1 entity by id
-<<<<<<< HEAD
-entityController.show = function(req, res) {
-  Entity.findOne({_id: req.params.id}).exec(function(err, dbentity){
-    if(err){
-      console.log('Erro a ler');
-      res.redirect('/error')
-    } else {
-      res.render('../views/entities/entityViewDetails.ejs', {entity: dbentity});
-    }
-  });
-=======
 entityController.show = function (req, res) {
     Entity.findOne({_id: req.params.id}).exec(function (err, dbentity) {
         if (err) {
@@ -36,7 +25,6 @@ entityController.show = function (req, res) {
             res.render('../views/entities/entityViewDetails', {entity: dbentity});
         }
     });
->>>>>>> miguel
 };
 
 // form to create 1 entity
