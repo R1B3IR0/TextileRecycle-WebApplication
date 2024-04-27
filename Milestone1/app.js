@@ -20,7 +20,7 @@ var usersRouter = require('./routes/users');
 var donationsRouter = require('./routes/donations');
 var donatorRouter = require('./routes/donators');
 var entitiesRouter = require('./routes/entities');
-//var dashboardRouter = require('./routes/dashboard');
+var dashboardRouter = require('./routes/dashboard');
 
 var app = express();
 
@@ -40,7 +40,7 @@ app.use('/users', usersRouter);
 app.use('/donations', donationsRouter);
 app.use('/donators', donatorRouter);
 app.use('/entities', entitiesRouter);
-//app.use('/dashboard', dashboardRouter);
+app.use('/dashboard', dashboardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
