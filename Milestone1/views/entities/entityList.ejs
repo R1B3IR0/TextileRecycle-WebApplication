@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Entities</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+<div class="entity-container">
+    <h2>Entities</h2>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Contacto</th>
+            <th>Morada</th>
+            <th>Pontos</th>
+            <th>Editar</th>
+            <th>Remover</th>
+        </tr>
+        <% entities.forEach(function(entity) { %>
+            <tr>
+                <td><%= entity.name %></td>
+                <td><%= entity.email %></td>
+                <td><%= entity.contact %></td>
+                <td><%= entity.address.streetAddress %></td>
+                <td><%= entity.points %></td>
+                <td><a href="/entities/show/<%= entity._id %>">Detalhes</a></td>
+                <td><a href="/entities/edit/<%= entity._id %>">Editar</a></td>
+                <td><a href="/entities/delete/<%= entity._id %>">Remover</a></td>
+            </tr>
+        <% }); %>
+    </table>
+</div>
+</body>
+
+</html>
