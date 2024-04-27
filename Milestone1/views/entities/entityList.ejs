@@ -14,25 +14,6 @@
     <table>
         <tr>
             <th>Nome</th>
-<<<<<<< HEAD
-            <th>Descrição</th>
-            <th>Contacto</th>
-            <th>Morada</th>
-            <th>Pontos</th>
-            <th>Editar</th>
-            <th>Remover</th>
-        </tr>
-        <% donators.forEach(function(donator) { %>
-            <tr>
-                <td><%= donator.name %></td>
-                <td><%= donator.email %></td>
-                <td><%= donator.contact %></td>
-                <td><%= donator.address %></td>
-                <td><%= donator.points %></td>
-                <td><a href="/donators/show/<%= donator._id %>">Detalhes</a></td>
-                <td><a href="/donators/edit/<%= donator._id %>">Editar</a></td>
-                <td><a href="/donators/delete/<%= donator._id %>">Remover</a></td>
-=======
             <th>Email</th>
             <th>Contacto</th>
             <th>Morada</th>
@@ -50,7 +31,6 @@
                 <td><a href="/entities/show/<%= entity._id %>">Detalhes</a></td>
                 <td><a href="/entities/edit/<%= entity._id %>">Editar</a></td>
                 <td><a href="/entities/delete/<%= entity._id %>">Remover</a></td>
->>>>>>> miguel
             </tr>
         <% }); %>
     </table>
