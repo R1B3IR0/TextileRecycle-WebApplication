@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 
 const DonationSchema = new mongoose.Schema({
-<<<<<<< HEAD
-    donator: {
-        type: String,
-        required: true,
-=======
   donator: {
     type: String,
     required: true,
@@ -27,7 +22,6 @@ const DonationSchema = new mongoose.Schema({
     type: Number,
     required: function() {
       return this.typeOfDonation === "Dinheiro";
->>>>>>> romulo
     },
     entity: {
         type: String,
@@ -63,21 +57,6 @@ DonationSchema.add({
         },
     },
     state: {
-<<<<<<< HEAD
-        type: String,
-        enum: ["Novo com etiquetas", "Novo sem etiquetas", "Muito bom", "Bom", "Satisfatório"],
-        required: function () {
-            return this.typeOfDonation === "Doação Têxtil";
-        },
-    },
-});
-DonationSchema.add({
-    amount: {
-        type: Number,
-        required: function () {
-            return this.typeOfDonation === "Dinheiro";
-        },
-=======
       type: String,
       enum: ["", "Novo com etiquetas", "Novo sem etiquetas", "Muito bom", "Bom", "Satisfatório"],
       required: function() {
@@ -100,7 +79,6 @@ DonationSchema.add({
       required: function() {
         return this.typeOfDonation === "Doação Têxtil";
       },
->>>>>>> romulo
     },
 });
 
