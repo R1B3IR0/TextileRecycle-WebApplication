@@ -30,7 +30,7 @@ entityController.show = function(req, res) {
 
 // form to create 1 entity
 entityController.formCreate = function (req, res) {
-  res.render("../views/entities_/createForm");
+  res.render("../views/entities/createForm");
 };
 
 // create 1 entity as a response to a post in a form
