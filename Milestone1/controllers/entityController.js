@@ -23,7 +23,7 @@ entityController.show = function(req, res) {
       console.log('Erro a ler');
       res.redirect('/error')
     } else {
-      res.render('../views/entities/entityViewDetails', {entity: dbentity});
+      res.render('../views/entities/entityViewDetails.ejs', {entity: dbentity});
     }
   });
 };

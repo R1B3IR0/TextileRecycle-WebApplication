@@ -31,6 +31,8 @@ const DonationSchema = new mongoose.Schema({
     }
 });
 
+
+
 // Conditionally add typeOfClothing based on typeOfDonation
 DonationSchema.add({
     typeOfClothing: {
