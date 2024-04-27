@@ -15,9 +15,7 @@
         <tr>
             <th>Nome</th>
             <th>Email</th>
-            <th>Contacto</th>
-            <th>Morada</th>
-            <th>Pontos</th>
+            <th>NIF</th>
             <th>Editar</th>
             <th>Remover</th>
         </tr>
@@ -25,9 +23,7 @@
             <tr>
                 <td><%= donator.name %></td>
                 <td><%= donator.email %></td>
-                <td><%= donator.contact %></td>
-                <td><%= donator.address %></td>
-                <td><%= donator.points %></td>
+                <td><%= donator.nif %></td>
                 <td><a href="/donators/show/<%= donator._id %>">Detalhes</a></td>
                 <td><a href="/donators/edit/<%= donator._id %>">Editar</a></td>
                 <td><a href="/donators/delete/<%= donator._id %>">Remover</a></td>

@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+<div class="view-all-container">
+    <h1>Entity Details</h1>
+    <table>
+        <tbody>
+        <tr>
+            <td>ID</td>
+            <td>:</td>
+            <td><%= entity._id %></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td><%= entity.name %></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>:</td>
+            <td><%= entity.description %></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>:</td>
+            <td><%= entity.email %></td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td>:</td>
+            <td><%= entity.contact %></td>
+        </tr>
+        <tr>
+            <td>Country Code</td>
+            <td>:</td>
+            <td><%= entity.address.countryCode %></td>
+        </tr>
+        <tr>
+            <td>Postal Code</td>
+            <td>:</td>
+            <td><%= entity.address.postalCode %></td>
+        </tr>
+        <tr>
+            <td>Locality</td>
+            <td>:</td>
+            <td><%= entity.address.addressLocality %></td>
+        </tr>
+        <tr>
+            <td>Rua</td>
+            <td>:</td>
+            <td><%= entity.address.streetAddress %></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<h3><a href="/entities">See all Entities</a></h3>
+</body>
+</html>
