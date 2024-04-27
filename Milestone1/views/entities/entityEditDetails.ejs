@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Edit</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+<div class="edit-entity-container">
+    <h2>Edit Entity</h2>
+    <form action="/entities/edit/<%=entity.id%>" method="post">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" placeholder="Nome" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Descrição</label>
+            <input type="text" name="description" id="description" placeholder="uma breve descrição" required>
+        </div>
+        <div class="form-group">
+            <label for="contact">Contacto</label>
+            <input type="text" name="contact" id="contact" placeholder="eg. 911111111" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" placeholder="eg. santacasa@gmail.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="countryCode">Código do País</label>
+            <input type="text" name="address.countryCode" id="countryCode" placeholder="Código do País" required>
+        </div>
+        <div class="form-group">
+            <label for="postalCode">Código Postal</label>
+            <input type="text" name="address.postalCode" id="postalCode" placeholder="Código Postal" required>
+        </div>
+        <div class="form-group">
+            <label for="addressLocality">Localidade</label>
+            <input type="text" name="address.addressLocality" id="addressLocality" placeholder="Localidade" required>
+        </div>
+        <div class="form-group">
+            <label for="streetAddress">Endereço</label>
+            <input type="text" name="address.streetAddress" id="streetAddress" placeholder="Endereço" required>
+        </div>
+        <button type="submit">Update</button>
+    </form>
+    <!-- Button to go back -->
+    <a href="/entities" onclick="history.go(-1);">Go Back</a>
+</div>
+</body>
+</html>
