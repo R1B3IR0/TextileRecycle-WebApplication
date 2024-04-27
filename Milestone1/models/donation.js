@@ -2,15 +2,24 @@ const mongoose = require("mongoose");
 
 const DonationSchema = new mongoose.Schema({
     donator: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Donator",
+        type: String,
         required: true,
     },
     entity: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Entity",
+        type: String,
         required: true,
     },
+
+    /*  donator: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Donator",
+          required: true,
+      },
+      entity: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Entity",
+          required: true,
+      },*/
     donationDate: {
         type: Date,
         required: true,
@@ -19,7 +28,7 @@ const DonationSchema = new mongoose.Schema({
         type: String,
         enum: ["Doação Têxtil", "Dinheiro"],
         required: true,
-    },
+    }/*,
     imageProof: {
         data: Buffer,
         type: String
@@ -28,7 +37,7 @@ const DonationSchema = new mongoose.Schema({
         type: String,
         enum: ["Pendente", "Aprovado", "Rejeitado"],
         default: "Pendente"
-    }
+    }*/
 });
 
 
