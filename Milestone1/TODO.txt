@@ -1,0 +1,10 @@
+DONATIONS
+    Listar entidades aquanto da criação de uma doação(selecionar 1 deles)
+    Listar Doadores aquanto da criação de uma doação(selecionar 1 deles)
+    Atualizar pontos do doador escolhido ( código está no disc de paw)
+
+    Adicionar locais de recolha para doaçoes
+    
+    Cálculo de pontos(criar uma dash no Administrador para manipulação de pontos)
+    Adicionar pontos(somar os pontos a cada doação aos pontos do perfil do doador)
+    Adicionar mapa com geolocations e extrair do JSON da DHL as geolocations para adicionar no mapa.
