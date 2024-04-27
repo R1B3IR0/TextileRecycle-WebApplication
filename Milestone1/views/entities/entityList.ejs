@@ -17,7 +17,7 @@
             <th>Email</th>
             <th>Contacto</th>
             <th>Morada</th>
-            <th>Pontos</th>
+            <th>Descrição</th>
             <th>Editar</th>
             <th>Remover</th>
         </tr>
@@ -27,7 +27,7 @@
                 <td><%= entity.email %></td>
                 <td><%= entity.contact %></td>
                 <td><%= entity.address.streetAddress %></td>
-                <td><%= entity.points %></td>
+                <td><%= entity.description %></td>
                 <td><a href="/entities/show/<%= entity._id %>">Detalhes</a></td>
                 <td><a href="/entities/edit/<%= entity._id %>">Editar</a></td>
                 <td><a href="/entities/delete/<%= entity._id %>">Remover</a></td>
