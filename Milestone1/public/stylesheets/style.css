@@ -206,3 +206,53 @@ button[type="submit"]:hover {
   margin-bottom: 10px;
   /* Adicione outros estilos que você deseja aplicar ao campo de seleção aqui */
 }
+
+.state-row {
+  margin-bottom: 10px;
+}
+
+.state-row label {
+  display: inline-block;
+  width: 150px; /* Ajuste conforme necessário */
+}
+
+.state-row input[type="number"] {
+  width: 100px; /* Ajuste conforme necessário */
+  margin-right: 10px;
+}
+
+.state-row button.edit-button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.state-row button.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.value-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.value-input-container input[type="number"] {
+  width: 100px; /* Ajuste conforme necessário */
+  margin-right: 10px;
+}
+
+.value-input-container button.edit-button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.value-input-container button.edit-button:hover {
+  background-color: #0056b3;
+}
