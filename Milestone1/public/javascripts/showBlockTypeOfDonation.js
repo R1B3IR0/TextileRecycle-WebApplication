@@ -1,28 +1,32 @@
- // Função para exibir apenas o bloco relevante com base no tipo de doação selecionado
- function showRelevantBlock() {
+// Função para exibir apenas o bloco relevante com base no tipo de doação selecionado
+function showRelevantBlock() {
     var selectedValue = document.getElementById("typeOfDonation").value;
     var amountDiv = document.getElementById("amountDiv");
     var paypal = document.getElementById("paypal-button-container");
     var typeOfClothingDiv = document.getElementById("typeOfClothingDiv");
     var submitButton = document.getElementById("submitButton");
+    var quantityDiv = document.getElementById("quantityDiv");
+    var pointsDiv = document.getElementById("pointsDiv");
 
-
-
-    // Esconde ambos os blocos
+    // Esconde todos os blocos
     amountDiv.style.display = "none";
     typeOfClothingDiv.style.display = "none";
     paypal.style.display = "none";
+    quantityDiv.style.display = "none";
+    pointsDiv.style.display = "none";
+
     // Exibe apenas o bloco relevante com base no tipo de doação selecionado
     if (selectedValue === "Dinheiro") {
         amountDiv.style.display = "block";
         paypal.style.display = "block";
-
+        pointsDiv.style.display = "block"; // Exibe o bloco de pontos quando o tipo de doação é "Dinheiro"
     } else if (selectedValue === "Doação Têxtil") {
         typeOfClothingDiv.style.display = "block";
         submitButton.style.display = "block";
+        quantityDiv.style.display = "block";
+        pointsDiv.style.display = "block";
     }
 }
-
 
 // Chamada para exibir o bloco relevante quando a página é carregada
 showRelevantBlock();

@@ -52,6 +52,11 @@
                 <td>:</td>
                 <td><%= donation.state ? donation.state : 'N/A' %></td>
             </tr>
+            <tr>
+                <td>Quantidade (kg)</td>
+                <td>:</td>
+                <td><%= donation.quantity ? donation.quantity : 'N/A' %></td>
+            </tr>
         <% } %>
         </tbody>
     </table>
@@ -60,7 +65,4 @@
     <a href="/donations">Voltar</a>
 </div>
 </body>
-
-
 </html>
-

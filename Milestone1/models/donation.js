@@ -9,6 +9,10 @@ const DonationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    points : {
+        type: Number,
+        required: true,
+    },
 
     /*  donator: {
           type: mongoose.Schema.Types.ObjectId,
@@ -20,9 +24,9 @@ const DonationSchema = new mongoose.Schema({
           ref: "Entity",
           required: true,
       },*/
-    donationDate: {
+      donationDate: {
         type: Date,
-        required: true,
+        default: Date.now // Define a data atual no momento da criação do documento
     },
     typeOfDonation: {
         type: String,
@@ -63,6 +67,12 @@ DonationSchema.add({
     state: {
         type: String,
         enum: ["Novo com etiquetas", "Novo sem etiquetas", "Muito bom", "Bom", "Satisfatório"],
+        required: function () {
+            return this.typeOfDonation === "Doação Têxtil";
+        },
+    },
+    quantity: {
+        type: Number,
         required: function () {
             return this.typeOfDonation === "Doação Têxtil";
         },

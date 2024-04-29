@@ -21,6 +21,8 @@ var donationsRouter = require('./routes/donations');
 var donatorRouter = require('./routes/donators');
 var entitiesRouter = require('./routes/entities');
 var dashboardRouter = require('./routes/dashboard');
+var pointsRouter = require('./routes/points');
+
 
 var app = express();
 
@@ -41,6 +43,8 @@ app.use('/donations', donationsRouter);
 app.use('/donators', donatorRouter);
 app.use('/entities', entitiesRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/points', pointsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
