@@ -11,39 +11,93 @@
 <body>
     <div class="configure-points-container">
         <h2>Configuração de Pontos</h2>
-        <form action="/points/configure" method="post">
+        <form id="configurationForm">
             <div class="form-group">
-                <label for="typeOfDonation">Tipo de Doação:</label>
-                <select name="typeOfDonation" id="typeOfDonation" required>
-                    <option value="">Selecione o tipo de doação</option>
-                    <option value="Doação Têxtil">Doação Têxtil</option>
-                    <option value="Dinheiro">Dinheiro</option>
-                </select>
+                <label for="stateValues">Valores do Estado:</label>
+                <br>
+                <div id="stateValuesContainer">
+                    <!-- Aqui serão exibidos os estados e campos de entrada -->
+                </div>
+                <small>Insira o valor dos pontos para cada estado.</small>
             </div>
+            <br>
             <div class="form-group">
-                <label for="state">Estado:</label>
-                <select name="state" id="state" required>
-                    <option value="">Selecione o estado</option>
-                    <option value="Novo com etiquetas">Novo com etiquetas</option>
-                    <option value="Novo sem etiquetas">Novo sem etiquetas</option>
-                    <option value="Muito bom">Muito bom</option>
-                    <option value="Bom">Bom</option>
-                    <option value="Satisfatório">Satisfatório</option>
-                </select>
+                <label for="weightValue">Valor por Peso (kg):</label>
+                <div class="value-input-container">
+                    <input type="number" name="weightValue" id="weightValue" min="0" step="0.01" required>
+                    <button type="button" class="edit-button">Editar</button>
+                </div>
+                <small>Insira o valor do peso.</small>
             </div>
+
+            <br>
             <div class="form-group">
-                <label for="points">Pontos:</label>
-                <input type="number" name="points" id="points" required>
+                <label for="quantityValue">Valor por Unidade:</label>
+                <div class="value-input-container">
+                    <input type="number" name="quantityValue" id="quantityValue" min="0" required>
+                    <button type="button" class="edit-button">Editar</button>
+                </div>
+                <small>Insira o valor por unidade.</small>
             </div>
-            <button type="submit" class="submit-btn">Configurar</button>
         </form>
-        <script src="/javascripts/showBlockTypeOfDonation.js"></script>
-        <script src="/javascripts/switchTypeOfDonation.js"></script>
-        <div onclick="history.go(-1);" href="/donations" id="paypal-button-container" style="display:none"></div>
     </div>
     <div class="back-button" style="text-align: left;">
         <a href="/donations" onclick="history.go(-1);">Voltar</a>
     </div>
+
+    <script>
+        // Lista de estados visíveis (substitua com seus próprios estados)
+        const states = ["Novo com etiquetas", "Novo sem etiquetas", "Muito bom", "Bom", "Satisfatório"];
+
+        // Função para preencher o container com os estados e campos de entrada
+        function fillStateValuesContainer() {
+            const container = document.getElementById('stateValuesContainer');
+            container.innerHTML = '';
+
+            states.forEach(state => {
+                const stateDiv = document.createElement('div');
+                stateDiv.classList.add('state-row');
+
+                const stateLabel = document.createElement('label');
+                stateLabel.textContent = state + ':';
+                stateDiv.appendChild(stateLabel);
+
+                const pointsInput = document.createElement('input');
+                pointsInput.type = 'number';
+                pointsInput.classList.add('points-input');
+                pointsInput.value = '0'; // Valor padrão
+                pointsInput.readOnly = true; // Por padrão, os campos estão somente leitura
+                stateDiv.appendChild(pointsInput);
+
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Editar';
+                editButton.classList.add('edit-button');
+                editButton.addEventListener('click', function () {
+                    pointsInput.readOnly = !pointsInput.readOnly;
+                    editButton.textContent = pointsInput.readOnly ? 'Editar' : 'Guardar';
+                });
+                stateDiv.appendChild(editButton);
+
+                container.appendChild(stateDiv);
+            });
+        }
+
+        // Chamando a função para preencher o container ao carregar a página
+        window.onload = function () {
+            fillStateValuesContainer();
+        };
+
+        // Função para salvar os valores dos pontos
+        function saveStateValues() {
+            const pointsInputs = document.querySelectorAll('.points-input');
+            pointsInputs.forEach(input => {
+                // Aqui você pode enviar os valores dos pontos ao servidor para serem salvos no banco de dados
+                console.log(input.previousSibling.textContent + ': ' + input.value);
+            });
+        }
+    </script>
+    
+
 </body>
 
 </html>
