@@ -9,10 +9,14 @@
 <body>
 <div class="edit-donator-container">
     <h2>Edit Donor</h2>
-    <form action="/donators/create" method="post">
+    <form action="/donators/edit/<%=donator.id%>" method="post">
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" name="name" id="name" placeholder="e.g. John Doe" required>
+        </div>
+        <div class="form-group">
+            <label for="nif">Name:</label>
+            <input type="text" name="nif" id="nif" placeholder="e.g. 99999999" required>
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
