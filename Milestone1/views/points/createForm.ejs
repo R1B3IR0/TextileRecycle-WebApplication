@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Pontos de Doação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Pontos de Doação</h1>
+
+        <form id="dataForm" method="POST" action="/points/create">
+            <div class="form-group">
+                <label for="newWithTag">Novo com etiquetas:</label>
+                <input type="number" name="newWithTag" id="newWithTag" value="5">
+            </div>
+
+            <div class="form-group">
+                <label for="newWithoutTag">Novo sem etiquetas:</label>
+                <input type="number" name="newWithoutTag" id="newWithoutTag" value="4">
+            </div>
+
+            <div class="form-group">
+                <label for="veryGood">Muito Bom:</label>
+                <input type="number" name="veryGood" id="veryGood" value="3">
+            </div>
+
+            <div class="form-group">
+                <label for="good">Bom:</label>
+                <input type="number" name="good" id="good" value="2">
+            </div>
+
+            <div class="form-group">
+                <label for="satisfactory">Satisfatório:</label>
+                <input type="number" name="satisfactory" id="satisfactory" value="1">
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantidade:</label>
+                <input type="number" name="quantity" id="quantity">
+            </div>
+
+            <div class="form-group">
+                <label for="donationMoney">Dinheiro:</label>
+                <input type="number" name="donationMoney" id="donationMoney">
+            </div>
+
+            <button class="btn" type="submit">Editar e Guardar Pontos</button>
+        </form>
+    </div>
+
+    <script>
+        function editPoints() {
+            var newWithTag = parseInt(document.getElementById('newWithTag').value);
+            var newWithoutTag = parseInt(document.getElementById('newWithoutTag').value);
+            var veryGood = parseInt(document.getElementById('veryGood').value);
+            var good = parseInt(document.getElementById('good').value);
+            var satisfactory = parseInt(document.getElementById('satisfactory').value);
+            var quantity = parseInt(document.getElementById('quantity').value);
+            var donationMoney = parseInt(document.getElementById('donationMoney').value);
+            var points = newWithTag + newWithoutTag + veryGood + good + satisfactory + (2 * quantity) + donationMoney;
+
+            // Adicionando os valores aos campos ocultos do formulário
+            document.getElementById('newWithTagInput').value = newWithTag;
+            document.getElementById('newWithoutTagInput').value = newWithoutTag;
+            document.getElementById('veryGoodInput').value = veryGood;
+            document.getElementById('goodInput').value = good;
+            document.getElementById('satisfactoryInput').value = satisfactory;
+            document.getElementById('quantityInput').value = quantity;
+            document.getElementById('donationMoneyInput').value = donationMoney;
+
+            // Submeter o formulário
+            document.getElementById('dataForm').submit();
+        }
+    </script>
+</body>
+</html>
