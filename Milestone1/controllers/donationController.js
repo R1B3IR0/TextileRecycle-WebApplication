@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
 var Donation = require("../models/donation"); // Importa o modelo Donation
+var Donator = require("../models/donator"); // Importa o modelo Donator
+var Entity = require("../models/entity"); // Importa o modelo Entity
 
 var donationController = {};
 
@@ -29,8 +31,15 @@ donationController.show = function(req, res) {
 };
 
 // Formulário para criar uma doação
-donationController.formCreate = function (req, res) {
-  res.render("../views/donations/createForm");
+donationController.formCreate = async function (req, res) {
+  try {
+    const donators = await Donator.find({}); // Aguarda a consulta para recuperar os doadores
+    const entities = await Entity.find({}); // Aguarda a consulta para recuperar as entidades
+    res.render("../views/donations/createForm", { donators, entities }); // Passa os doadores e entidades para a visualização
+  } catch (err) {
+    console.error(err);
+    res.redirect('/error');
+  }
 };
 
 // Cria uma doação em resposta a um post em um formulário
@@ -57,7 +66,7 @@ donationController.create = function (req, res) {
 
 
     var donation = new Donation(donationData);
-
+    const { donators, entities } = req.body;
     console.log("Attempting to create donation:", donation);
     donation.save(function(err) {
         if (err) {
