@@ -6,179 +6,395 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Donation</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
+
+    <!--CSS(leaflet)-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+
+    <link rel="stylesheet" href="/stylesheets/map.css" />
+
+    <style>
+        /* Estilo para o campo de entrada */
+.input-style {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+/* Estilo para o campo de seleção */
+.select-style {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  /* Adicione outros estilos que você deseja aplicar ao campo de seleção aqui */
+}
+    </style>
 </head>
 
 
 
 <body>
-    <div class="register-container">
-        <h2>Criar Doação</h2>
-        <form action="/donations/create" method="post">
-            <div class="form-group">
-                <label for="donator">Doador:</label>
-                <select name="donator" id="donator" class="select-style" required>
-                    <option value="">Selecione um doador</option>
-                    <% donators.forEach(donator => { %>
-                        <option value="<%= donator._id %>">
-                            <%= donator.name %>
-                        </option>
-                    <% }); %>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="entity">Entidade:</label>
-                <select name="entity" id="entity" class="select-style" required>
-                    <option value="">Selecione uma entidade</option>
-                    <% entities.forEach(entity => { %>
-                        <option value="<%= entity._id %>">
-                            <%= entity.name %>
-                        </option>
-                    <% }); %>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="donationDate">Data da doação:</label>
-                <input type="date" name="donationDate" id="donationDate" required>
-            </div>
-
-            <div class="form-group">
-                <label for="typeOfDonation">Tipo de doação:</label>
-                <select name="typeOfDonation" id="typeOfDonation" required>
-                    <option value="">Escolha o tipo de doação</option>
-                    <option value="Doação Têxtil">Doação Têxtil</option>
-                    <option value="Dinheiro">Dinheiro</option>
-                </select>
-            </div>
-
-            <div id="amountDiv" style="display: none;">
-                <label for="amount">Quantia:</label>
-                <input type="number" name="amount" id="amount">
-            </div>
-
-            <div id="typeOfClothingDiv" style="display: none;">
-                <label for="typeOfClothing.category">Tipo de Doação Têxtil:</label>
-                <select name="typeOfClothing.category" id="typeOfClothing">
-                    <option value="">Escolha o tipo de roupa</option>
-                    <option value="Fatos e blazers">Fatos e blazers</option>
-                    <option value="Calças">Calças</option>
-                    <option value="Meias e Roupa Interior">Meias e Roupa Interior</option>
-                    <option value="Tops e t-shirts">Tops e t-shirts</option>
-                    <option value="Camisolas e sweaters">Camisolas e sweaters</option>
-                    <option value="Casacos">Casacos</option>
-                    <option value="Pijamas">Pijamas</option>
-                    <option value="Outros">Outros</option>
-                </select>
-            </div>
-            <br>
-            <div id="typeOfClothingStateDiv" style="display: none;">
-                <label for="typeOfClothing.state">Estado do tipo de roupa:</label>
-                <select name="typeOfClothing.state" id="typeOfClothing.state">
-                    <option value="">Escolha o estado da roupa</option>
-                    <option value="Novo com etiquetas">Novo com etiquetas</option>
-                    <option value="Novo sem etiquetas">Novo sem etiquetas</option>
-                    <option value="Muito bom">Muito bom</option>
-                    <option value="Bom">Bom</option>
-                    <option value="Satisfatório">Satisfatório</option>
-                </select>
-                <p>
-                <div id="quantityDiv" style="display: none;">
-                    <label for="quantity">Quantidade (kg):</label>
-                    <input type="number" name="quantity" id="quantity">
-                </div>
-                <br>
-                <div class="form-group" id="pointsDiv" style="display: none;">
-                    <label for="points">Pontos:</label>
-                    <input type="number" name="points" id="points">
-                </div>
-                <br>
-                <button id="submitButton" type="submit" class="submit-btn" style=" display:none">Criar Doação</button>
-
-            </div>
-            </br>
-        </form>
-        <script src="/javascripts/showBlockTypeOfDonation.js"></script>
-        <script src="/javascripts/switchTypeOfDonation.js"></script>
-        <div onclick="history.go(-1);" href="/donations" id="paypal-button-container" style="display:none"></div>
-        <div class="back-button" style="text-align: right;">
-            <a href="/donations" onclick="history.go(-1);">Voltar</a>
+<div class="register-container">
+    <h2>Criar Doação</h2>
+    <form action="/donations/create" method="post">
+        <div class="form-group">
+            <label for="donator">Doador:</label>
+            <select name="donator" id="donator" class="select-style" required>
+                <option value="">Selecione um doador</option>
+                <% donators.forEach(donator => { %>
+                    <option value="<%= donator._id %>">
+                        <%= donator.name %>
+                    </option>
+                <% }); %>
+            </select>
         </div>
+        <div class="form-group">
+            <label for="entity">Entidade:</label>
+            <select name="entity" id="entity" class="select-style" required>
+                <option value="">Selecione uma entidade</option>
+                <% entities.forEach(entity => { %>
+                    <option value="<%= entity._id %>">
+                        <%= entity.name %>
+                    </option>
+                <% }); %>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="donationDate">Data da doação:</label>
+            <input type="date" name="donationDate" id="donationDate" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="typeOfDonation">Tipo de doação:</label>
+            <select name="typeOfDonation" id="typeOfDonation" required>
+                <option value="">Escolha o tipo de doação</option>
+                <option value="Doação Têxtil">Doação Têxtil</option>
+                <option value="Dinheiro">Dinheiro</option>
+            </select>
+        </div>
+        <!-- Amount and Paypal button container -->
+        <div id="amountDiv" style="display: none;">
+            <label for="amount">Quantia:</label>
+            <input type="number" name="amount" id="amount">
+            <p>
+            <div onclick="history.go(-1);" href="/donations" id="paypal-button-container" style="display:none"></div>
+        </div>
+
+        <div id="typeOfClothingDiv" style="display: none;">
+            <label for="typeOfClothing.category">Tipo de Doação Têxtil:</label>
+            <select name="typeOfClothing.category" id="typeOfClothing">
+                <option value="">Escolha o tipo de roupa</option>
+                <option value="Fatos e blazers">Fatos e blazers</option>
+                <option value="Calças">Calças</option>
+                <option value="Meias e Roupa Interior">Meias e Roupa Interior</option>
+                <option value="Tops e t-shirts">Tops e t-shirts</option>
+                <option value="Camisolas e sweaters">Camisolas e sweaters</option>
+                <option value="Casacos">Casacos</option>
+                <option value="Pijamas">Pijamas</option>
+                <option value="Outros">Outros</option>
+            </select>
+        </div>
+        <p></p>
+        <div id="typeOfClothingStateDiv" style="display: none;">
+            <label for="typeOfClothing.state">Estado do tipo de roupa:</label>
+            <select name="typeOfClothing.state" id="typeOfClothing.state">
+                <option value="">Escolha o estado da roupa</option>
+                <option value="Novo com etiquetas">Novo com etiquetas</option>
+                <option value="Novo sem etiquetas">Novo sem etiquetas</option>
+                <option value="Muito bom">Muito bom</option>
+                <option value="Bom">Bom</option>
+                <option value="Satisfatório">Satisfatório</option>
+            </select>
+        </div>
+        <p></p>
+        <!-- Campo para armazenar o nome do armazém -->
+        <div id="warehouseNameGroup" style="display: none;">
+            <label for="warehouseName">Selecione no mapa o Armazém:</label>
+            <input type="text" name="warehouseName" id="warehouseName" readonly>
+        </div>
+        <p></p>
+        <div id="map" style="display:none;"></div>
+        <p></p>
+        <button id="submitButton" type="submit" class="submit-btn" style=" display:none">Criar Doação</button>
+    </form>
+
+    <script src="/javascripts/showBlockTypeOfDonation.js"></script>
+    
+    
+    <div class="back-button" style="text-align: right;">
+        <a href="/donations" onclick="history.go(-1);">Voltar</a>
     </div>
-    <script
-        src="https://www.paypal.com/sdk/js?client-id=Aam9--W1eErGEHOOk4QgvOdxkLpkECTs3J88-4aNvl7SeANFiLl0rg3c52NV5usNfnyS16zBB2r01hVw&currency=EUR"></script>
-    <script>
-        document.getElementById('typeOfDonation').addEventListener('change', function () {
-            var donationType = this.value;
-            var amountDiv = document.getElementById('amountDiv');
+</div>
+<!--JS2(leaflet)-->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+crossorigin=""></script>
 
-            if (donationType === 'Dinheiro') {
-                amountDiv.style.display = 'block';
-                paypalButtonContainer.style.display = 'block';
-            } else {
-                amountDiv.style.display = 'none';
-                paypalButtonContainer.style.display = 'none';
-            }
-        });
+<!--JS(leaflet)-->
+<script>
+// Create a map object - LatLng(41.364546, -8.19918) - Felgueiras
+var map = L.map('map').setView([41.364546, -8.19918], 11); //setView([latitude, longitude], zoom level)
 
-        paypal.Buttons({
-            createOrder: function (data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: document.getElementById('amount').value
+// Layer with the map data
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+
+// Click event to get the coordinates
+function onMapClick(e) {
+   alert("You clicked the map at " + e.latlng);
+}
+
+map.on('click', onMapClick);
+
+
+async function loadGeoJson() {
+   try {
+       const request = await fetch("/geoJson/felgueiras.geojson");
+       const response = await request.json();
+       //console.log('GeoJSON carregado com sucesso:', response);
+
+       // Add the GeoJSON data to the map
+       L.geoJSON(response).addTo(map);
+       //console.log('GeoJSON adicionado ao mapa.');
+   } catch (error) {
+       console.error('Error loading GeoJSON data:', error);
+   }
+}
+
+// Load GeoJSON data
+loadGeoJson();
+
+// Function to get locations from DHL Location Finder API
+/*async function getLocations() {
+       try {
+       // Definir o cabeçalho de autorização
+       const headers = new Headers();
+       headers.append("DHL-API-Key", "MHGWahS2yzAAFhR1Ie5vRWmyyVN7o9lw");
+
+       // Fazer a solicitação à API da DHL Location Finder com o cabeçalho de autorização
+       const response = await fetch("https://api-sandbox.dhl.com/location-finder/v1/find-by-address?countryCode=PT&addressLocality=Felgueiras&locationType=servicepoint&radius=1000000&limit=15&hideClosedLocations=false", {
+           method: "GET",
+           headers: headers
+       });
+
+
+       // Processar os dados JSON retornados
+       const data = await response.json();
+       console.log(data);
+       return data.locations;
+   } catch (error) {
+       console.error('Erro ao obter as localizações da API da DHL Location Finder:', error);
+       return [];
+   }
+}*/
+
+// Carregar os dados JSON localmente
+async function getLocations() {
+   try {
+       const response = await fetch('/locationsJson/locations.json');
+       if (!response.ok) {
+           throw new Error('Erro ao carregar os dados JSON.');
+       }
+       const data = await response.json();
+       //console.log('Dados carregados:', data);
+       return data.locations;
+   } catch (error) {
+       console.error('Erro ao carregar os dados JSON:', error);
+       return [];
+   }
+}
+
+// Chamar a função para carregar os dados JSON
+getLocations();
+
+// Function to add markers to the map
+async function addMarkersToMap() {
+   try {
+       // Criar um novo LayerGroup para armazenar os marcadores
+       const markersLayer = L.layerGroup().addTo(map);
+
+       // Obter as localizações da API da DHL Location Finder
+       const locations = await getLocations();
+
+       // Iterar sobre as localizações e adicionar marcadores ao LayerGroup
+       locations.forEach(location => {
+           // Verificar se a localização possui coordenadas válidas
+           if (location.place && location.place.geo && location.place.geo.latitude && location.place.geo.longitude) {
+               // Criar um ícone personalizado
+               const customIcon = L.icon({
+                   iconUrl: 'https://img.icons8.com/?size=512&id=EUzdsWR7Aq6o&format=png',
+                   iconSize: [30, 30], // Tamanho do ícone [largura, altura]
+                   //iconAnchor: [20, 40], // Ponto de âncora do ícone [metade da largura, altura]
+                   //popupAnchor: [0, -40] // Ponto de âncora do popup [horizontal, vertical], negativo move o popup para cima
+               });
+               const marker = L.marker([location.place.geo.latitude, location.place.geo.longitude], { icon: customIcon });
+               const popupContent = `
+                   <b>${location.name}</b><br>
+                   ${location.place.address.streetAddress}, ${location.place.address.addressLocality}, ${location.place.address.postalCode}
+               `;
+               marker.bindPopup(popupContent);
+               marker.on('click', function() {
+                    var warehouseNameInput = document.getElementById("warehouseName");
+                    // Preencher o campo com o nome do marcador quando clicado
+                    warehouseNameInput.value = location.name;
+                });
+               markersLayer.addLayer(marker); // Adicionar marcador ao LayerGroup
+           }
+       });
+
+       // Ajustar o mapa para exibir todos os marcadores
+       map.fitBounds(markersLayer.getBounds());
+
+
+       // Ajusta o mapa para exibir todos os marcadores (se houver)
+       /*if (markersLayer.getLayers().length > 0) {
+
+           // Cria uma matriz de coordenadas dos marcadores
+           const markerCoordinates = markersLayer.getLayers().map(marker => marker.getLatLng());
+
+           // Ajusta o mapa para exibir todos os marcadores
+           if (markerCoordinates.length > 0) {
+               const bounds = L.latLngBounds(markerCoordinates);
+               map.fitBounds(bounds);
+           } else {
+               console.log('Nenhuma coordenada de marcador encontrada.');
+           }
+       } else {
+           console.log('Nenhum marcador adicionado.');
+       }*/
+   } catch (error) {
+       console.error('Erro ao adicionar marcadores ao mapa:', error);
+   }
+}
+
+addMarkersToMap();
+
+// Função para verificar se uma localização está dentro do polígono de Felgueiras
+function isLocationInsideFelgueirasPolygon(location, felgueirasPolygonLayer) {
+const point = L.latLng(location.place.geo.latitude, location.place.geo.longitude);
+let isInside = false;
+
+felgueirasPolygonLayer.eachLayer(layer => {
+if (layer instanceof L.Polygon) {
+   isInside = isInside || layer.getBounds().contains(point) && L.Polygon.prototype.containsPoint.call(layer, point);
+   }
+});
+
+return isInside;
+}
+               
+</script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=Aam9--W1eErGEHOOk4QgvOdxkLpkECTs3J88-4aNvl7SeANFiLl0rg3c52NV5usNfnyS16zBB2r01hVw&currency=EUR"></script>
+<script>
+    paypal.Buttons({
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: document.getElementById('amount').value
+                    }
+                }]
+            });
+        },
+        onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+                alert('Transaction completed by ' + details.payer.name.given_name);
+
+                // Create a donation object with the required data
+                var donationData = {
+                    donator: document.getElementById('donator').value, // Example value, replace with actual data
+                    entity: document.getElementById('entity').value, // Example value, replace with actual data
+                    donationDate: document.getElementById('donationDate').value, // Example value, replace with actual data
+                    typeOfDonation: document.getElementById('typeOfDonation').value, // Example value, replace with actual data
+                    amount: document.getElementById('amount').value // Get the amount from the input field
+                };
+
+                // Send an HTTP POST request to the server to create the donation
+                fetch('/donations/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(donationData)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            console.log('Donation created successfully.');
+                            // Redirect to the donations page
+                            window.location.href = '/donations';
+                        } else {
+                            throw new Error('Failed to create donation.');
                         }
-                    }]
-                });
-            },
-            onApprove: function (data, actions) {
-                return actions.order.capture().then(function (details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-
-                    // Create a donation object with the required data
-                    var donationData = {
-                        donator: document.getElementById('donator').value, // Example value, replace with actual data
-                        entity: document.getElementById('entity').value, // Example value, replace with actual data
-                        donationDate: document.getElementById('donationDate').value, // Example value, replace with actual data
-                        typeOfDonation: document.getElementById('typeOfDonation').value, // Example value, replace with actual data
-                        amount: document.getElementById('amount').value // Get the amount from the input field
-                    };
-
-                    // Send an HTTP POST request to the server to create the donation
-                    fetch('/donations/create', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(donationData)
                     })
-                        .then(response => {
-                            if (response.ok) {
-                                console.log('Donation created successfully.');
-                                // Redirect to the donations page
-                                window.location.href = '/donations';
-                            } else {
-                                throw new Error('Failed to create donation.');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error creating donation:', error);
-                        });
-                });
+                    .catch(error => {
+                        console.error('Error creating donation:', error);
+                    });
+            });
+        },
+        style: {
+            layout: 'horizontal',
+            fundingicons: false, // Remove os ícones de métodos de pagamento
+            // Adiciona estilos para ocultar a opção de cartão de crédito
+            '.paypal-button-card': {
+                display: 'none'
             }
-        }).render('#paypal-button-container');
-    </script>
-    <script>
-        // Obtém o elemento de entrada de data pelo ID
-        const donationDateInput = document.getElementById('donationDate');
+        },
+        onInit: function(data, actions) {
+            actions.enable();
+            
+            // Adiciona a div "Powered by PayPal"
+            var poweredByPayPalDiv = document.createElement('div');
+            poweredByPayPalDiv.innerHTML = `
+                <div class="paypal-powered-by">
+                    <style nonce="">
+                        .paypal-powered-by {
+                            text-align: center;
+                            margin: 10px auto;
+                            height: 14px;
+                            font-family: PayPalOpen-Regular, Helvetica, Arial, "Liberation Sans", sans-serif;
+                            font-size: 11px;
+                            font-weight: normal;
+                            font-style: italic;
+                            font-stretch: normal;
+                            color: #7b8388;
+                            position: relative;
+                            margin-right: 3px;
+                            bottom: 3px;
+                        }
+                    
+                        .paypal-powered-by > .paypal-button-text,
+                        .paypal-powered-by > .paypal-logo {
+                            display: inline-block;
+                            vertical-align: middle;
+                            height: 16px;
+                            line-height: 16px;
+                            font-size: 11px;
+                        }
+                    </style>
+                    <span class="paypal-button-text immediate" data-v-e6f98a5a="">Powered by </span>
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAxcHgiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAxMDEgMzIiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaW5ZTWluIG1lZXQiIHhtbG5zPSJodHRwOiYjeDJGOyYjeDJGO3d3dy53My5vcmcmI3gyRjsyMDAwJiN4MkY7c3ZnIj48cGF0aCBmaWxsPSIjMDAzMDg3IiBkPSJNIDEyLjIzNyAyLjggTCA0LjQzNyAyLjggQyAzLjkzNyAyLjggMy40MzcgMy4yIDMuMzM3IDMuNyBMIDAuMjM3IDIzLjcgQyAwLjEzNyAyNC4xIDAuNDM3IDI0LjQgMC44MzcgMjQuNCBMIDQuNTM3IDI0LjQgQyA1LjAzNyAyNC40IDUuNTM3IDI0IDUuNjM3IDIzLjUgTCA2LjQzNyAxOC4xIEMgNi41MzcgMTcuNiA2LjkzNyAxNy4yIDcuNTM3IDE3LjIgTCAxMC4wMzcgMTcuMiBDIDE1LjEzNyAxNy4yIDE4LjEzNyAxNC43IDE4LjkzNyA5LjggQyAxOS4yMzcgNy43IDE4LjkzNyA2IDE3LjkzNyA0LjggQyAxNi44MzcgMy41IDE0LjgzNyAyLjggMTIuMjM3IDIuOCBaIE0gMTMuMTM3IDEwLjEgQyAxMi43MzcgMTIuOSAxMC41MzcgMTIuOSA4LjUzNyAxMi45IEwgNy4zMzcgMTIuOSBMIDguMTM3IDcuNyBDIDguMTM3IDcuNCA4LjQzNyA3LjIgOC43MzcgNy4yIEwgOS4yMzcgNy4yIEMgMTAuNjM3IDcuMiAxMS45MzcgNy4yIDEyLjYzNyA4IEMgMTMuMTM3IDguNCAxMy4zMzcgOS4xIDEzLjEzNyAxMC4xIFoiPjwvcGF0aD48cGF0aCBmaWxsPSIjMDAzMDg3IiBkPSJNIDM1LjQzNyAxMCBMIDMxLjczNyAxMCBDIDMxLjQzNyAxMCAzMS4xMzcgMTAuMiAzMS4xMzcgMTAuNSBMIDMwLjkzNyAxMS41IEwgMzAuNjM3IDExLjEgQyAyOS44MzcgOS45IDI4LjAzNyA5LjUgMjYuMjM3IDkuNSBDIDIyLjEzNyA5LjUgMTguNjM3IDEyLjYgMTcuOTM3IDE3IEMgMTcuNTM3IDE5LjIgMTguMDM3IDIxLjMgMTkuMzM3IDIyLjcgQyAyMC40MzcgMjQgMjIuMTM3IDI0LjYgMjQuMDM3IDI0LjYgQyAyNy4zMzcgMjQuNiAyOS4yMzcgMjIuNSAyOS4yMzcgMjIuNSBMIDI5LjAzNyAyMy41IEMgMjguOTM3IDIzLjkgMjkuMjM3IDI0LjMgMjkuNjM3IDI0LjMgTCAzMy4wMzcgMjQuMyBDIDMzLjUzNyAyNC4zIDM0LjAzNyAyMy45IDM0LjEzNyAyMy40IEwgMzYuMTM3IDEwLjYgQyAzNi4yMzcgMTAuNCAzNS44MzcgMTAgMzUuNDM3IDEwIFogTSAzMC4zMzcgMTcuMiBDIDI5LjkzNyAxOS4zIDI4LjMzNyAyMC44IDI2LjEzNyAyMC44IEMgMjUuMDM3IDIwLjggMjQuMjM3IDIwLjUgMjMuNjM3IDE5LjggQyAyMy4wMzcgMTkuMSAyMi44MzcgMTguMiAyMy4wMzcgMTcuMiBDIDIzLjMzNyAxNS4xIDI1LjEzNyAxMy42IDI3LjIzNyAxMy42IEMgMjguMzM3IDEzLjYgMjkuMTM3IDE0IDI5LjczNyAxNC42IEMgMzAuMjM3IDE1LjMgMzAuNDM3IDE2LjIgMzAuMzM3IDE3LjIgWiI+PC9wYXRoPjxwYXRoIGZpbGw9IiMwMDMwODciIGQ9Ik0gNTUuMzM3IDEwIEwgNTEuNjM3IDEwIEMgNTEuMjM3IDEwIDUwLjkzNyAxMC4yIDUwLjczNyAxMC41IEwgNDUuNTM3IDE4LjEgTCA0My4zMzcgMTAuOCBDIDQzLjIzNyAxMC4zIDQyLjczNyAxMCA0Mi4zMzcgMTAgTCAzOC42MzcgMTAgQyAzOC4yMzcgMTAgMzcuODM3IDEwLjQgMzguMDM3IDEwLjkgTCA0Mi4xMzcgMjMgTCAzOC4yMzcgMjguNCBDIDM3LjkzNyAyOC44IDM4LjIzNyAyOS40IDM4LjczNyAyOS40IEwgNDIuNDM3IDI5LjQgQyA0Mi44MzcgMjkuNCA0My4xMzcgMjkuMiA0My4zMzcgMjguOSBMIDU1LjgzNyAxMC45IEMgNTYuMTM3IDEwLjYgNTUuODM3IDEwIDU1LjMzNyAxMCBaIj48L3BhdGg+PHBhdGggZmlsbD0iIzAwOWNkZSIgZD0iTSA2Ny43MzcgMi44IEwgNTkuOTM3IDIuOCBDIDU5LjQzNyAyLjggNTguOTM3IDMuMiA1OC44MzcgMy43IEwgNTUuNzM3IDIzLjYgQyA1NS42MzcgMjQgNTUuOTM3IDI0LjMgNTYuMzM3IDI0LjMgTCA2MC4zMzcgMjQuMyBDIDYwLjczNyAyNC4zIDYxLjAzNyAyNCA2MS4wMzcgMjMuNyBMIDYxLjkzNyAxOCBDIDYyLjAzNyAxNy41IDYyLjQzNyAxNy4xIDYzLjAzNyAxNy4xIEwgNjUuNTM3IDE3LjEgQyA3MC42MzcgMTcuMSA3My42MzcgMTQuNiA3NC40MzcgOS43IEMgNzQuNzM3IDcuNiA3NC40MzcgNS45IDczLjQzNyA0LjcgQyA3Mi4yMzcgMy41IDcwLjMzNyAyLjggNjcuNzM3IDIuOCBaIE0gNjguNjM3IDEwLjEgQyA2OC4yMzcgMTIuOSA2Ni4wMzcgMTIuOSA2NC4wMzcgMTIuOSBMIDYyLjgzNyAxMi45IEwgNjMuNjM3IDcuNyBDIDYzLjYzNyA3LjQgNjMuOTM3IDcuMiA2NC4yMzcgNy4yIEwgNjQuNzM3IDcuMiBDIDY2LjEzNyA3LjIgNjcuNDM3IDcuMiA2OC4xMzcgOCBDIDY4LjYzNyA4LjQgNjguNzM3IDkuMSA2OC42MzcgMTAuMSBaIj48L3BhdGg+PHBhdGggZmlsbD0iIzAwOWNkZSIgZD0iTSA5MC45MzcgMTAgTCA4Ny4yMzcgMTAgQyA4Ni45MzcgMTAgODYuNjM3IDEwLjIgODYuNjM3IDEwLjUgTCA4Ni40MzcgMTEuNSBMIDg2LjEzNyAxMS4xIEMgODUuMzM3IDkuOSA4My41MzcgOS41IDgxLjczNyA5LjUgQyA3Ny42MzcgOS41IDc0LjEzNyAxMi42IDczLjQzNyAxNyBDIDczLjAzNyAxOS4yIDczLjUzNyAyMS4zIDc0LjgzNyAyMi43IEMgNzUuOTM3IDI0IDc3LjYzNyAyNC42IDc5LjUzNyAyNC42IEMgODIuODM3IDI0LjYgODQuNzM3IDIyLjUgODQuNzM3IDIyLjUgTCA4NC41MzcgMjMuNSBDIDg0LjQzNyAyMy45IDg0LjczNyAyNC4zIDg1LjEzNyAyNC4zIEwgODguNTM3IDI0LjMgQyA4OS4wMzcgMjQuMyA4OS41MzcgMjMuOSA4OS42MzcgMjMuNCBMIDkxLjYzNyAxMC42IEMgOTEuNjM3IDEwLjQgOTEuMzM3IDEwIDkwLjkzNyAxMCBaIE0gODUuNzM3IDE3LjIgQyA4NS4zMzcgMTkuMyA4My43MzcgMjAuOCA4MS41MzcgMjAuOCBDIDgwLjQzNyAyMC44IDc5LjYzNyAyMC41IDc5LjAzNyAxOS44IEMgNzguNDM3IDE5LjEgNzguMjM3IDE4LjIgNzguNDM3IDE3LjIgQyA3OC43MzcgMTUuMSA4MC41MzcgMTMuNiA4Mi42MzcgMTMuNiBDIDgzLjczNyAxMy42IDg0LjUzNyAxNCA4NS4xMzcgMTQuNiBDIDg1LjczNyAxNS4zIDg1LjkzNyAxNi4yIDg1LjczNyAxNy4yIFoiPjwvcGF0aD48cGF0aCBmaWxsPSIjMDA5Y2RlIiBkPSJNIDk1LjMzNyAzLjMgTCA5Mi4xMzcgMjMuNiBDIDkyLjAzNyAyNCA5Mi4zMzcgMjQuMyA5Mi43MzcgMjQuMyBMIDk1LjkzNyAyNC4zIEMgOTYuNDM3IDI0LjMgOTYuOTM3IDIzLjkgOTcuMDM3IDIzLjQgTCAxMDAuMjM3IDMuNSBDIDEwMC4zMzcgMy4xIDEwMC4wMzcgMi44IDk5LjYzNyAyLjggTCA5Ni4wMzcgMi44IEMgOTUuNjM3IDIuOCA5NS40MzcgMyA5NS4zMzcgMy4zIFoiPjwvcGF0aD48L3N2Zz4=" alt="" role="presentation" class="paypal-logo paypal-logo-paypal paypal-logo-color-blue">
+                </div>
+            `;
+            document.querySelector('#paypal-button-container').appendChild(poweredByPayPalDiv);
+        },
+    }).render('#paypal-button-container');
+</script>
 
-        // Cria um novo objeto Date com a data atual
-        const currentDate = new Date();
 
-        // Formata a data para o formato esperado pelo input type="date" (AAAA-MM-DD)
-        const formattedDate = currentDate.toISOString().substr(0, 10);
-
-        // Define o valor padrão do campo de entrada de data como a data atual
-        donationDateInput.value = formattedDate;
-    </script>
 </body>
 
 </html>

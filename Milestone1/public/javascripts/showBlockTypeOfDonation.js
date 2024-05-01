@@ -5,26 +5,38 @@ function showRelevantBlock() {
     var paypal = document.getElementById("paypal-button-container");
     var typeOfClothingDiv = document.getElementById("typeOfClothingDiv");
     var submitButton = document.getElementById("submitButton");
-    var quantityDiv = document.getElementById("quantityDiv");
-    var pointsDiv = document.getElementById("pointsDiv");
+    var typeOfClothingStateDiv = document.getElementById("typeOfClothingStateDiv");
+    var mapDiv = document.getElementById("map");
+    var warehouseNameGroupDiv = document.getElementById("warehouseNameGroup");
 
     // Esconde todos os blocos
     amountDiv.style.display = "none";
     typeOfClothingDiv.style.display = "none";
     paypal.style.display = "none";
-    quantityDiv.style.display = "none";
-    pointsDiv.style.display = "none";
-
+    submitButton.style.display = "none";
+    typeOfClothingStateDiv.style.display = "none";
+    mapDiv.style.display = "none";
+    warehouseNameGroupDiv.style.display = "none";
     // Exibe apenas o bloco relevante com base no tipo de doação selecionado
     if (selectedValue === "Dinheiro") {
+        typeOfClothingStateDiv.style.display = "none";
         amountDiv.style.display = "block";
         paypal.style.display = "block";
-        pointsDiv.style.display = "block"; // Exibe o bloco de pontos quando o tipo de doação é "Dinheiro"
+        submitButton.style.display = "none";
+        warehouseNameGroupDiv.style.display = "none";
+
     } else if (selectedValue === "Doação Têxtil") {
+        typeOfClothingStateDiv.style.display = "block";
         typeOfClothingDiv.style.display = "block";
         submitButton.style.display = "block";
-        quantityDiv.style.display = "block";
-        pointsDiv.style.display = "block";
+        warehouseNameGroupDiv.style.display = "block";
+        mapDiv.style.display = "block";
+
+
+        // Atualiza o mapa após ele ser exibido
+        setTimeout(function() {
+            map.invalidateSize();
+        }, 100); // Ajuste o tempo conforme necessário
     }
 }
 
