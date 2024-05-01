@@ -1,0 +1,666 @@
+{
+    "locations": [
+      {
+        "url": "/locations/OPO426",
+        "location": {
+          "ids": [
+            {
+              "locationId": "OPO426",
+              "provider": "express"
+            }
+          ],
+          "keyword": "",
+          "keywordId": "",
+          "type": "servicepoint"
+        },
+        "name": "DS SEGUROS FELGUEIRAS",
+        "distance": 589,
+        "place": {
+          "address": {
+            "countryCode": "PT",
+            "postalCode": "4610-100",
+            "addressLocality": "FELGUEIRAS",
+            "streetAddress": "RUA DA QUINTA 12 RC ESQ"
+          },
+          "geo": {
+            "latitude": 41.3650904,
+            "longitude": -8.2146679
+          }
+        },
+        "openingHours": [
+          {
+            "opens": "09:30:00",
+            "closes": "13:00:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "14:30:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "09:30:00",
+            "closes": "13:00:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "14:30:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "09:30:00",
+            "closes": "13:00:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "14:30:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "09:30:00",
+            "closes": "13:00:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "14:30:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "09:30:00",
+            "closes": "13:00:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          },
+          {
+            "opens": "14:30:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          }
+        ],
+        "closurePeriods": [],
+        "serviceTypes": [
+          "express:drop-off-easy",
+          "handicapped-access",
+          "express:drop-off",
+          "express:drop-off-account",
+          "express:pick-up",
+          "express:drop-off-prelabeled",
+          "parking"
+        ],
+        "averageCapacityDayOfWeek": []
+      },
+      {
+        "url": "/locations/OPO132",
+        "location": {
+          "ids": [
+            {
+              "locationId": "OPO132",
+              "provider": "express"
+            }
+          ],
+          "keyword": "",
+          "keywordId": "",
+          "type": "servicepoint"
+        },
+        "name": "STERNTRAVEL",
+        "distance": 786,
+        "place": {
+          "address": {
+            "countryCode": "PT",
+            "postalCode": "4610-115",
+            "addressLocality": "FELGUEIRAS",
+            "streetAddress": "PRACA COMUNIDADE LUSIADA, LOTE 10 B RC"
+          },
+          "geo": {
+            "latitude": 41.367281,
+            "longitude": -8.202035
+          }
+        },
+        "openingHours": [
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          }
+        ],
+        "closurePeriods": [],
+        "serviceTypes": [
+          "express:drop-off-easy",
+          "handicapped-access",
+          "express:drop-off",
+          "express:drop-off-account",
+          "express:pick-up",
+          "express:drop-off-prelabeled",
+          "parking"
+        ],
+        "averageCapacityDayOfWeek": []
+      },
+      {
+        "url": "/locations/8056-PT-0000465",
+        "location": {
+          "ids": [
+            {
+              "locationId": "8056-PT-0000465",
+              "provider": "parcel"
+            }
+          ],
+          "keyword": "DHL Servicepoint",
+          "keywordId": "101",
+          "type": "servicepoint"
+        },
+        "name": "Liv. Pap. A Felgueirense",
+        "distance": 1452,
+        "place": {
+          "address": {
+            "countryCode": "PT",
+            "postalCode": "4610-178",
+            "addressLocality": "Felgueiras",
+            "streetAddress": "R. D. Manuel Faria de Sousa 795"
+          },
+          "geo": {
+            "latitude": 41.36002,
+            "longitude": -8.199092
+          }
+        },
+        "openingHours": [
+          {
+            "opens": "09:00:00",
+            "closes": "13:00:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:30:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "13:00:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:30:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "13:00:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:30:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "13:00:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:30:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "13:00:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:30:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          },
+          {
+            "opens": "09:30:00",
+            "closes": "13:00:00",
+            "dayOfWeek": "http://schema.org/Saturday"
+          },
+          {
+            "opens": "15:00:00",
+            "closes": "17:00:00",
+            "dayOfWeek": "http://schema.org/Saturday"
+          }
+        ],
+        "closurePeriods": [],
+        "serviceTypes": [
+          "parcel:pick-up",
+          "parcel:drop-off-unlabeled",
+          "franking",
+          "cash-service",
+          "parcel:drop-off",
+          "parcel:pick-up-unregistered",
+          "parking"
+        ],
+        "averageCapacityDayOfWeek": []
+      },
+      {
+        "url": "/locations/8056-PT-1000326",
+        "location": {
+          "ids": [
+            {
+              "locationId": "OPO262",
+              "provider": "express"
+            },
+            {
+              "locationId": "8056-PT-1000326",
+              "provider": "parcel"
+            }
+          ],
+          "keyword": "DHL Servicepoint",
+          "keywordId": "101",
+          "type": "servicepoint"
+        },
+        "name": "Quiosque Sem Limites",
+        "distance": 4691,
+        "place": {
+          "address": {
+            "countryCode": "PT",
+            "postalCode": "4615-414",
+            "addressLocality": "Macieira da Lixa",
+            "streetAddress": "R.Marco de Simães-Edf Marco Simães Lj. C"
+          },
+          "geo": {
+            "latitude": 41.3524,
+            "longitude": -8.159711
+          }
+        },
+        "openingHours": [
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Saturday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "17:00:00",
+            "dayOfWeek": "http://schema.org/Saturday"
+          }
+        ],
+        "closurePeriods": [],
+        "serviceTypes": [
+          "parcel:pick-up",
+          "parcel:drop-off-unlabeled",
+          "handicapped-access",
+          "express:drop-off",
+          "express:pick-up",
+          "express:drop-off-prelabeled",
+          "parcel:drop-off",
+          "express:drop-off-easy",
+          "franking",
+          "express:drop-off-account",
+          "cash-service",
+          "parcel:pick-up-unregistered",
+          "parking"
+        ],
+        "averageCapacityDayOfWeek": []
+      },
+      {
+        "url": "/locations/8056-PT-1000513",
+        "location": {
+          "ids": [
+            {
+              "locationId": "8056-PT-1000513",
+              "provider": "parcel"
+            }
+          ],
+          "keyword": "DHL Servicepoint",
+          "keywordId": "101",
+          "type": "servicepoint"
+        },
+        "name": "Megadigital",
+        "distance": 5068,
+        "place": {
+          "address": {
+            "countryCode": "PT",
+            "postalCode": "4650-072",
+            "addressLocality": "Felgueiras",
+            "streetAddress": "R. Fonte Nova 30"
+          },
+          "geo": {
+            "latitude": 41.32537,
+            "longitude": -8.195941
+          }
+        },
+        "openingHours": [
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "14:30:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "14:30:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "14:30:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "14:30:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          },
+          {
+            "opens": "14:30:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Saturday"
+          },
+          {
+            "opens": "14:30:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Saturday"
+          }
+        ],
+        "closurePeriods": [],
+        "serviceTypes": [
+          "parcel:pick-up",
+          "cash-service",
+          "parcel:drop-off",
+          "parcel:pick-up-unregistered",
+          "parking"
+        ],
+        "averageCapacityDayOfWeek": []
+      },
+      {
+        "url": "/locations/OPO445",
+        "location": {
+          "ids": [
+            {
+              "locationId": "OPO445",
+              "provider": "express"
+            }
+          ],
+          "keyword": "",
+          "keywordId": "",
+          "type": "servicepoint"
+        },
+        "name": "MAIS OPTICA LIXA",
+        "distance": 7165,
+        "place": {
+          "address": {
+            "countryCode": "PT",
+            "postalCode": "4615-655",
+            "addressLocality": "LIXA",
+            "streetAddress": "AV DR MACHADO DE MATOS, CONTINENTE MODELO LIXA"
+          },
+          "geo": {
+            "latitude": 41.3246331,
+            "longitude": -8.1495042
+          }
+        },
+        "openingHours": [
+          {
+            "opens": "09:30:00",
+            "closes": "20:00:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "09:30:00",
+            "closes": "20:00:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "09:30:00",
+            "closes": "20:00:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "09:30:00",
+            "closes": "20:00:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "09:30:00",
+            "closes": "20:00:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          },
+          {
+            "opens": "09:30:00",
+            "closes": "21:00:00",
+            "dayOfWeek": "http://schema.org/Saturday"
+          },
+          {
+            "opens": "09:30:00",
+            "closes": "20:00:00",
+            "dayOfWeek": "http://schema.org/Sunday"
+          }
+        ],
+        "closurePeriods": [],
+        "serviceTypes": [
+          "express:drop-off-easy",
+          "express:drop-off",
+          "express:drop-off-account",
+          "express:pick-up",
+          "express:drop-off-prelabeled"
+        ],
+        "averageCapacityDayOfWeek": []
+      },
+      {
+        "url": "/locations/8056-PT-1000595",
+        "location": {
+          "ids": [
+            {
+              "locationId": "8056-PT-1000595",
+              "provider": "parcel"
+            }
+          ],
+          "keyword": "DHL Servicepoint",
+          "keywordId": "101",
+          "type": "servicepoint"
+        },
+        "name": "Digitaltek",
+        "distance": 7579,
+        "place": {
+          "address": {
+            "countryCode": "PT",
+            "postalCode": "4615-593",
+            "addressLocality": "Lixa",
+            "streetAddress": "R. D. António Ferreira Gomes 50"
+          },
+          "geo": {
+            "latitude": 41.32178,
+            "longitude": -8.146304
+          }
+        },
+        "openingHours": [
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Monday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Tuesday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Wednesday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Thursday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          },
+          {
+            "opens": "14:00:00",
+            "closes": "19:00:00",
+            "dayOfWeek": "http://schema.org/Friday"
+          },
+          {
+            "opens": "09:00:00",
+            "closes": "12:30:00",
+            "dayOfWeek": "http://schema.org/Saturday"
+          }
+        ],
+        "closurePeriods": [],
+        "serviceTypes": [
+          "parcel:pick-up",
+          "franking",
+          "cash-service",
+          "parcel:drop-off",
+          "parcel:pick-up-unregistered",
+          "parking"
+        ],
+        "averageCapacityDayOfWeek": []
+      }
+    ]
+  }
