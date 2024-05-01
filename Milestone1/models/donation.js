@@ -9,17 +9,6 @@ const DonationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-
-    /*  donator: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Donator",
-          required: true,
-      },
-      entity: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Entity",
-          required: true,
-      },*/
     donationDate: {
         type: Date,
         required: true,
@@ -28,22 +17,7 @@ const DonationSchema = new mongoose.Schema({
         type: String,
         enum: ["Doação Têxtil", "Dinheiro"],
         required: true,
-    }/*,
-    imageProof: {
-        data: Buffer,
-        type: String
     },
-    status: {
-        type: String,
-        enum: ["Pendente", "Aprovado", "Rejeitado"],
-        default: "Pendente"
-    }*/
-});
-
-
-
-// Conditionally add typeOfClothing based on typeOfDonation
-DonationSchema.add({
     typeOfClothing: {
         type: String,
         enum: [
@@ -67,12 +41,16 @@ DonationSchema.add({
             return this.typeOfDonation === "Doação Têxtil";
         },
     },
-});
-DonationSchema.add({
     amount: {
         type: Number,
         required: function () {
             return this.typeOfDonation === "Dinheiro";
+        },
+    },
+    warehouseName: { // Novo campo para armazenar o nome do armazém
+        type: String,
+        required: function () {
+            return this.typeOfDonation === "Doação Têxtil";
         },
     },
 });
