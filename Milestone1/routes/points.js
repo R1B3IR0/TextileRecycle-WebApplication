@@ -1,14 +1,15 @@
-// Importe o express
-const express = require('express');
-
-// Crie uma instância do roteador
+const express = require("express");
 const router = express.Router();
+const pointController = require("../controllers/pointController");
 
-// Importe o controller de configuração de pontos
-const configurationPointsController = require('../controllers/configurationPointsController');
+router.get("/", pointController.showAll);
 
-// Rota para renderizar a página de configuração de pontos (GET)
-router.get('/configure', configurationPointsController.renderConfigurePointsPage);
+router.get("/create", pointController.formCreate);
 
-// Exporte o roteador
+router.post("/create", pointController.create);
+
+router.get("/edit/:id", pointController.formEdit);
+
+router.post("/edit", pointController.edit);
+
 module.exports = router;
