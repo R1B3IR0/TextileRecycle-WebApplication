@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem de Pontos</title>
+    <title>Sistema de Pontos</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -93,28 +93,29 @@
 
 <body>
     <div class="view-all-container">
-        <h2>Listagem de Pontos</h2>
+        <h2>Sistema de Pontos</h2>
         <ul>
             <% points.forEach(function(point) { %>
-            <li>
                 <div class="point-item">
-                    <span class="point-id">
-                        <%= point._id %>
-                    </span>
                     <span class="point-detail">Novo com etiquetas: <%= point.newWithTag %></span>
+                    <br>
                     <span class="point-detail">Novo sem etiquetas: <%= point.newWithoutTag %></span>
+                    <br>
                     <span class="point-detail">Muito bom: <%= point.veryGood %></span>
+                    <br>
                     <span class="point-detail">Bom: <%= point.good %></span>
+                    <br>
                     <span class="point-detail">Satisfatório: <%= point.satisfactory %></span>
+                    <br>
                     <span class="point-detail">Quantidade: <%= point.quantity %></span>
+                    <br>
                     <span class="point-detail">Dinheiro: <%= point.donationMoney %></span>
                     <button class="edit-button" onclick="window.location.href='/points/edit/<%= point._id %>'">Editar</button>
                 </div>
-            </li>
             <% }); %>
         </ul>
         <!-- Button to go back -->
-        <a href="/points" class="btn-go-back">Voltar</a>
+        <a href="/donations" class="btn-go-back">Voltar</a>
     </div>
 </body>
 
