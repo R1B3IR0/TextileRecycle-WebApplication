@@ -54,12 +54,13 @@
                         <td><%= item.state %></td>
                     </tr>
                 <% }); %>
-            <% } else { %>
-                <tr>
-                    <td colspan="3">
-                        <p>Nenhuma informação de doação têxtil disponível.</p>
-                    </td>
-                </tr>
+                <% } else if (donation.typeOfDonation === 'Dinheiro') { %>
+                    <tr>
+                        <td>Amount</td>
+                        <td>:</td>
+                        <td><%= donation.amount %>€</td>
+    
+                    </tr>
             <% } %>
         </tbody>
     </table>
