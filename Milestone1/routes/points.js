@@ -13,3 +13,4 @@ router.get("/edit/:id", pointController.formEdit);
 router.post("/edit", pointController.edit);
 
 module.exports = router;
+

@@ -47,3 +47,53 @@
 </div>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Points Configuration</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+<div class="edit-entity-container">
+    <h2>Configuração de Pontos</h2>
+    <form action="/points/edit" method="post">
+        <input type="hidden" name="_id" value="<%= point._id %>">
+        <div class="form-group">
+            <label for="newWithTag">Novo com etiquetas:</label>
+            <input type="number" name="newWithTag" id="newWithTag" value="<%= point.newWithTag %>" required>
+        </div>
+        <div class="form-group">
+            <label for="newWithoutTag">Novo sem etiquetas:</label>
+            <input type="number" name="newWithoutTag" id="newWithoutTag" value="<%= point.newWithoutTag %>" required>
+        </div>
+        <div class="form-group">
+            <label for="veryGood">Muito bom:</label>
+            <input type="number" name="veryGood" id="veryGood" value="<%= point.veryGood %>" required>
+        </div>
+        <div class="form-group">
+            <label for="good">Bom:</label>
+            <input type="number" name="good" id="good" value="<%= point.good %>" required>
+        </div>
+        <div class="form-group">
+            <label for="satisfactory">Satisfatório:</label>
+            <input type="number" name="satisfactory" id="satisfactory" value="<%= point.satisfactory %>" required>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantidade:</label>
+            <input type="number" name="quantity" id="quantity" value="<%= point.quantity %>" required>
+        </div>
+        <div class="form-group">
+            <label for="donationMoney">Dinheiro:</label>
+            <input type="number" name="donationMoney" id="donationMoney" value="<%= point.donationMoney %>" required>
+        </div>
+        <button type="submit" class="submit-btn">Atualizar pontos</button>
+    </form>
+    <div class="back-button">
+        <a href="/points">Voltar</a>
+    </div>
+</div>
+</body>
+</html>

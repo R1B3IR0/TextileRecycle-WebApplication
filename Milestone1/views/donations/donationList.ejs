@@ -22,7 +22,7 @@
             <% donations.forEach(function(donation) { %>
             <tr>
                 <td><%= donation._id %></td>
-                <td><%= donation.donator %></td>
+                <td><%= donation.donator.name %></td>
                 <td><%= donation.donationDate %></td>
                 <td><%= donation.typeOfDonation %></td>
                 <td><a href="/donations/show/<%= donation._id %>">Detalhes</a></td>
