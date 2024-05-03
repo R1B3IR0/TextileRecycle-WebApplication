@@ -21,8 +21,8 @@ authController.submittedLogin = function(req, res, next) {
             bcrypt.compare(passwordInput, user.password)
                 .then(function(result){
                     if (result ===true){
-                        const authToken = jwt.sign({ email: user.email}, config.secret, { expiresIn: 86400 });
-                        res.cookie('auth-token', authToken, {maxAge: 82000})
+                        const authToken = jwt.sign({ email: user.email}, config.secret, { expiresIn: 86400000 });
+                        res.cookie('auth-token', authToken, {maxAge: 82000000})
                         // Add the role option in future for redirecting to the correct page
                         if (user.role === "Admin"){
                             res.redirect('/dashboard')
