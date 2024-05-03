@@ -28,7 +28,7 @@
         paypal.style.display = "block";
         submitButton.style.display = "none";
         warehouseNameGroupDiv.style.display = "none";
-        mapDiv.style.display = "block";
+        //mapDiv.style.display = "none";
 
     } else if (selectedValue === "Doação Têxtil") {
         //typeOfClothingStateDiv.style.display = "block";
