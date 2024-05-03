@@ -18,29 +18,39 @@ const DonationSchema = new mongoose.Schema({
         enum: ["Doação Têxtil", "Dinheiro"],
         required: true,
     },
-    typeOfClothing: {
-        type: String,
-        enum: [
-            "Fatos e blazers",
-            "Calças",
-            "Meias e Roupa Interior",
-            "Tops e t-shirts",
-            "Camisolas e sweaters",
-            "Casacos",
-            "Pijamas",
-            "Outros",
-        ],
-        required: function () {
-            return this.typeOfDonation === "Doação Têxtil";
-        },
-    },
-    state: {
-        type: String,
-        enum: ["Novo com etiquetas", "Novo sem etiquetas", "Muito bom", "Bom", "Satisfatório"],
-        required: function () {
-            return this.typeOfDonation === "Doação Têxtil";
-        },
-    },
+    typeOfClothing: [
+        {
+            category: {
+                type: String,
+                enum: [
+                    "Fatos e blazers",
+                    "Calças",
+                    "Meias e Roupa Interior",
+                    "Tops e t-shirts",
+                    "Camisolas e sweaters",
+                    "Casacos",
+                    "Pijamas",
+                    "Outros",
+                ],
+                required: function () {
+                    return this.typeOfDonation === "Doação Têxtil";
+                },
+            },
+            quantity: {
+                type: Number,
+                required: function () {
+                    return this.typeOfDonation === "Doação Têxtil";
+                },
+            },
+            state: {
+                type: String,
+                enum: ["Novo com etiquetas", "Novo sem etiquetas", "Muito bom", "Bom", "Satisfatório"],
+                required: function () {
+                    return this.typeOfDonation === "Doação Têxtil";
+                },
+            },
+        }
+    ],
     amount: {
         type: Number,
         required: function () {
@@ -54,5 +64,6 @@ const DonationSchema = new mongoose.Schema({
         },
     },
 });
+
 
 module.exports = mongoose.model("Donation", DonationSchema);
