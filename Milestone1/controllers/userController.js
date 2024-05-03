@@ -75,15 +75,41 @@ userController.formEdit = function (req, res) {
 
 // update 1 user as a reply to a post in a form edit 
 userController.edit = function (req, res) {
-  User.findByIdAndUpdate(req.body._id, req.body, function(err, dbuser) {
-    if (err) {
-      console.log("Erro a gravar");
-      res.redirect("/error");
-    } else {
-      console.log("User updated!");
-      res.redirect("/users/show/"+req.body._id);
-    }
-  });
+  // Verificar se a senha foi alterada
+  if (req.body.password) {
+    // Se a senha foi alterada, hash a nova senha
+    bcrypt.hash(req.body.password, 8, function(err, hashedPassword) {
+      if (err) {
+        console.error("Error hashing password:", err);
+        res.status(500).send("Error updating user");
+        return;
+      }
+      // Atualizar a senha com a nova senha encriptada
+      req.body.password = hashedPassword;
+      
+      // Atualizar o usuário no banco de dados
+      User.findByIdAndUpdate(req.body._id, req.body, function(err, dbuser) {
+        if (err) {
+          console.log("Erro a gravar");
+          res.redirect("/error");
+        } else {
+          console.log("User updated!");
+          res.redirect("/users/show/"+req.body._id);
+        }
+      });
+    });
+  } else {
+    // Se a senha não foi alterada, apenas atualize os outros campos do usuário
+    User.findByIdAndUpdate(req.body._id, req.body, function(err, dbuser) {
+      if (err) {
+        console.log("Erro a gravar");
+        res.redirect("/error");
+      } else {
+        console.log("User updated!");
+        res.redirect("/users/show/"+req.body._id);
+      }
+    });
+  }
 };
 
 //delete 1 user

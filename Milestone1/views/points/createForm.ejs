@@ -59,47 +59,46 @@
 <body>
     <div class="container">
         <h1>Calculadora de Pontos de Doação</h1>
-
         <form id="dataForm" method="POST" action="/points/create">
             <div class="form-group">
                 <label for="newWithTag">Novo com etiquetas:</label>
-                <input type="number" name="newWithTag" id="newWithTag" value="5">
+                <input type="number" name="newWithTag" id="newWithTag" value="<%= point.newWithTag %>">
             </div>
 
             <div class="form-group">
                 <label for="newWithoutTag">Novo sem etiquetas:</label>
-                <input type="number" name="newWithoutTag" id="newWithoutTag" value="4">
+                <input type="number" name="newWithoutTag" id="newWithoutTag" value="<%= point.newWithoutTag %>">
             </div>
 
             <div class="form-group">
                 <label for="veryGood">Muito Bom:</label>
-                <input type="number" name="veryGood" id="veryGood" value="3">
+                <input type="number" name="veryGood" id="veryGood" value="<%= point.veryGood %>">
             </div>
 
             <div class="form-group">
                 <label for="good">Bom:</label>
-                <input type="number" name="good" id="good" value="2">
+                <input type="number" name="good" id="good" value="<%= point.good %>">
             </div>
 
             <div class="form-group">
                 <label for="satisfactory">Satisfatório:</label>
-                <input type="number" name="satisfactory" id="satisfactory" value="1">
+                <input type="number" name="satisfactory" id="satisfactory" value="<%= point.satisfactory %>">
             </div>
 
             <div class="form-group">
                 <label for="quantity">Quantidade:</label>
-                <input type="number" name="quantity" id="quantity">
+                <input type="number" name="quantity" id="quantity" value="<%= point.quantity %>">
             </div>
 
             <div class="form-group">
                 <label for="donationMoney">Dinheiro:</label>
-                <input type="number" name="donationMoney" id="donationMoney">
+                <input type="number" name="donationMoney" id="donationMoney" value="<%= point.donationMoney %>">
             </div>
 
             <button class="btn" type="submit">Editar e Guardar Pontos</button>
         </form>
     </div>
-
+    <!--
     <script>
         function editPoints() {
             var newWithTag = parseInt(document.getElementById('newWithTag').value);
@@ -124,5 +123,6 @@
             document.getElementById('dataForm').submit();
         }
     </script>
+-->
 </body>
 </html>
