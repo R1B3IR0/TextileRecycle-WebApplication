@@ -23,7 +23,6 @@ var entitiesRouter = require('./routes/entities');
 var dashboardRouter = require('./routes/dashboard');
 var pointsRouter = require('./routes/points');
 
-
 var app = express();
 
 // view engine setup
@@ -44,7 +43,6 @@ app.use('/donators', donatorRouter);
 app.use('/entities', entitiesRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/points', pointsRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
