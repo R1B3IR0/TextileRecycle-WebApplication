@@ -4,7 +4,7 @@ var userController = require("../controllers/userController.js");
 const authController = require("../controllers/authController.js");
 
 // Get all users
-router.get('/', userController.showAll, authController.verifyLoginUser);
+router.get('/', authController.verifyLoginUser, userController.showAll);
 // Get one user by id
 router.get('/show/:id', userController.show, authController.verifyLoginUser);
 // Form to create a user	
