@@ -16,27 +16,27 @@
 
     <style>
         /* Estilo para o campo de entrada */
-.input-style {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-}
+        .input-style {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        }
 
-/* Estilo para o campo de seleção */
-.select-style {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  /* Adicione outros estilos que você deseja aplicar ao campo de seleção aqui */
-}
+        /* Estilo para o campo de seleção */
+        .select-style {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        /* Adicione outros estilos que você deseja aplicar ao campo de seleção aqui */
+        }
     </style>
 </head>
 
@@ -89,31 +89,35 @@
         </div>
 
         <div id="typeOfClothingDiv" style="display: none;">
-            <label for="typeOfClothing.category">Tipo de Doação Têxtil:</label>
-            <select name="typeOfClothing.category" id="typeOfClothing">
-                <option value="">Escolha o tipo de roupa</option>
-                <option value="Fatos e blazers">Fatos e blazers</option>
-                <option value="Calças">Calças</option>
-                <option value="Meias e Roupa Interior">Meias e Roupa Interior</option>
-                <option value="Tops e t-shirts">Tops e t-shirts</option>
-                <option value="Camisolas e sweaters">Camisolas e sweaters</option>
-                <option value="Casacos">Casacos</option>
-                <option value="Pijamas">Pijamas</option>
-                <option value="Outros">Outros</option>
-            </select>
+            <div id="clothingFields">
+                <div class="clothing-field">
+                    <select name="typeOfClothing[0].category" class="typeOfClothing" required>
+                        <option value="">Escolha o tipo de roupa</option>
+                        <option value="Fatos e blazers">Fatos e blazers</option>
+                        <option value="Calças">Calças</option>
+                        <option value="Meias e Roupa Interior">Meias e Roupa Interior</option>
+                        <option value="Tops e t-shirts">Tops e t-shirts</option>
+                        <option value="Camisolas e sweaters">Camisolas e sweaters</option>
+                        <option value="Casacos">Casacos</option>
+                        <option value="Pijamas">Pijamas</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                    <input type="number" name="typeOfClothing[0].quantity" class="quantity" placeholder="Quantidade" required>
+                    <select name="typeOfClothing[0].state" class="state" required>
+                        <option value="">Escolha o estado da roupa</option>
+                        <option value="Novo com etiquetas">Novo com etiquetas</option>
+                        <option value="Novo sem etiquetas">Novo sem etiquetas</option>
+                        <option value="Muito bom">Muito bom</option>
+                        <option value="Bom">Bom</option>
+                        <option value="Satisfatório">Satisfatório</option>
+                    </select>
+                    <p></p>
+                </div>
+            </div>
+            <p></p>
+            <button type="button" id="addClothingField">Adicionar</button>
         </div>
         <p></p>
-        <div id="typeOfClothingStateDiv" style="display: none;">
-            <label for="typeOfClothing.state">Estado do tipo de roupa:</label>
-            <select name="typeOfClothing.state" id="typeOfClothing.state">
-                <option value="">Escolha o estado da roupa</option>
-                <option value="Novo com etiquetas">Novo com etiquetas</option>
-                <option value="Novo sem etiquetas">Novo sem etiquetas</option>
-                <option value="Muito bom">Muito bom</option>
-                <option value="Bom">Bom</option>
-                <option value="Satisfatório">Satisfatório</option>
-            </select>
-        </div>
         <p></p>
         <!-- Campo para armazenar o nome do armazém -->
         <div id="warehouseNameGroup" style="display: none;">
@@ -127,6 +131,7 @@
     </form>
 
     <script src="/javascripts/showBlockTypeOfDonation.js"></script>
+    <script src="/javascripts/addClothing.js"></script>
     
     
     <div class="back-button" style="text-align: right;">
