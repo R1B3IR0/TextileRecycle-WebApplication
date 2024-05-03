@@ -4,9 +4,7 @@ const pointController = require("../controllers/pointController");
 
 router.get("/", pointController.showAll);
 
-router.get("/create", pointController.formCreate);
-
-router.post("/create", pointController.create);
+router.get("/create", pointController.formCreate); // Rota para criar uma nova configuração de pontos com valores predefinidos
 
 router.get("/edit/:id", pointController.formEdit);
 
