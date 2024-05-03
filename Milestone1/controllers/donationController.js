@@ -7,7 +7,7 @@ var donationController = {};
 
 // Mostra todas as doações
 donationController.showAll = function(req, res) {
-  Donation.find({}).exec(function(err, donations){
+  Donation.find({}).populate('donator').populate('entity').exec(function(err, donations){
     if(err){
       console.log('Erro ao ler as doações');
       res.redirect('/error');
@@ -20,7 +20,7 @@ donationController.showAll = function(req, res) {
 
 // Mostra uma doação pelo id
 donationController.show = function(req, res) {
-  Donation.findOne({_id: req.params.id}).exec(function(err, donation){
+  Donation.findOne({_id: req.params.id}).populate('donator').populate('entity').exec(function(err, donation){
     if(err){
       console.log('Erro ao ler a doação');
       res.redirect('/error');
@@ -57,13 +57,23 @@ donationController.create = function (req, res) {
     }
     // Delete amount for donations of type 'Doação Têxtil'
     if (donationData.typeOfDonation === 'Doação Têxtil') {
-        console.log("Donation type is Doação Têxtil. Deleting amount.");
-        delete donationData.amount;
-        // Add typeOfClothing and state fields
-        donationData.typeOfClothing = req.body['typeOfClothing.category'];
-        donationData.state = req.body['typeOfClothing.state'];
+      console.log("Donation type is Doação Têxtil. Deleting amount.");
+      delete donationData.amount;
+      
+      const typeOfClothingObjects = []; // Certifique-se de que a variável está definida antes do loop
+      for (let i = 0; i < Object.keys(donationData).length; i++) { // Assuming a maximum of 10 items of clothing
+        if (donationData[`typeOfClothing[${i}].category`]) {
+            const typeOfClothing = {
+                category: donationData[`typeOfClothing[${i}].category`],
+                quantity: donationData[`typeOfClothing[${i}].quantity`],
+                state: donationData[`typeOfClothing[${i}].state`]
+            };
+            typeOfClothingObjects.push(typeOfClothing);
+        }
+      }
+      // Assign the array of typeOfClothing objects to the donationData object
+      donationData.typeOfClothing = typeOfClothingObjects;
     }
-
 
     var donation = new Donation(donationData);
     const { donators, entities } = req.body;
