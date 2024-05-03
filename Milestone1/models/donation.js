@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const DonationSchema = new mongoose.Schema({
     donator: {
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Donator",
     },
     entity: {
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Entity",
     },
     donationDate: {
         type: Date,

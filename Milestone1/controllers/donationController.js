@@ -7,7 +7,7 @@ var donationController = {};
 
 // Mostra todas as doações
 donationController.showAll = function(req, res) {
-  Donation.find({}).exec(function(err, donations){
+  Donation.find({}).populate('donator').populate('entity').exec(function(err, donations){
     if(err){
       console.log('Erro ao ler as doações');
       res.redirect('/error');
@@ -20,7 +20,7 @@ donationController.showAll = function(req, res) {
 
 // Mostra uma doação pelo id
 donationController.show = function(req, res) {
-  Donation.findOne({_id: req.params.id}).exec(function(err, donation){
+  Donation.findOne({_id: req.params.id}).populate('donator').populate('entity').exec(function(err, donation){
     if(err){
       console.log('Erro ao ler a doação');
       res.redirect('/error');
