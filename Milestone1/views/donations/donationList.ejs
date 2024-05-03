@@ -16,7 +16,6 @@
                 <th>Data da Doação</th>
                 <th>Tipo de Doação</th>
                 <th>Detalhes</th>
-                <th>Editar</th>
                 <th>Remover</th>
             </tr>
             <% donations.forEach(function(donation) { %>
@@ -26,7 +25,6 @@
                 <td><%= donation.donationDate %></td>
                 <td><%= donation.typeOfDonation %></td>
                 <td><a href="/donations/show/<%= donation._id %>">Detalhes</a></td>
-                <td><a href="/donations/edit/<%= donation._id %>">Editar</a></td>
                 <td><a href="/donations/delete/<%= donation._id %>" onclick="return confirmDelete()">Remover</a></td>
             </tr>
             <% }); %>
@@ -35,6 +33,9 @@
     </div>
     <div class="back-button">
         <a href="/donations/create">Criar Doação</a>
+        <!-- Button in righ side-->
+        <a href="/dashboard">Voltar</a>
+    </div>
 </body>
 
 </html>

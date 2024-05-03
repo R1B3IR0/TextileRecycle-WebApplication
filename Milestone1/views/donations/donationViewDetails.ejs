@@ -31,6 +31,11 @@
                 <td>:</td>
                 <td><%= donation.donationDate %></td>
             </tr>
+            <tr>
+                <td>Armazém</td>
+                <td>:</td>
+                <td><%= donation.warehouseName %></td>
+            </tr>
             <% if (donation.typeOfDonation === 'Doação Têxtil' && donation.typeOfClothing && donation.typeOfClothing.length > 0) { %>
                 <% donation.typeOfClothing.forEach(function(item, index) { %>
                     <tr>
@@ -54,12 +59,13 @@
                         <td><%= item.state %></td>
                     </tr>
                 <% }); %>
-            <% } else { %>
-                <tr>
-                    <td colspan="3">
-                        <p>Nenhuma informação de doação têxtil disponível.</p>
-                    </td>
-                </tr>
+                <% } else if (donation.typeOfDonation === 'Dinheiro') { %>
+                    <tr>
+                        <td>Amount</td>
+                        <td>:</td>
+                        <td><%= donation.amount %>€</td>
+    
+                    </tr>
             <% } %>
         </tbody>
     </table>
