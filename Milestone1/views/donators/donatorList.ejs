@@ -18,6 +18,7 @@
             <th>Contacto</th>
             <th>Morada</th>
             <th>Pontos</th>
+            <th>Detalhes</th>
             <th>Editar</th>
             <th>Remover</th>
         </tr>
@@ -34,6 +35,15 @@
             </tr>
         <% }); %>
     </table>
+    <div class="button-container">
+        <div class="back-button" style="float: left;">
+            <a href="/donators/create" onclick="history.go(-1);">Criar Doador</a>
+        </div>
+        <div class="back-button" style="float: right;">
+            <a href="/dashboard" onclick="history.go(-1);">Voltar</a>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
 </div>
 </body>
 

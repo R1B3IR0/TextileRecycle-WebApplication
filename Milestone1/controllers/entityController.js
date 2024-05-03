@@ -66,10 +66,11 @@ entityController.update = function (req, res) {
     Entity.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, dbentity) {
         if (err) {
             console.error("Error updating entity:", err);
-            res.render("../views/entities/updateForm", {entity: req.body});
+            res.redirect("/error");;
         } else {
             console.log("Successfully updated entity.");
-            res.redirect("/entities/show/" + req.body.id);
+            res.redirect("/entities");
+
         }
     });
 }

@@ -4,7 +4,7 @@ let donatorController = require('../controllers/donatorController.js');
 const authController = require('../controllers/authController.js');
 
 // Get all donators
-router.get('/', donatorController.showAll, authController.verifyLoginUser);
+router.get('/', authController.verifyLoginUser, donatorController.showAll);
 // Get one donator by id
 router.get('/show/:id', donatorController.show, authController.verifyLoginUser);
 // Form to create a donator
