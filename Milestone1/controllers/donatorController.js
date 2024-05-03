@@ -35,18 +35,18 @@ donatorController.formCreate = function (req, res) {
 // create 1 donator as a response to a post in a form
 donatorController.create = function (req, res) {
 
-        var donator = new Donator(req.body);
+  var donator = new Donator(req.body);
 
-        console.log("Attempting to create donator:", donator);
-        donator.save(function (err) {
-            if (err) {
-                console.error("Error saving donator:", err);
-                res.render("../views/donators/createForm");
-            } else {
-                console.log("Successfully created an donator.");
-                res.redirect("/donators");
-            }
-        });
+  console.log("Attempting to create donator:", donator);
+  donator.save(function (err) {
+    if (err) {
+      console.error("Error saving donator:", err);
+      res.render("../views/donators/createForm");
+    } else {
+      console.log("Successfully created an donator.");
+      res.redirect("/donators");
+    }
+  });
 };
 
 // show form to edit 1 donator
