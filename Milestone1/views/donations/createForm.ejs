@@ -129,11 +129,16 @@
         <p></p>
         <div id="map" style="display:none;"></div>
         <p></p>
+        <div class="form-group" id="pointsDiv" style="display: none;">
+            <label for="result">Pontos:</label>
+            <input type="text" name="result" id="result" class="modern-result" readonly>
+        </div>
         <button id="submitButton" type="submit" class="submit-btn" style=" display:none">Criar Doação</button>
     </form>
 
     <script src="/javascripts/showBlockTypeOfDonation.js"></script>
     <script src="/javascripts/addClothing.js"></script>
+    <script src="/javascripts/calculatePoints.js"></script>
     
     
     <div class="back-button" style="text-align: right;">
@@ -398,7 +403,6 @@ return isInside;
         },
     }).render('#paypal-button-container');
 </script>
-
 
 </body>
 
