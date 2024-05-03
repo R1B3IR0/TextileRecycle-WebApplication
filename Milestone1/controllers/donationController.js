@@ -57,13 +57,23 @@ donationController.create = function (req, res) {
     }
     // Delete amount for donations of type 'Doação Têxtil'
     if (donationData.typeOfDonation === 'Doação Têxtil') {
-        console.log("Donation type is Doação Têxtil. Deleting amount.");
-        delete donationData.amount;
-        // Add typeOfClothing and state fields
-        donationData.typeOfClothing = req.body['typeOfClothing.category'];
-        donationData.state = req.body['typeOfClothing.state'];
+      console.log("Donation type is Doação Têxtil. Deleting amount.");
+      delete donationData.amount;
+      
+      const typeOfClothingObjects = []; // Certifique-se de que a variável está definida antes do loop
+      for (let i = 0; i < Object.keys(donationData).length; i++) { // Assuming a maximum of 10 items of clothing
+        if (donationData[`typeOfClothing[${i}].category`]) {
+            const typeOfClothing = {
+                category: donationData[`typeOfClothing[${i}].category`],
+                quantity: donationData[`typeOfClothing[${i}].quantity`],
+                state: donationData[`typeOfClothing[${i}].state`]
+            };
+            typeOfClothingObjects.push(typeOfClothing);
+        }
+      }
+      // Assign the array of typeOfClothing objects to the donationData object
+      donationData.typeOfClothing = typeOfClothingObjects;
     }
-
 
     var donation = new Donation(donationData);
     const { donators, entities } = req.body;
