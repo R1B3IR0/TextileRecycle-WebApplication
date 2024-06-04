@@ -5,10 +5,10 @@ const authentication = require("../controllers/authController");
 
 router.get("/", authentication.verifyLoginUser, pointController.showAll);
 
-router.get("/create", pointController.formCreate, authentication.verifyLoginUser); // Rota para criar uma nova configuração de pontos com valores predefinidos
+router.get("/create", authentication.verifyLoginUser, pointController.formCreate); // Rota para criar uma nova configuração de pontos com valores predefinidos
 
-router.get("/edit/:id", pointController.formEdit, authentication.verifyLoginUser);
+router.get("/edit/:id", authentication.verifyLoginUser, pointController.formEdit);
 
-router.post("/edit", pointController.edit, authentication.verifyLoginUser);
+router.post("/edit", authentication.verifyLoginUser, pointController.edit);
 
 module.exports = router;
