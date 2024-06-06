@@ -63,6 +63,10 @@ const DonationSchema = new mongoose.Schema({
             return this.typeOfDonation === "Doação Têxtil";
         },
     },
+    imageProof:{
+        type: String,
+        required: false,
+    }
 });
 
 

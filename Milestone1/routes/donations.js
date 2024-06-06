@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const donationController = require('../controllers/donationController');
 const authentication = require('../controllers/authController');
+const multer = require('multer');
+const upload = require('../config/multer');
 
 // Mostra todas as doações
 router.get('/', authentication.verifyLoginUser, donationController.showAll);
@@ -13,7 +15,7 @@ router.get('/show/:id', authentication.verifyLoginUser, donationController.show)
 router.get('/create', authentication.verifyLoginUser, donationController.formCreate);
 
 // Cria uma doação em resposta a um post em um formulário
-router.post('/create', authentication.verifyLoginUser, donationController.create);
+router.post('/create', authentication.verifyLoginUser, upload, donationController.create);
 
 // Formulário para editar uma doação
 router.get('/edit/:id', authentication.verifyLoginUser, donationController.formEdit);
