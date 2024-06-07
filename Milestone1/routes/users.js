@@ -6,16 +6,16 @@ const authController = require("../controllers/authController.js");
 // Get all users
 router.get('/', authController.verifyLoginUser, userController.showAll);
 // Get one user by id
-router.get('/show/:id', userController.show, authController.verifyLoginUser);
+router.get('/show/:id', authController.verifyLoginUser, userController.show);
 // Form to create a user	
-router.get('/create', userController.formCreate, authController.verifyLoginUser);
+router.get('/create', authController.verifyLoginUser, userController.formCreate);
 // Save user
-router.post('/create', userController.create, authController.verifyLoginUser);
+router.post('/create', authController.verifyLoginUser, userController.create);
 // Form to edit a user
-router.get('/edit/:id', userController.formEdit, authController.verifyLoginUser);
+router.get('/edit/:id', authController.verifyLoginUser, userController.formEdit);
 // Save edited user
-router.post('/edit/:id', userController.edit, authController.verifyLoginUser);
+router.post('/edit/:id', authController.verifyLoginUser, userController.edit);
 // Delete user
-router.get('/delete/:id', userController.delete, authController.verifyLoginUser);
+router.get('/delete/:id', authController.verifyLoginUser, userController.delete);
 
 module.exports = router;
