@@ -7,21 +7,21 @@ const authentication = require('../controllers/authController');
 router.get('/', authentication.verifyLoginUser, donationController.showAll);
 
 // Mostra uma doação pelo ID
-router.get('/show/:id', authentication.verifyLoginUser, donationController.show);
+router.get('/show/:id', donationController.show, authentication.verifyLoginUser);
 
 // Formulário para criar uma doação
-router.get('/create', authentication.verifyLoginUser, donationController.formCreate);
+router.get('/create', donationController.formCreate, authentication.verifyLoginUser);
 
 // Cria uma doação em resposta a um post em um formulário
-router.post('/create', authentication.verifyLoginUser, donationController.create);
+router.post('/create', donationController.create, authentication.verifyLoginUser);
 
 // Formulário para editar uma doação
-router.get('/edit/:id', authentication.verifyLoginUser, donationController.formEdit);
+router.get('/edit/:id', donationController.formEdit, authentication.verifyLoginUser);
 
 // Atualiza uma doação em resposta a um post em um formulário de edição
-router.post('/edit', authentication.verifyLoginUser, donationController.edit);
+router.post('/edit', donationController.edit, authentication.verifyLoginUser);
 
 // Deleta uma doação
-router.get('/delete/:id', authentication.verifyLoginUser, donationController.delete);
+router.get('/delete/:id', donationController.delete, authentication.verifyLoginUser);
 
 module.exports = router;
