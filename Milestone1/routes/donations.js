@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const donationController = require('../controllers/donationController');
 const authentication = require('../controllers/authController');
+const multer = require('multer');
+const upload = require('../config/multer');
 
 // Mostra todas as doações
 router.get('/', authentication.verifyLoginUser, donationController.showAll);

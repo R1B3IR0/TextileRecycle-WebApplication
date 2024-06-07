@@ -40,12 +40,12 @@
     </style>
 </head>
 
-
+<!--enctype="multipart/form-data"-->
 
 <body>
 <div class="register-container">
     <h2>Criar Doação</h2>
-    <form action="/donations/create" method="post">
+    <form action="/donations/create" method="post" enctype="multipart/form-data" >
         <div class="form-group">
             <label for="donator">Doador:</label>
             <select name="donator" id="donator" class="select-style" required>
@@ -120,6 +120,11 @@
             <button type="button" id="addClothingField">Adicionar</button>
         </div>
         <p></p>
+        <!-- Campo para ‘upload’ de imagem -->
+        <div id="imageDiv" style="display: none;">
+            <label for="image">Imagem:</label>
+            <input type="file" name="image" id="image">
+        </div>
         <p></p>
         <!-- Campo para armazenar o nome do armazém -->
         <div id="warehouseNameGroup" style="display: none;">
