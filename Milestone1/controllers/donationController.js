@@ -127,4 +127,66 @@ donationController.delete = function (req, res) {
   });
 };
 
+// Mostra as doações pendentes
+donationController.showPending = function(req, res) {
+  Donation.find({status: 'Pendente'}).populate('donator').populate('entity').exec(function(err, donations){
+    if(err){
+      console.log('Erro ao ler as doações pendentes');
+      res.redirect('/error');
+    } else {
+      res.render('../views/donations/donationList', {donations: donations});
+    }
+  });
+};
+
+// Aprova uma doação
+donationController.approve = function(req, res) {
+  Donation.findByIdAndUpdate(req.body._id, {status: 'Aprovada'}, function(err, donation){
+    if(err){
+      console.log('Erro ao aprovar a doação');
+      res.redirect('/error');
+    } else {
+      console.log('Doação aprovada!');
+      res.redirect('/donations/show/' + req.body._id);
+    }
+  });
+}
+
+// Mostra as doações aprovadas
+donationController.showApproved = function(req, res) {
+  Donation.find({status: 'Aprovada'}).populate('donator').populate('entity').exec(function(err, donations){
+    if(err){
+      console.log('Erro ao ler as doações aprovadas');
+      res.redirect('/error');
+    } else {
+      res.render('../views/donations/donationList', {donations: donations});
+    }
+  });
+};
+
+// Rejeita uma doação
+donationController.reject = function(req, res) {
+  Donation.findByIdAndUpdate(req.body._id, {status: 'Rejeitada'}, function(err, donation){
+    if(err){
+      console.log('Erro ao rejeitar a doação');
+      res.redirect('/error');
+    } else {
+      console.log('Doação rejeitada!');
+      res.redirect('/donations/show/' + req.body._id);
+    }
+  });
+}
+
+// Mostra as doações rejeitadas
+donationController.showRejected = function(req, res) {
+  Donation.find({status: 'Rejeitada'}).populate('donator').populate('entity').exec(function(err, donations){
+    if(err){
+      console.log('Erro ao ler as doações rejeitadas');
+      res.redirect('/error');
+    } else {
+      res.render('../views/donations/donationList', {donations: donations});
+    }
+  });
+};
+
 module.exports = donationController;

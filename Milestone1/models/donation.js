@@ -63,6 +63,12 @@ const DonationSchema = new mongoose.Schema({
             return this.typeOfDonation === "Doação Têxtil";
         },
     },
+    images: [String],
+    status: {
+        type: String,
+        enum: ["Pendente", "Aprovada", "Rejeitada"],
+        default: "Pendente"
+    }
 });
 
 

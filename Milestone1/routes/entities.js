@@ -7,16 +7,16 @@ var authentication = require("../controllers/authController.js");
 // Get all entities
 router.get('/', authentication.verifyLoginUser, entityController.showAll);
 // Get one entity by id
-router.get('/show/:id', authentication.verifyLoginUser, entityController.show);
+router.get('/show/:id', entityController.show, authentication.verifyLoginUser);
 // Form to create an entity
-router.get('/create', authentication.verifyLoginUser, entityController.formCreate);
+router.get('/create', entityController.formCreate, authentication.verifyLoginUser);
 // Save entity
-router.post('/create', authentication.verifyLoginUser, entityController.create);
+router.post('/create', entityController.create, authentication.verifyLoginUser);
 // Form to edit an entity
-router.get('/edit/:id', authentication.verifyLoginUser, entityController.formUpdate);
+router.get('/edit/:id', entityController.formUpdate, authentication.verifyLoginUser);
 // Save edited entity
-router.post('/edit/:id', authentication.verifyLoginUser, entityController.update);
+router.post('/edit/:id', entityController.update, authentication.verifyLoginUser);
 // Delete entity
-router.get('/delete/:id', authentication.verifyLoginUser, entityController.delete);
+router.get('/delete/:id', entityController.delete, authentication.verifyLoginUser);
 
 module.exports = router;
