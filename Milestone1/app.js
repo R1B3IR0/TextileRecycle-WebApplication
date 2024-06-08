@@ -23,6 +23,7 @@ var donatorRouter = require('./routes/donators');
 var entitiesRouter = require('./routes/entities');
 var dashboardRouter = require('./routes/dashboard');
 var pointsRouter = require('./routes/points');
+var approvalsRouter = require('./routes/approvals');
 /** REST API */
 var authREST = require('./routes_API/authREST');
 var entityREST = require('./routes_API/entityREST');
@@ -52,7 +53,7 @@ app.use('/entities', entitiesRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/points', pointsRouter);
 //Aprovação de doações
-//app.use('/approvals', );
+app.use('/approvals', approvalsRouter);
 
 /** REST API */
 app.use('/api/v1/auth', authREST);
