@@ -6,6 +6,7 @@ var DonatorSchema = new Schema({
     contact: {type: String, required: true},
     address: {type: String, required: true},
     points: {type: Number, default: 0},
+    voluntary: {type: Boolean, default: false}
 });
 
 module.exports = model('Donator', DonatorSchema);

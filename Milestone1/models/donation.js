@@ -11,7 +11,7 @@ const DonationSchema = new mongoose.Schema({
     },
     donationDate: {
         type: Date,
-        default: Date.now // Define a data atual no momento da criação do documento
+        required: true,
     },
     typeOfDonation: {
         type: String,
@@ -63,6 +63,12 @@ const DonationSchema = new mongoose.Schema({
             return this.typeOfDonation === "Doação Têxtil";
         },
     },
+    images: [String],
+    status: {
+        type: String,
+        enum: ["Pendente", "Aprovada", "Rejeitada"],
+        default: "Pendente"
+    }
 });
 
 

@@ -16,44 +16,9 @@ pointController.showAll = function (req, res) {
   });
 };
 
-// Formulário para criar uma configuração de pontos
-pointController.formCreate = async function (req, res) {
-  try {
-    res.render("../views/points/createForm");
-  } catch (err) {
-    console.error(err);
-    res.redirect("/error");
-  }
-};
-
-pointController.create = function (req, res) {
-  // Log do corpo da requisição para verificar seu conteúdo
-  console.log("Corpo da requisição:", req.body);
-
-  // Cria uma nova instância de Point com os dados do formulário
-  var newPoint = new Point({
-    newWithTag: req.body.newWithTag,
-    newWithoutTag: req.body.newWithoutTag,
-    veryGood: req.body.veryGood,
-    good: req.body.good,
-    satisfactory: req.body.satisfactory,
-    quantity: req.body.quantity,
-    donationMoney: req.body.donationMoney,
-  });
-
-  newPoint.save(function (err) {
-    if (err) {
-      console.log(err);
-      res.redirect("/error");
-    } else {
-      console.log("Configuração de pontos criada com sucesso");
-      res.redirect("/points"); // Redireciona para a lista de doações
-    }
-  });
-};
-
+// Formulário para editar a configuração de pontos
 pointController.formEdit = function (req, res) {
-  Point.findOne({ _id: req.params.id }).exec(function (err, point) {
+  Point.findOne({_id: req.params.id}).exec(function (err, point) {
     if (err) {
       console.log("Erro ao ler a configuração de pontos");
       res.redirect("/error");
@@ -63,20 +28,56 @@ pointController.formEdit = function (req, res) {
   });
 };
 
+// Criação automática de uma configuração de pontos com valores predefinidos
+pointController.formCreate = function (req, res) {
+  // Valores predefinidos para a configuração de pontos
+  var defaultPointValues = {
+    newWithTag: 5,
+    newWithoutTag: 3,
+    veryGood: 7,
+    good: 5,
+    satisfactory: 3,
+    quantity: 10,
+    donationMoney: 20
+  };
+
+  // Cria uma nova configuração de pontos com os valores predefinidos
+  var defaultPoint = new Point(defaultPointValues);
+
+  // Salva a configuração de pontos predefinida
+  defaultPoint.save(function (err) {
+    if (err) {
+      console.error("Erro ao criar configuração de pontos predefinida:", err);
+      res.redirect("/error");
+    } else {
+      console.log("Configuração de pontos predefinida criada com sucesso");
+      res.redirect("/points"); // Redireciona para a lista de configurações de pontos
+    }
+  });
+};
+
+// Edição da configuração de pontos
 pointController.edit = function (req, res) {
-    Point.findByIdAndUpdate(req.body._id, req.body, function(err, point) {
-        if (err) {
-            console.log("Erro ao gravar");
-            res.redirect("/error");
-        } else {
-            console.log("Configuração de pontos atualizada!");
-            res.redirect("/points");
-        }
-        });
-}
+  // Verifica se o ID está presente no corpo da solicitação
+  if (!req.body.id) {
+    console.log("ID do ponto não encontrado no corpo da solicitação.");
+    return res.redirect("/error");
+  }
 
+  // Obtém o ID do ponto a partir do corpo da solicitação
+  var pointId = req.body.id;
+
+  Point.findByIdAndUpdate(pointId, req.body, function (err, point) {
+    if (err) {
+      console.log("Erro ao editar a configuração de pontos:", err);
+      return res.redirect("/error");
+    } else {
+      console.log("Configuração de pontos editada com sucesso:", point);
+      return res.redirect("/points");
+    }
+  });
+};
   
-
 module.exports = pointController;
 
 var mongoose = require("mongoose");
@@ -97,44 +98,9 @@ pointController.showAll = function (req, res) {
   });
 };
 
-// Formulário para criar uma configuração de pontos
-pointController.formCreate = async function (req, res) {
-  try {
-    res.render("../views/points/createForm");
-  } catch (err) {
-    console.error(err);
-    res.redirect("/error");
-  }
-};
-
-pointController.create = function (req, res) {
-  // Log do corpo da requisição para verificar seu conteúdo
-  console.log("Corpo da requisição:", req.body);
-
-  // Cria uma nova instância de Point com os dados do formulário
-  var newPoint = new Point({
-    newWithTag: req.body.newWithTag,
-    newWithoutTag: req.body.newWithoutTag,
-    veryGood: req.body.veryGood,
-    good: req.body.good,
-    satisfactory: req.body.satisfactory,
-    quantity: req.body.quantity,
-    donationMoney: req.body.donationMoney,
-  });
-
-  newPoint.save(function (err) {
-    if (err) {
-      console.log(err);
-      res.redirect("/error");
-    } else {
-      console.log("Configuração de pontos criada com sucesso");
-      res.redirect("/points"); // Redireciona para a lista de doações
-    }
-  });
-};
-
+// Formulário para editar a configuração de pontos
 pointController.formEdit = function (req, res) {
-  Point.findOne({ _id: req.params.id }).exec(function (err, point) {
+  Point.findOne({_id: req.params.id}).exec(function (err, point) {
     if (err) {
       console.log("Erro ao ler a configuração de pontos");
       res.redirect("/error");
@@ -144,18 +110,54 @@ pointController.formEdit = function (req, res) {
   });
 };
 
+// Criação automática de uma configuração de pontos com valores predefinidos
+pointController.formCreate = function (req, res) {
+  // Valores predefinidos para a configuração de pontos
+  var defaultPointValues = {
+    newWithTag: 5,
+    newWithoutTag: 3,
+    veryGood: 7,
+    good: 5,
+    satisfactory: 3,
+    quantity: 10,
+    donationMoney: 20
+  };
+
+  // Cria uma nova configuração de pontos com os valores predefinidos
+  var defaultPoint = new Point(defaultPointValues);
+
+  // Salva a configuração de pontos predefinida
+  defaultPoint.save(function (err) {
+    if (err) {
+      console.error("Erro ao criar configuração de pontos predefinida:", err);
+      res.redirect("/error");
+    } else {
+      console.log("Configuração de pontos predefinida criada com sucesso");
+      res.redirect("/points"); // Redireciona para a lista de configurações de pontos
+    }
+  });
+};
+
+// Edição da configuração de pontos
 pointController.edit = function (req, res) {
-    Point.findByIdAndUpdate(req.body._id, req.body, function(err, point) {
-        if (err) {
-            console.log("Erro ao gravar");
-            res.redirect("/error");
-        } else {
-            console.log("Configuração de pontos atualizada!");
-            res.redirect("/points");
-        }
-        });
-}
+  // Verifica se o ID está presente no corpo da solicitação
+  if (!req.body.id) {
+    console.log("ID do ponto não encontrado no corpo da solicitação.");
+    return res.redirect("/error");
+  }
 
+  // Obtém o ID do ponto a partir do corpo da solicitação
+  var pointId = req.body.id;
+
+  Point.findByIdAndUpdate(pointId, req.body, function (err, point) {
+    if (err) {
+      console.log("Erro ao editar a configuração de pontos:", err);
+      return res.redirect("/error");
+    } else {
+      console.log("Configuração de pontos editada com sucesso:", point);
+      return res.redirect("/points");
+    }
+  });
+};
   
-
 module.exports = pointController;
