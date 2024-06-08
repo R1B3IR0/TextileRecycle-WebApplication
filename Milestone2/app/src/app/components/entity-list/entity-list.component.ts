@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Entity } from '../../models/entity';
 import { EntityRestService } from '../../services/entity-rest.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatListModule } from '@angular/material/list';
+
 
 @Component({
   selector: 'app-entity-list',
@@ -11,9 +14,16 @@ import { EntityRestService } from '../../services/entity-rest.service';
 export class EntityListComponent implements OnInit {
   entities: Entity[];
 
+  // Declare as propriedades necessárias para filtragem
+  loading: boolean = false;
+  filters: any = {}; // Inicializa 'filters' como um objeto vazio
+  error: boolean = false;
+
+  displayedColumns: string[] = ['name', 'contact', 'email', 'description', 'address'];
+
   constructor(private entityService: EntityRestService, private router: Router, private route: ActivatedRoute) {
     this.entities = [];
-   }
+  }
 
   ngOnInit(): void {
     this.getEntities();
@@ -26,12 +36,7 @@ export class EntityListComponent implements OnInit {
     });
   }
 
-  /*
-  loading: boolean = false;
-  filters: any; // Declare the 'filters' property
-  error: boolean = false;
-
-  applyFilters(): void {
+  /*applyFilters(): void {
     this.loading = true;
     this.entityService.getEntitiesFiltered(this.filters).subscribe(
       (data: Entity[]) => {
@@ -45,5 +50,6 @@ export class EntityListComponent implements OnInit {
       }
     );
   }
-  */
+}
+*/
 }
