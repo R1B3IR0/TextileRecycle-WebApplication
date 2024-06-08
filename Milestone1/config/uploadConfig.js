@@ -1,4 +1,3 @@
-
 const multer = require('multer');
 const path = require('path');
 
@@ -29,7 +28,7 @@ function checkFileType(file, cb) {
 // Initialize upload
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 1000000 }, // 1MB limit for example
+    limits: { fileSize: 10000000 }, // 10MB limit for example
     fileFilter: function (req, file, cb) {
         checkFileType(file, cb);
     }

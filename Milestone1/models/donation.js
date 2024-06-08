@@ -63,11 +63,20 @@ const DonationSchema = new mongoose.Schema({
             return this.typeOfDonation === "Doação Têxtil";
         },
     },
-    imageProof:{
+    imageProof: {
         type: String,
-        required: false,
+        validate: {
+            validator: function (v) {
+                if (this.typeOfDonation === "Doação Têxtil") {
+                    return v != null && v !== "";
+                }
+                return true;
+            },
+            message: "Image proof is required for textile donations."
+        }
     }
+}, {
+    timestamps: true // Automatically adds createdAt and updatedAt fields
 });
-
 
 module.exports = mongoose.model("Donation", DonationSchema);

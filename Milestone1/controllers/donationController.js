@@ -2,6 +2,8 @@ var mongoose = require("mongoose");
 var Donation = require("../models/donation"); // Importa o modelo Donation
 var Donator = require("../models/donator"); // Importa o modelo Donator
 var Entity = require("../models/entity"); // Importa o modelo Entity
+const upload = require('../config/uploadConfig'); // Path to your upload configuration file
+
 
 var donationController = {};
 
@@ -50,8 +52,8 @@ donationController.create = function (req, res) {
 
     // Create a new donation instance with the data from the form
     var donationData = req.body;
-    const image = req.file ? req.file.filename : null;
-    donationData.image = image;
+    const imageProof = req.file ? req.file.filename : null;
+    donationData.imageProof = imageProof;
 
     // Omit typeOfClothing for donations of type 'Dinheiro'
     if (donationData.typeOfDonation === 'Dinheiro') {
