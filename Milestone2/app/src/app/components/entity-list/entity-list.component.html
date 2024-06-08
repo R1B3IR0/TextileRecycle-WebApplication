@@ -1,0 +1,34 @@
+<div *ngIf="entities && entities.length > 0; else noEntities">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Email</th>
+          <th>Description</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entity of entities">
+          <td>{{ entity.name }}</td>
+          <td>{{ entity.contact }}</td>
+          <td>{{ entity.email }}</td>
+          <td>{{ entity.description }}</td>
+          <td>
+            <ul>
+              <li>Country Code: {{ entity.address?.countryCode }}</li>
+              <li>Postal Code: {{ entity.address?.postalCode }}</li>
+              <li>Locality: {{ entity.address?.addressLocality }}</li>
+              <li>Street Address: {{ entity.address?.streetAddress }}</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <ng-template #noEntities>
+    <p>Nenhuma entidade encontrada.</p>
+  </ng-template>
+  

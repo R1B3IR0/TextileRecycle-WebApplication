@@ -1,0 +1,64 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="userType">User Type:</label>
+      <select formControlName="userType" [(ngModel)]="userType">
+        <option value="">Select User Type</option>
+        <option value="Entity">Entity</option>
+        <option value="Voluntary">Voluntary</option>
+        <option value="Donator">Donator</option>
+      </select>
+    </div>
+    <!--Form para preencher com dados do login-->
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" formControlName="name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" formControlName="email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" formControlName="password">
+    </div>
+    <!-- Campos específicos para o tipo de usuário Entity -->
+    <div class="form-group" *ngIf="userType === 'Entity'">
+      <label for="contact">Contact:</label>
+      <input type="text" formControlName="contact">
+    </div>
+    <div class="form-group" *ngIf="userType === 'Entity'">
+      <label for="description">Description:</label>
+      <input type="text" formControlName="description">
+    </div>
+    <div class="form-group" *ngIf="userType === 'Entity'">
+      <label for="countryCode">Country Code:</label>
+      <input type="text" formControlName="countryCode">
+    </div>
+    <div class="form-group" *ngIf="userType === 'Entity'">
+      <label for="postalCode">Postal Code:</label>
+      <input type="text" formControlName="postalCode">
+    </div>
+    <div class="form-group" *ngIf="userType === 'Entity'">
+      <label for="addressLocality">Address Locality:</label>
+      <input type="text" formControlName="addressLocality">
+    </div>
+    <div class="form-group" *ngIf="userType === 'Entity'">
+      <label for="streetAddress">Street Address:</label>
+      <input type="text" formControlName="streetAddress">
+    </div>
+    <!-- Campos específicos para o tipo de usuário Doador -->
+    <div class="form-group" *ngIf="userType === 'Donator' || userType === 'Voluntary' ">
+      <label for="nif">NIF:</label>
+      <input type="text" formControlName="nif">
+    </div>
+    <div class="form-group" *ngIf="userType === 'Donator' || userType === 'Voluntary' ">
+      <label for="contact">Contact:</label>
+      <input type="text" formControlName="contact">
+    </div>
+    <div class="form-group" *ngIf="userType === 'Donator' || userType === 'Voluntary' ">
+      <label for="address">Address:</label>
+      <input type="text" formControlName="address">
+    </div>
+    <button type="submit" [disabled]="!registrationForm.valid">Submit</button>
+  </form>
+  
