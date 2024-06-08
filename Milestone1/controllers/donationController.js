@@ -137,7 +137,7 @@ donationController.showPending = function(req, res) {
       console.log('Erro ao ler as doações pendentes');
       res.redirect('/error');
     } else {
-      res.render('../views/donations/donationList', {donations: donations});
+      res.render('../views/approvals/pending', {donations: donations});
     }
   });
 };

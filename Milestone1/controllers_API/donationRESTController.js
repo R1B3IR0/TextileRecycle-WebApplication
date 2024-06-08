@@ -72,23 +72,6 @@ donationRESTController.create = async function (req, res) {
   }
 };
 
-// Atualiza o status de uma doação
-donationRESTController.updateStatus = async function (req, res) {
-  try {
-    const { id, status } = req.body; // Recebendo ID da doação e novo status do corpo da requisição
-    if (!["Aprovada", "Rejeitada"].includes(status)) {
-      return res.status(400).json({error: 'Invalid status.'});
-    }
-
-    let donation = await Donation.findByIdAndUpdate(id, { status }, { new: true });
-    console.log(`Donation ${status}!`);
-    res.status(200).json(donation, {message: `Donation ${status}!`});
-  } catch (err) {
-    console.log("Error updating donation status");
-    res.status(500).json({error: 'Error updating donation status.'});
-  }
-};
-
 // Atualiza uma doação em resposta a um post em um formulário de edição
 donationRESTController.edit = async function (req, res) {
   try {
