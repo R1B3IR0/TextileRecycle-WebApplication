@@ -1,16 +1,34 @@
 const mongoose = require("mongoose");
 
-const PointsConfigSchema = new mongoose.Schema({
-  newWithTag: Number,
-  newWithoutTag: Number,
-  veryGood: Number,
-  good: Number,
-  satisfactory: Number,
-  quantity: Number,
-  donationMoney: Number
+const PointCustomizationSchema = new mongoose.Schema({
+  newWithTag: {
+    type: Number,
+    default: 0 // Valor padrão para pontos de doação têxtil com etiquetas
+  },
+  newWithoutTag: {
+    type: Number,
+    default: 0 // Valor padrão para pontos de doação têxtil sem etiquetas
+  },
+  veryGood: {
+    type: Number,
+    default: 0 // Valor padrão para pontos de doação muito bom
+  },
+  good: {
+    type: Number,
+    default: 0 // Valor padrão para pontos de doação bom
+  },
+  satisfactory: {
+    type: Number,
+    default: 0 // Valor padrão para pontos de doação satisfatório
+  },
+  quantity: {
+    type: Number,
+    default: 0 // Valor padrão para pontos de quantidade
+  },
+  donationMoney: {
+    type: Number,
+    default: 0 // Valor padrão para pontos de doação em dinheiro
+  }
 });
 
-const Point = mongoose.model('Point', PointsConfigSchema);
-
-module.exports = Point;
-
+module.exports = mongoose.model("PointCustomization", PointCustomizationSchema);

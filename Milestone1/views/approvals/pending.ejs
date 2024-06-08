@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approvals</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script>
+        async function handleApproval(action, donationId, element) {
+            const response = await fetch(`/approvals/${action}/${donationId}`, {
+                method: 'POST'
+            });
+
+            if (response.ok) {
+                const row = element.closest('tr');
+                row.remove();
+            } else {
+                alert('An error occurred. Please try again.');
+            }
+
+            return false;  // Prevent default link action
+        }
+
+        function approveDonation(donationId, element) {
+            return handleApproval('approve', donationId, element);
+        }
+
+        function rejectDonation(donationId, element) {
+            return handleApproval('reject', donationId, element);
+        }
+    </script>
+</head>
+<body>
+    <div class="view-all-container">
+        <h1>Pending Donations</h1>
+        <table>
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>Doador</th>
+            <th>Entidade</th>
+            <th>Data de Doação</th>
+            <th>Tipo de Doação</th>
+            <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% donations.forEach(donation => { %>
+            <tr>
+                <td><%= donation._id %></td>
+                <td><%= donation.donator.name %></td>
+                <td><%= donation.entity.name %></td>
+                <td><%= donation.donationDate %></td>
+                <td><%= donation.typeOfDonation %></td>
+                <td><a href="/approvals/approve/<%= donation._id %>" onclick="return approveDonation('<%= donation._id %>', this) ">Approve</a></td>
+                <td><a href="/approvals/reject/<%= donation._id %>" onclick="return rejectDonation('<%= donation._id %>', this)">Reject</a></td>  
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+        </table>
+    </div>
+    <div class="back-button">
+        <a href="/dashboard">Back</a>
+    </div>
+</body>
+</html>

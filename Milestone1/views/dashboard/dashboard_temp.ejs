@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .dashboard-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .dashboard-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .dashboard-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .dashboard-container li {
+            margin-bottom: 20px; /* Mais espaço entre os botões */
+        }
+
+        .dashboard-container a {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-container a:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px); /* Levanta ligeiramente o botão ao passar o mouse */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Recicla Têxtil</h2>
+        <ul>
+            <li><a href="/approvals">Pendente de aprovação</a></li>
+            <li><a href="/donations">Doações</a></li>
+            <li><a href="/donators">Doadores</a></li>
+            <li><a href="/entities">Entidades</a></li>
+            <li><a href="/points">Sistema de Pontos</a></li>
+            <li><a href="/users">Utilizadores</a></li>
+        </ul>
+
+        <a href="/logout">Sair</a>
+    </div>
+</body>
+</html>

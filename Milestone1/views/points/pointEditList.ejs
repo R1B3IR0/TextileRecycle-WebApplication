@@ -10,7 +10,7 @@
 <div class="edit-entity-container">
     <h2>Configuração de Pontos</h2>
     <form action="/points/edit" method="post">
-        <input type="hidden" name="_id" value="<%= point._id %>">
+        <input type="hidden" name="id" value="<%= point._id %>">
         <div class="form-group">
             <label for="newWithTag">Novo com etiquetas:</label>
             <input type="number" name="newWithTag" id="newWithTag" value="<%= point.newWithTag %>" required>
