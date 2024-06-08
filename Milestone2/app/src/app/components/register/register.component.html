@@ -1,64 +1,93 @@
-<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="userType">User Type:</label>
-      <select formControlName="userType" [(ngModel)]="userType">
-        <option value="">Select User Type</option>
-        <option value="Entity">Entity</option>
-        <option value="Voluntary">Voluntary</option>
-        <option value="Donator">Donator</option>
-      </select>
-    </div>
-    <!--Form para preencher com dados do login-->
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" formControlName="name">
-    </div>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" formControlName="email">
-    </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" formControlName="password">
-    </div>
+<mat-card class="register-card">
+  <h1 class="text-center">Register</h1>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width">
+      <mat-label>User Type</mat-label>
+      <mat-select formControlName="userType" [(ngModel)]="userType">
+        <mat-option value="">Select User Type</mat-option>
+        <mat-option value="Entity">Entity</mat-option>
+        <mat-option value="Voluntary">Voluntary</mat-option>
+        <mat-option value="Donator">Donator</mat-option>
+      </mat-select>
+      <mat-error *ngIf="registrationForm.get('userType')?.hasError('required')">
+        User Type is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="registrationForm.get('name')?.hasError('required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email">
+      <mat-error *ngIf="registrationForm.get('email')?.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="registrationForm.get('email')?.hasError('email')">
+        Invalid email
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password">
+      <mat-error *ngIf="registrationForm.get('password')?.hasError('required')">
+        Password is required
+      </mat-error>
+      <mat-error *ngIf="registrationForm.get('password')?.hasError('minlength')">
+        Password must be at least 6 characters
+      </mat-error>
+    </mat-form-field>
+
     <!-- Campos específicos para o tipo de usuário Entity -->
-    <div class="form-group" *ngIf="userType === 'Entity'">
-      <label for="contact">Contact:</label>
-      <input type="text" formControlName="contact">
+    <div *ngIf="userType === 'Entity'">
+      <mat-form-field class="full-width">
+        <mat-label>Contact</mat-label>
+        <input matInput formControlName="contact">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Country Code</mat-label>
+        <input matInput formControlName="countryCode">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Postal Code</mat-label>
+        <input matInput formControlName="postalCode">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Address Locality</mat-label>
+        <input matInput formControlName="addressLocality">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Street Address</mat-label>
+        <input matInput formControlName="streetAddress">
+      </mat-form-field>
     </div>
-    <div class="form-group" *ngIf="userType === 'Entity'">
-      <label for="description">Description:</label>
-      <input type="text" formControlName="description">
+
+    <!-- Campos específicos para o tipo de usuário Doador e Voluntário -->
+    <div *ngIf="userType === 'Donator' || userType === 'Voluntary'">
+      <mat-form-field class="full-width">
+        <mat-label>NIF</mat-label>
+        <input matInput formControlName="nif">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Contact</mat-label>
+        <input matInput formControlName="contact">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address">
+      </mat-form-field>
     </div>
-    <div class="form-group" *ngIf="userType === 'Entity'">
-      <label for="countryCode">Country Code:</label>
-      <input type="text" formControlName="countryCode">
-    </div>
-    <div class="form-group" *ngIf="userType === 'Entity'">
-      <label for="postalCode">Postal Code:</label>
-      <input type="text" formControlName="postalCode">
-    </div>
-    <div class="form-group" *ngIf="userType === 'Entity'">
-      <label for="addressLocality">Address Locality:</label>
-      <input type="text" formControlName="addressLocality">
-    </div>
-    <div class="form-group" *ngIf="userType === 'Entity'">
-      <label for="streetAddress">Street Address:</label>
-      <input type="text" formControlName="streetAddress">
-    </div>
-    <!-- Campos específicos para o tipo de usuário Doador -->
-    <div class="form-group" *ngIf="userType === 'Donator' || userType === 'Voluntary' ">
-      <label for="nif">NIF:</label>
-      <input type="text" formControlName="nif">
-    </div>
-    <div class="form-group" *ngIf="userType === 'Donator' || userType === 'Voluntary' ">
-      <label for="contact">Contact:</label>
-      <input type="text" formControlName="contact">
-    </div>
-    <div class="form-group" *ngIf="userType === 'Donator' || userType === 'Voluntary' ">
-      <label for="address">Address:</label>
-      <input type="text" formControlName="address">
-    </div>
-    <button type="submit" [disabled]="!registrationForm.valid">Submit</button>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">Submit</button>
   </form>
-  
+</mat-card>

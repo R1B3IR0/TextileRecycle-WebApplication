@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthRestService } from '../../services/auth-rest.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,29 +9,38 @@ import { AuthRestService } from '../../services/auth-rest.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email: string;
-  password: string;
+  loginForm: FormGroup;
 
-  constructor(private router: Router, private authServive: AuthRestService) { 
-    this.email = "";
-    this.password = "";
+  constructor(
+    private router: Router,
+    private authService: AuthRestService,
+    private fb: FormBuilder
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   login(): void {
-    this.authServive.login(this.email, this.password).subscribe((user: any) => { 
-      if (user && user.token) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.router.navigate([user.dashboardUrl]);
-      } else {
-        alert('Erro no login!');
-      }
-    })
-    // Redirect to Home page
-    this.router.navigate(['/']);
-
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      this.authService.login(email, password).subscribe(
+        (user: any) => {
+          if (user && user.token) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.router.navigate([user.dashboardUrl]);
+          } else {
+            alert('Erro no login!');
+          }
+        },
+        (error) => {
+          alert('Erro no login!');
+        }
+      );
+    }
   }
 
   register(): void {

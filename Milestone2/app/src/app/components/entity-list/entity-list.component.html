@@ -1,34 +1,71 @@
-<div *ngIf="entities && entities.length > 0; else noEntities">
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Contact</th>
-          <th>Email</th>
-          <th>Description</th>
-          <th>Address</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let entity of entities">
-          <td>{{ entity.name }}</td>
-          <td>{{ entity.contact }}</td>
-          <td>{{ entity.email }}</td>
-          <td>{{ entity.description }}</td>
-          <td>
-            <ul>
-              <li>Country Code: {{ entity.address?.countryCode }}</li>
-              <li>Postal Code: {{ entity.address?.postalCode }}</li>
-              <li>Locality: {{ entity.address?.addressLocality }}</li>
-              <li>Street Address: {{ entity.address?.streetAddress }}</li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
+<div class="entity-list-container">
+  <!-- Seção de Filtro (comentada)
+  <div class="filter-section">
+    <mat-form-field appearance="fill">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search...">
+    </mat-form-field>
+  </div>
+  -->
+
+  <!-- Contêiner de Carregamento -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-progress-spinner diameter="30"></mat-progress-spinner>
+  </div>
+
+  <!-- Mensagem de Erro -->
+  <div *ngIf="error" class="error-message">
+    <p>Error fetching data. Please try again later.</p>
+  </div>
+
+  <div *ngIf="entities && entities.length > 0; else noEntities" class="table-container">
+    <table mat-table [dataSource]="entities" class="mat-elevation-z8" matSort>
+
+      <!-- Coluna de Nome -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+      </ng-container>
+
+      <!-- Coluna de Contato -->
+      <ng-container matColumnDef="contact">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
+        <td mat-cell *matCellDef="let row">{{ row.contact }}</td>
+      </ng-container>
+
+      <!-- Coluna de Email -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+      </ng-container>
+
+      <!-- Coluna de Descrição -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+        <td mat-cell *matCellDef="let row">{{ row.description }}</td>
+      </ng-container>
+
+      <!-- Coluna de Endereço -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Address</th>
+        <td mat-cell *matCellDef="let row">
+          <ul class="address-list">
+            <li><strong>Country Code:</strong> {{ row.address?.countryCode }}</li>
+            <li><strong>Postal Code:</strong> {{ row.address?.postalCode }}</li>
+            <li><strong>Locality:</strong> {{ row.address?.addressLocality }}</li>
+            <li><strong>Street Address:</strong> {{ row.address?.streetAddress }}</li>
+          </ul>
+        </td>
+      </ng-container>
+
+      <!-- Definições das Linhas e Colunas -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
-  
+
+  <!-- Template para Nenhuma Entidade Encontrada -->
   <ng-template #noEntities>
-    <p>Nenhuma entidade encontrada.</p>
+    <p class="no-entities-message">No entities found.</p>
   </ng-template>
-  
+</div>
