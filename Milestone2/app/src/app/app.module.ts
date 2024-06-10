@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPayPalModule } from 'ngx-paypal';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component'; 
 import { authInterceptorInterceptor } from './interceptors/auth-interceptor.interceptor';
@@ -20,13 +21,15 @@ import { DonationAddComponent } from './components/donation-add/donation-add.com
     EntityListComponent,
     DonationAddComponent,
     
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPayPalModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: authInterceptorInterceptor, multi:true}],
   bootstrap: [AppComponent]

@@ -1,0 +1,45 @@
+/* src/app/donation-create/donation-create.component.css */
+.register-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .label, .input, .select-style, .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .submit-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .back-button {
+    text-align: right;
+  }
+  
+  .back-button a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .back-button a:hover {
+    text-decoration: underline;
+  }
+  
+.paypal-button-card {
+  display: 'none'
+}
+/* @import 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; */
+#map { 
+    height: 180px;
+}
