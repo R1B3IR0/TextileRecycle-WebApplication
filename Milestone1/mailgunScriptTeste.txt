@@ -1,0 +1,29 @@
+let API_KEY = '45a1b43f375f80d2499986242c462445-51356527-f76ca7e1';
+let DOMAIN = 'sandboxfa7f75b021034c2f9524c657433c81db.mailgun.org';
+const mailgun = require('mailgun-js')
+    ({ apiKey: API_KEY, domain: DOMAIN });
+ 
+sendMail = function (sender_email, receiver_email,
+    email_subject, email_body) {
+ 
+    const data = {
+        "from": sender_email,
+        "to": receiver_email,
+        "subject": email_subject,
+        "text": email_body
+    };
+ 
+    mailgun.messages().send(data, (error, body) => {
+        if (error) console.log(error)
+        else console.log('Email sent successfully:', body);;
+    });
+}
+ 
+let sender_email = 'testepaw2324@test.com'
+let receiver_email = '8170538@estg.ipp.pt'
+let email_subject = 'ESTG é fixe'
+let email_body = 'Queremos concluir a uc de paw'
+ 
+// User-defined function to send email
+sendMail(sender_email, receiver_email,
+    email_subject, email_body)
