@@ -1,8 +1,6 @@
-var mongoose = require("mongoose");
 var Donation = require("../models/donation"); // Importa o modelo Donation
 var Donator = require("../models/donator"); // Importa o modelo Donator
 var Entity = require("../models/entity"); // Importa o modelo Entity
-const upload = require('../config/uploadConfig'); // Path to your upload configuration file
 
 
 var donationController = {};
@@ -52,13 +50,13 @@ donationController.create = function (req, res) {
 
     // Create a new donation instance with the data from the form
     var donationData = req.body;
-    const imageProof = req.file ? req.file.filename : null;
-    donationData.imageProof = imageProof;
 
     // Omit typeOfClothing for donations of type 'Dinheiro'
     if (donationData.typeOfDonation === 'Dinheiro') {
         console.log("Donation type is Dinheiro. Omitting typeOfClothing.");
         delete donationData.typeOfClothing;
+        delete donationData.imageProof;
+        delete donationData.warehouseName;
     }
     // Delete amount for donations of type 'Doação Têxtil'
     if (donationData.typeOfDonation === 'Doação Têxtil') {
@@ -76,6 +74,8 @@ donationController.create = function (req, res) {
                 typeOfClothingObjects.push(typeOfClothing);
             }
         }
+        donationData.imageProof = req.file ? req.file.filename : null;
+
         // Assign the array of typeOfClothing objects to the donationData object
         donationData.typeOfClothing = typeOfClothingObjects;
     }

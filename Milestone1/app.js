@@ -55,6 +55,10 @@ app.use('/points', pointsRouter);
 //Aprovação de doações
 app.use('/approvals', approvalsRouter);
 
+// Serve static files from the "uploads" directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
 /** REST API */
 app.use('/api/v1/auth', authREST);
 app.use('/api/v1/entity', entityREST);

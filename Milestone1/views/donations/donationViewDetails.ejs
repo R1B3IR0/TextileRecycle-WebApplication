@@ -4,73 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donation Details</title>
+
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <style>
+        .image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px; /* Set a default max height */
+        }
+    </style>
 </head>
 <body>
 <div class="view-all-container">
     <h1>Detalhes da Doação</h1>
     <table>
         <tbody>
-            <tr>
-                <td>ID</td>
-                <td>:</td>
-                <td><%= donation._id %></td>
-            </tr>
-            <tr>
-                <td>Doador</td>
-                <td>:</td>
-                <td><%= donation.donator.name %></td>
-            </tr>
-            <tr>
-                <td>Entidade Beneficiária</td>
-                <td>:</td>
-                <td><%= donation.entity.name %></td>
-            </tr>
-            <tr>
-                <td>Data da Doação</td>
-                <td>:</td>
-                <td><%= donation.donationDate %></td>
-            </tr>
+        <tr>
+            <td>ID</td>
+            <td>:</td>
+            <td><%= donation._id %></td>
+        </tr>
+        <tr>
+            <td>Doador</td>
+            <td>:</td>
+            <td><%= donation.donator.name %></td>
+        </tr>
+        <tr>
+            <td>Entidade Beneficiária</td>
+            <td>:</td>
+            <td><%= donation.entity.name %></td>
+        </tr>
+        <tr>
+            <td>Data da Doação</td>
+            <td>:</td>
+            <td><%= donation.donationDate %></td>
+        </tr>
+
+        <% if (donation.typeOfDonation === 'Doação Têxtil' && donation.typeOfClothing && donation.typeOfClothing.length > 0) { %>
+            <% donation.typeOfClothing.forEach(function(item, index) { %>
+                <tr>
+                    <td colspan="3">
+                        <h2>Doação <%= index + 1 %></h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Categoria</td>
+                    <td>:</td>
+                    <td><%= item.category %></td>
+                </tr>
+                <tr>
+                    <td>Quantidade</td>
+                    <td>:</td>
+                    <td><%= item.quantity %></td>
+                </tr>
+                <tr>
+                    <td>Estado</td>
+                    <td>:</td>
+                    <td><%= item.state %></td>
+                </tr>
+
+            <% }); %>
             <tr>
                 <td>Armazém</td>
                 <td>:</td>
                 <td><%= donation.warehouseName %></td>
             </tr>
-            <% if (donation.typeOfDonation === 'Doação Têxtil' && donation.typeOfClothing && donation.typeOfClothing.length > 0) { %>
-                <% donation.typeOfClothing.forEach(function(item, index) { %>
-                    <tr>
-                        <td colspan="3">
-                            <h2>Doação <%= index + 1 %></h2>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Categoria</td>
-                        <td>:</td>
-                        <td><%= item.category %></td>
-                    </tr>
-                    <tr>
-                        <td>Quantidade</td>
-                        <td>:</td>
-                        <td><%= item.quantity %></td>
-                    </tr>
-                    <tr>
-                        <td>Estado</td>
-                        <td>:</td>
-                        <td><%= item.state %></td>
-                    </tr>
-                <% }); %>
-                <% } else if (donation.typeOfDonation === 'Dinheiro') { %>
-                    <tr>
-                        <td>Amount</td>
-                        <td>:</td>
-                        <td><%= donation.amount %>€</td>
-    
-                    </tr>
-            <% } %>
+            <div class="image-container">
+                <h2>Imagem</h2>
+                <% const imagePath = '/uploads/' + donation.imageProof; %>
+                <img src="<%= imagePath %>" alt="Imagem da Doação">
+            </div>
+        <%
+        } else if (donation.typeOfDonation === 'Dinheiro') { %>
+            <tr>
+                <td>Amount</td>
+                <td>:</td>
+                <td><%= donation.amount %>€</td>
+
+            </tr>
+        <% } %>
         </tbody>
     </table>
     <div class="back-button">
-    <a href="/donations">Voltar</a>
+        <a href="/donations">Voltar</a>
+    </div>
+
 </div>
 </body>
 

@@ -1,5 +1,5 @@
- // Função para exibir apenas o bloco relevante com base no tipo de doação selecionado
- function showRelevantBlock() {
+// Função para exibir apenas o bloco relevante com base no tipo de doação selecionado
+function showRelevantBlock() {
     var selectedValue = document.getElementById("typeOfDonation").value;
     var amountDiv = document.getElementById("amountDiv");
     var paypal = document.getElementById("paypal-button-container");
@@ -9,7 +9,7 @@
     var mapDiv = document.getElementById("map");
     var warehouseNameGroupDiv = document.getElementById("warehouseNameGroup");
     var pointsDiv = document.getElementById("pointsDiv");
-
+    var imageDiv = document.getElementById("imageDiv");
 
 
     // Esconde ambos os blocos
@@ -21,6 +21,8 @@
     mapDiv.style.display = "none";
     warehouseNameGroupDiv.style.display = "none";
     pointsDiv.style.display = "none";
+    imageDiv.style.display = "none";
+
     // Exibe apenas o bloco relevante com base no tipo de doação selecionado
     if (selectedValue === "Dinheiro") {
         //typeOfClothingStateDiv.style.display = "none";
@@ -28,6 +30,8 @@
         paypal.style.display = "block";
         submitButton.style.display = "none";
         warehouseNameGroupDiv.style.display = "none";
+        imageDiv.style.display = "none";
+
         //mapDiv.style.display = "none";
 
     } else if (selectedValue === "Doação Têxtil") {
@@ -37,10 +41,12 @@
         warehouseNameGroupDiv.style.display = "block";
         mapDiv.style.display = "block";
         pointsDiv.style.display = "block";
+        imageDiv.style.display = "block";
+
 
 
         // Atualiza o mapa após ele ser exibido
-        setTimeout(function() {
+        setTimeout(function () {
             map.invalidateSize();
         }, 100); // Ajuste o tempo conforme necessário
     }
