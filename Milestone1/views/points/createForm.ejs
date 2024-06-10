@@ -62,37 +62,37 @@
         <form id="dataForm" method="POST" action="/points/create">
             <div class="form-group">
                 <label for="newWithTag">Novo com etiquetas:</label>
-                <input type="number" name="newWithTag" id="newWithTag" value="<%= point.newWithTag %>">
+                <input type="number" name="newWithTag" min="1" id="newWithTag" value="<%= point.newWithTag %>">
             </div>
 
             <div class="form-group">
                 <label for="newWithoutTag">Novo sem etiquetas:</label>
-                <input type="number" name="newWithoutTag" id="newWithoutTag" value="<%= point.newWithoutTag %>">
+                <input type="number" name="newWithoutTag" min="1" id="newWithoutTag" value="<%= point.newWithoutTag %>">
             </div>
 
             <div class="form-group">
                 <label for="veryGood">Muito Bom:</label>
-                <input type="number" name="veryGood" id="veryGood" value="<%= point.veryGood %>">
+                <input type="number" name="veryGood" min="1" id="veryGood" value="<%= point.veryGood %>">
             </div>
 
             <div class="form-group">
                 <label for="good">Bom:</label>
-                <input type="number" name="good" id="good" value="<%= point.good %>">
+                <input type="number" name="good" min="1" id="good" value="<%= point.good %>">
             </div>
 
             <div class="form-group">
                 <label for="satisfactory">Satisfatório:</label>
-                <input type="number" name="satisfactory" id="satisfactory" value="<%= point.satisfactory %>">
+                <input type="number" name="satisfactory" min="1" id="satisfactory" value="<%= point.satisfactory %>">
             </div>
 
             <div class="form-group">
                 <label for="quantity">Quantidade:</label>
-                <input type="number" name="quantity" id="quantity" value="<%= point.quantity %>">
+                <input type="number" name="quantity" min="1" id="quantity" value="<%= point.quantity %>">
             </div>
 
             <div class="form-group">
                 <label for="donationMoney">Dinheiro:</label>
-                <input type="number" name="donationMoney" id="donationMoney" value="<%= point.donationMoney %>">
+                <input type="number" name="donationMoney" min="1" id="donationMoney" value="<%= point.donationMoney %>">
             </div>
 
             <button class="btn" type="submit">Editar e Guardar Pontos</button>

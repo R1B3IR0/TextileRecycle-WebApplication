@@ -3,31 +3,73 @@ const mongoose = require("mongoose");
 const PointCustomizationSchema = new mongoose.Schema({
   newWithTag: {
     type: Number,
-    default: 0 // Valor padrão para pontos de doação têxtil com etiquetas
+    default: 1, // Valor padrão para pontos de doação têxtil com etiquetas
+    validate: {
+      validator: function(v) {
+        return v >= 1;
+      },
+      message: props => `${props.value} should not be a negative value!`
+    }
   },
   newWithoutTag: {
     type: Number,
-    default: 0 // Valor padrão para pontos de doação têxtil sem etiquetas
+    default: 1, // Valor padrão para pontos de doação têxtil sem etiquetas
+    validate: {
+      validator: function(v) {
+        return v >= 1;
+      },
+      message: props => `${props.value} should not be a negative value!`
+    }
   },
   veryGood: {
     type: Number,
-    default: 0 // Valor padrão para pontos de doação muito bom
+    default: 1, // Valor padrão para pontos de doação muito bom
+    validate: {
+      validator: function(v) {
+        return v >= 1;
+      },
+      message: props => `${props.value} should not be a negative value!`
+    }
   },
   good: {
     type: Number,
-    default: 0 // Valor padrão para pontos de doação bom
+    default: 1, // Valor padrão para pontos de doação bom
+    validate: {
+      validator: function(v) {
+        return v >= 1;
+      },
+      message: props => `${props.value} should not be a negative value!`
+    }
   },
   satisfactory: {
     type: Number,
-    default: 0 // Valor padrão para pontos de doação satisfatório
+    default: 1, // Valor padrão para pontos de doação satisfatório
+    validate: {
+      validator: function(v) {
+        return v >= 1;
+      },
+      message: props => `${props.value} should not be a negative value!`
+    }
   },
   quantity: {
     type: Number,
-    default: 0 // Valor padrão para pontos de quantidade
+    default: 1, // Valor padrão para pontos de quantidade
+    validate: {
+      validator: function(v) {
+        return v >= 1;
+      },
+      message: props => `${props.value} should not be a negative value!`
+    }
   },
   donationMoney: {
     type: Number,
-    default: 0 // Valor padrão para pontos de doação em dinheiro
+    default: 1, // Valor padrão para pontos de doação em dinheiro
+    validate: {
+      validator: function(v) {
+        return v >= 1;
+      },
+      message: props => `${props.value} should not be a negative value!`
+    }
   }
 });
 
