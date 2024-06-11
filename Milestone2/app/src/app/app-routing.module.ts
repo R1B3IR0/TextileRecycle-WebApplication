@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'entity-list', component: EntityListComponent},
   { path: 'donation-add', component: DonationAddComponent},
-  { path: '**', redirectTo: '/donation-add', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({
