@@ -11,13 +11,12 @@ let donationRESTController = {};
 
 
 // Mailgun API
-function sendEmail(to, subject, text) {
+donationRESTController.sendEmail = function (to, subject, text) {
   const data = {
     "from": 'testepaw2324@test.com',
     "to": to,
     "subject": subject,
     "text": text
-
   };
 
   mailgun.messages().send(data, function (error, body) {
@@ -27,7 +26,7 @@ function sendEmail(to, subject, text) {
       console.log('Email sent successfully:', body);
     }
   });
-}
+};
 //////////////////////////////////////////////////////
 
 // Mostra todas as doações
@@ -100,7 +99,8 @@ donationRESTController.create = async function (req, res) {
     console.log("Donator email:", donator.email);
     donatorEmail = donator.email;
     // Enviar email para o donator
-    sendEmail(donatorEmail, 'Doação criada', 'Sua doação foi criada com sucesso!\nDoação pendente de aprovação\n\nStatus: Pendente' );
+    donationRESTController.sendEmail(donatorEmail, 'Doação criada', 'Sua doação foi criada com sucesso!\nDoação pendente de aprovação\n\nStatus: Pendente' );
+    //Nota: O email é enviado para o donator caso o email do doador esteja verificado no mailgun.
   } catch (err) {
     console.error("Error saving donation:", err);
     res.status(500).json({ error: 'Error saving donation.' });
