@@ -14,7 +14,7 @@ router.get('/show/:id', authentication.verifyLoginUser, donationController.show)
 router.get('/create',authentication.verifyLoginUser, donationController.formCreate);
 
 // Cria uma doação em resposta a um post em um formulário
-router.post('/create', authentication.verifyLoginUser,upload, donationController.create);
+router.post('/create', authentication.verifyLoginUser, upload, donationController.create);
 
 // Formulário para editar uma doação
 router.get('/edit/:id', authentication.verifyLoginUser, donationController.formEdit);

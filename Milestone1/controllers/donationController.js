@@ -47,7 +47,7 @@ donationController.formCreate = async function (req, res) {
 // Cria uma doação em resposta a um post em um formulário
 donationController.create = function (req, res) {
     // Log the request body to check its contents
-    console.log("Request body:", req.body);
+    //console.log("Request body:", req.body);
 
     // Create a new donation instance with the data from the form
     var donationData = req.body;
@@ -83,7 +83,7 @@ donationController.create = function (req, res) {
 
     var donation = new Donation(donationData);
     const {donators, entities} = req.body;
-    console.log("Attempting to create donation:", donation);
+    //console.log("Attempting to create donation:", donation);
     donation.save(function (err) {
         if (err) {
             console.error("Error saving donation:", err);
@@ -94,6 +94,7 @@ donationController.create = function (req, res) {
         }
     });
 };
+
 
 // Formulário para editar uma doação
 donationController.formEdit = function (req, res) {
@@ -147,19 +148,19 @@ donationController.showPending = function(req, res) {
 
 // Aprova uma doação
 donationController.approve = function(req, res) {
-  Donation.findByIdAndUpdate(req.body._id, {status: 'Aprovada'}, async function(err, donation){
+  Donation.findByIdAndUpdate(req.body._id, {status: 'Aprovada'}, { new: true }).populate('donator').exec(async function(err, donation){
     if(err){
       console.log('Erro ao aprovar a doação');
       res.redirect('/error');
     } else {
       console.log('Doação aprovada!');
-      res.redirect('/donations/show/' + req.body._id);
-      //Encontrar email do donator pela donation
-      let donator = await Donator.findById(donation.donator);
+      res.redirect('/approvals/approved');
+      // Verificar se o email de doador foi encontrado
+      var donator = await Donator.findById(donation.donator);
       console.log("Donator email:", donator.email);
       donatorEmail = donator.email;
       // Enviar email para o donator
-      mailgunController.sendEmail(donatorEmail, 'Doação aprovada', 'Sua doação foi aprovada com sucesso!\nStatus: Aprovada' );
+      mailgunController.sendEmail(donatorEmail, 'Doação aprovada', 'Sua doação foi aprovada.\nStatus: Aprovada');
     }
   });
 }
@@ -184,7 +185,7 @@ donationController.reject = function(req, res) {
       res.redirect('/error');
     } else {
       console.log('Doação rejeitada!');
-      res.redirect('/donations/show/' + req.body._id);
+      res.redirect('/approvals/rejected');
       //Encontrar email do donator pela donation
       let donator = await Donator.findById(donation.donator);
       console.log("Donator email:", donator.email);
