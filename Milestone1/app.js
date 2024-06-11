@@ -28,6 +28,7 @@ var approvalsRouter = require('./routes/approvals');
 var authREST = require('./routes_API/authREST');
 var entityREST = require('./routes_API/entityREST');
 var donationREST = require('./routes_API/donationREST');
+var donatorREST = require('./routes_API/donatorREST');
 /** REST API */
 
 var app = express();
@@ -55,10 +56,15 @@ app.use('/points', pointsRouter);
 //Aprovação de doações
 app.use('/approvals', approvalsRouter);
 
+// Serve static files from the "uploads" directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
 /** REST API */
 app.use('/api/v1/auth', authREST);
 app.use('/api/v1/entity', entityREST);
 app.use('/api/v1/donation', donationREST);
+app.use('/api/v1/donator', donatorREST);
 /** REST API */
 
 
