@@ -43,7 +43,23 @@
             <td>:</td>
             <td><%= donation.donationDate %></td>
         </tr>
-
+        <tr>
+            <% if (donation.typeOfDonation === 'Doação Têxtil') { %>
+                <td>Imagem</td>
+                <td>:</td>
+                <% if (donation.imageProof) { %>
+                    <% const imagePath = '/uploads/' + donation.imageProof; %>
+                    <td><a href="<%= imagePath %>" download>Imagem da Doação</a></td>
+                <% } else { %>
+                    <td>Sem imagem disponível</td>
+                <% } %>
+            <% } %>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>:</td>
+            <td><%= donation.status %></td>
+        </tr>
         <% if (donation.typeOfDonation === 'Doação Têxtil' && donation.typeOfClothing && donation.typeOfClothing.length > 0) { %>
             <% donation.typeOfClothing.forEach(function(item, index) { %>
                 <tr>
@@ -66,25 +82,18 @@
                     <td>:</td>
                     <td><%= item.state %></td>
                 </tr>
-
             <% }); %>
             <tr>
                 <td>Armazém</td>
                 <td>:</td>
                 <td><%= donation.warehouseName %></td>
             </tr>
-            <div class="image-container">
-                <h2>Imagem</h2>
-                <% const imagePath = '/uploads/' + donation.imageProof; %>
-                <img src="<%= imagePath %>" alt="Imagem da Doação">
-            </div>
         <%
         } else if (donation.typeOfDonation === 'Dinheiro') { %>
             <tr>
                 <td>Amount</td>
                 <td>:</td>
                 <td><%= donation.amount %>€</td>
-
             </tr>
         <% } %>
         </tbody>

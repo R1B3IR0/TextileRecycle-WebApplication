@@ -7,10 +7,10 @@ const authentication = require('../controllers/authController');
 router.get('/', authentication.verifyLoginUser, donationController.showPending);
 
 // Aprova uma doação
-router.patch('/approve/:id', authentication.verifyLoginUser, donationController.approve);
+router.post('/approve/:id', authentication.verifyLoginUser, donationController.approve);
 
 // Rejeita uma doação
-router.patch('/reject/:id', authentication.verifyLoginUser, donationController.reject);
+router.put('/reject/:id', authentication.verifyLoginUser, donationController.reject);
 
 // Mostra todas as doações aprovadas
 router.get('/approved', authentication.verifyLoginUser, donationController.showApproved);
