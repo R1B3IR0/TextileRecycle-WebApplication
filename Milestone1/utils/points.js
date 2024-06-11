@@ -27,7 +27,7 @@ async function calculatePoints(donation) {
       });
     } else if (donation.typeOfDonation === "Dinheiro") {
       // Para doações em dinheiro, adicionar os pontos correspondentes à quantidade doada
-      points += pointCustomization.donationMoney * donation.amount;
+      points += pointCustomization.donationMoney;
     }
 
     return points;

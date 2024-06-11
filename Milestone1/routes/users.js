@@ -10,7 +10,7 @@ router.get('/show/:id', authController.verifyLoginUser, userController.show);
 // Form to create a user	
 router.get('/create', authController.verifyLoginUser, userController.formCreate);
 // Save user
-router.post('/create', authController.verifyLoginUser, userController.create);
+router.post('/create',  authController.verifyLoginUser,userController.create);
 // Form to edit a user
 router.get('/edit/:id', authController.verifyLoginUser, userController.formEdit);
 // Save edited user

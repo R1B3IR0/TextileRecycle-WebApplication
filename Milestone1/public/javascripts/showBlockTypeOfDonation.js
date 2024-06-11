@@ -8,7 +8,6 @@ function showRelevantBlock() {
     //var typeOfClothingStateDiv = document.getElementById("typeOfClothingStateDiv");
     var mapDiv = document.getElementById("map");
     var warehouseNameGroupDiv = document.getElementById("warehouseNameGroup");
-    var pointsDiv = document.getElementById("pointsDiv");
     var imageDiv = document.getElementById("imageDiv");
 
 
@@ -20,7 +19,6 @@ function showRelevantBlock() {
     //typeOfClothingStateDiv.style.display = "none";
     mapDiv.style.display = "none";
     warehouseNameGroupDiv.style.display = "none";
-    pointsDiv.style.display = "none";
     imageDiv.style.display = "none";
 
     // Exibe apenas o bloco relevante com base no tipo de doação selecionado
@@ -40,7 +38,6 @@ function showRelevantBlock() {
         submitButton.style.display = "block";
         warehouseNameGroupDiv.style.display = "block";
         mapDiv.style.display = "block";
-        pointsDiv.style.display = "block";
         imageDiv.style.display = "block";
 
 
