@@ -13,7 +13,7 @@
         <input type="hidden" name="id" value="<%= point._id %>">
         <div class="form-group">
             <label for="newWithTag">Novo com etiquetas:</label>
-            <input type="number" name="newWithTag" id="newWithTag" value="<%= point.newWithTag %>" required>
+            <input type="number" name="newWithTag" min="1" id="newWithTag" value="<%= point.newWithTag %>" required>
         </div>
         <div class="form-group">
             <label for="newWithoutTag">Novo sem etiquetas:</label>
@@ -21,23 +21,23 @@
         </div>
         <div class="form-group">
             <label for="veryGood">Muito bom:</label>
-            <input type="number" name="veryGood" id="veryGood" value="<%= point.veryGood %>" required>
+            <input type="number" name="veryGood" min="1" id="veryGood" value="<%= point.veryGood %>" required>
         </div>
         <div class="form-group">
             <label for="good">Bom:</label>
-            <input type="number" name="good" id="good" value="<%= point.good %>" required>
+            <input type="number" name="good" id="good" min="1" value="<%= point.good %>" required>
         </div>
         <div class="form-group">
             <label for="satisfactory">Satisfatório:</label>
-            <input type="number" name="satisfactory" id="satisfactory" value="<%= point.satisfactory %>" required>
+            <input type="number" name="satisfactory" id="satisfactory" min="1" value="<%= point.satisfactory %>" required>
         </div>
         <div class="form-group">
             <label for="quantity">Quantidade:</label>
-            <input type="number" name="quantity" id="quantity" value="<%= point.quantity %>" required>
+            <input type="number" name="quantity" id="quantity" min="1" value="<%= point.quantity %>" required>
         </div>
         <div class="form-group">
             <label for="donationMoney">Dinheiro:</label>
-            <input type="number" name="donationMoney" id="donationMoney" value="<%= point.donationMoney %>" required>
+            <input type="number" name="donationMoney" id="donationMoney" min="1" value="<%= point.donationMoney %>" required>
         </div>
         <button type="submit" class="submit-btn">Atualizar pontos</button>
     </form>

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPayPalModule } from 'ngx-paypal';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { authInterceptorInterceptor } from './interceptors/auth-interceptor.interceptor';
@@ -30,6 +31,7 @@ import { MatListModule } from '@angular/material/list';
     RegisterComponent,
     EntityListComponent,
     DonationAddComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { MatListModule } from '@angular/material/list';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxPayPalModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,

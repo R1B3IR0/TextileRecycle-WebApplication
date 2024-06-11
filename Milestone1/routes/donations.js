@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const donationController = require('../controllers/donationController');
 const authentication = require('../controllers/authController');
+const upload = require('../config/uploadConfig'); // Path to upload configuration file
 
 // Mostra todas as doações
 router.get('/', authentication.verifyLoginUser, donationController.showAll);
@@ -10,15 +11,15 @@ router.get('/', authentication.verifyLoginUser, donationController.showAll);
 router.get('/show/:id', authentication.verifyLoginUser, donationController.show);
 
 // Formulário para criar uma doação
-router.get('/create', authentication.verifyLoginUser, donationController.formCreate);
+router.get('/create',authentication.verifyLoginUser, donationController.formCreate);
 
 // Cria uma doação em resposta a um post em um formulário
-router.post('/create', authentication.verifyLoginUser, donationController.create);
+router.post('/create', authentication.verifyLoginUser, upload, donationController.create);
 
 // Formulário para editar uma doação
 router.get('/edit/:id', authentication.verifyLoginUser, donationController.formEdit);
 
-// Atualiza uma doação em resposta a um post em um formulário de edição
+// Atualiza uma doação em resposta a um post num formulário de edição
 router.post('/edit', authentication.verifyLoginUser, donationController.edit);
 
 // Deleta uma doação

@@ -1,1 +1,97 @@
-<p>donation-add works!</p>
+<!-- src/app/donation-create/donation-create.component.html -->
+<div class="register-container">
+    <h2>Criar Doação</h2>
+    <form (ngSubmit)="addDonation()">
+        <div class="form-group">
+            <label for="donator">Doador:</label>
+            <select name="donator" [(ngModel)]="newDonation.donator" class="select-style" required>
+                <option value="">Selecione um doador</option>
+                <option *ngFor="let donator of donators" [value]="donator._id">
+                    {{ donator.name }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="entity">Entidade:</label>
+            <select name="entity" [(ngModel)]="newDonation.entity" class="select-style" required>
+                <option value="">Selecione uma entidade</option>
+                <option *ngFor="let entity of entities" [value]="entity._id">
+                    {{ entity.name }}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="donationDate">Data da doação:</label>
+            <input type="date" name="donationDate" [(ngModel)]="newDonation.donationDate" required>
+        </div>
+
+        <div class="form-group">
+            <label for="typeOfDonation">Tipo de doação:</label>
+            <select name="typeOfDonation" [(ngModel)]="newDonation.typeOfDonation" (change)="onTypeOfDonationChange($event)" required>
+                <option value="">Escolha o tipo de doação</option>
+                <option value="Doação Têxtil">Doação Têxtil</option>
+                <option value="Dinheiro">Dinheiro</option>
+            </select>
+        </div>
+
+        <!-- Amount and Paypal button container -->
+        <div id="amountDiv" style="display: none;">
+            <label for="amount">Quantia:</label>
+            <input type="number" name="amount" [(ngModel)]="newDonation.amount">
+            <p></p>
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal> <!-- Falta adicionar o navigate-->
+        </div>
+
+        <div id="typeOfClothingDiv" style="display: none;">
+            <div id="clothingFields">
+                <div class="clothing-field" *ngFor="let clothing of newDonation.typeOfClothing; let i = index">
+                    <select name="typeOfClothing[{{i}}].category" [(ngModel)]="clothing.category" class="typeOfClothing" required>
+                        <option value="">Escolha o tipo de roupa</option>
+                        <option value="Fatos e blazers">Fatos e blazers</option>
+                        <option value="Calças">Calças</option>
+                        <option value="Meias e Roupa Interior">Meias e Roupa Interior</option>
+                        <option value="Tops e t-shirts">Tops e t-shirts</option>
+                        <option value="Camisolas e sweaters">Camisolas e sweaters</option>
+                        <option value="Casacos">Casacos</option>
+                        <option value="Pijamas">Pijamas</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                    <input type="number" name="typeOfClothing[{{i}}].quantity" [(ngModel)]="clothing.quantity" class="quantity" placeholder="Quantidade" required>
+                    <select name="typeOfClothing[{{i}}].state" [(ngModel)]="clothing.state" class="state" required>
+                        <option value="">Escolha o estado da roupa</option>
+                        <option value="Novo com etiquetas">Novo com etiquetas</option>
+                        <option value="Novo sem etiquetas">Novo sem etiquetas</option>
+                        <option value="Muito bom">Muito bom</option>
+                        <option value="Bom">Bom</option>
+                        <option value="Satisfatório">Satisfatório</option>
+                    </select>
+                    <button type="button" (click)="removeClothingItem(i)" *ngIf="i > 0">Remover</button>
+                    <p></p>
+                </div>
+            </div>
+            <p></p>
+            <button type="button" (click)="addClothingItem()">Adicionar</button>
+        </div>
+        <p></p>
+        <!-- Campo para armazenar o nome do armazém -->
+        <div id="warehouseNameGroup" style="display: none;">
+            <label for="warehouseName">Selecione no mapa o Armazém:</label>
+            <input type="text" name="warehouseName" id="warehouseName" [(ngModel)]="newDonation.warehouseName" readonly>
+        </div>
+        <p></p>
+        <!-- <app-leaflet-map id="map" style="display: none;"></app-leaflet-map> -->
+        <div id="map" [hidden]="!showMap"></div>
+        <!-- 
+        <div class="form-group" id="pointsDiv" style="display: none;">
+            <label for="result">Pontos:</label>
+            <input type="text" name="result" [(ngModel)]="newDonation.result" class="modern-result" readonly>
+        </div>
+        -->
+        <p></p>
+        <button id="submitButton" type="submit" class="submit-btn" style=" display:none">Criar Doação</button>
+    </form>
+    <div class="back-button" style="text-align: right;">
+        <a routerLink="/donations">Voltar</a>
+    </div>
+</div>

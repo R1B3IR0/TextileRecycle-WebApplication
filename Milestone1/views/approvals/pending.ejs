@@ -38,9 +38,9 @@
             <tr>
             <th>ID</th>
             <th>Doador</th>
-            <th>Entidade</th>
             <th>Data de Doação</th>
             <th>Tipo de Doação</th>
+            <th>Detalhes</th>
             <th>Ações</th>
             </tr>
         </thead>
@@ -49,11 +49,11 @@
             <tr>
                 <td><%= donation._id %></td>
                 <td><%= donation.donator.name %></td>
-                <td><%= donation.entity.name %></td>
                 <td><%= donation.donationDate %></td>
                 <td><%= donation.typeOfDonation %></td>
-                <td><a href="/approvals/approve/<%= donation._id %>" onclick="return approveDonation('<%= donation._id %>', this) ">Approve</a></td>
-                <td><a href="/approvals/reject/<%= donation._id %>" onclick="return rejectDonation('<%= donation._id %>', this)">Reject</a></td>  
+                <td><a href="/donations/show/<%= donation._id %>">Detalhes</a></td>
+                <td><a href="/approvals/approved" onclick="return approveDonation('<%= donation._id %>', this) ">Approve</a></td>
+                <td><a href="#" onclick="return rejectDonation('<%= donation._id %>', this)">Reject</a></td>  
                 </td>
             </tr>
             <% }); %>

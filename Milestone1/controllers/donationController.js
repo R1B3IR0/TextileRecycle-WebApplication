@@ -1,7 +1,8 @@
-var mongoose = require("mongoose");
 var Donation = require("../models/donation"); // Importa o modelo Donation
 var Donator = require("../models/donator"); // Importa o modelo Donator
 var Entity = require("../models/entity"); // Importa o modelo Entity
+var mailgunController = require("../controllers_API/donationRESTController.js");
+
 
 var donationController = {};
 
@@ -46,17 +47,17 @@ donationController.formCreate = async function (req, res) {
 // Cria uma doação em resposta a um post em um formulário
 donationController.create = function (req, res) {
     // Log the request body to check its contents
-    console.log("Request body:", req.body);
+    //console.log("Request body:", req.body);
 
     // Create a new donation instance with the data from the form
     var donationData = req.body;
-    const image = req.file ? req.file.filename : null;
-    donationData.image = image;
 
     // Omit typeOfClothing for donations of type 'Dinheiro'
     if (donationData.typeOfDonation === 'Dinheiro') {
         console.log("Donation type is Dinheiro. Omitting typeOfClothing.");
         delete donationData.typeOfClothing;
+        delete donationData.imageProof;
+        delete donationData.warehouseName;
     }
     // Delete amount for donations of type 'Doação Têxtil'
     if (donationData.typeOfDonation === 'Doação Têxtil') {
@@ -74,13 +75,15 @@ donationController.create = function (req, res) {
                 typeOfClothingObjects.push(typeOfClothing);
             }
         }
+        donationData.imageProof = req.file ? req.file.filename : null;
+
         // Assign the array of typeOfClothing objects to the donationData object
         donationData.typeOfClothing = typeOfClothingObjects;
     }
 
     var donation = new Donation(donationData);
     const {donators, entities} = req.body;
-    console.log("Attempting to create donation:", donation);
+    //console.log("Attempting to create donation:", donation);
     donation.save(function (err) {
         if (err) {
             console.error("Error saving donation:", err);
@@ -90,7 +93,20 @@ donationController.create = function (req, res) {
             res.redirect("/donations");
         }
     });
+    // Encontrar email do donator pela donation
+    Donator.findById(donation.donator, function (err, donator) {
+        if (err) {
+            console.error("Error finding donator:", err);
+        } else {
+            console.log("Donator email:", donator.email);
+            donatorEmail = donator.email;
+            // Enviar email para o donator
+            mailgunController.sendEmail(donatorEmail, 'Doação aprovada', 'Sua doação foi aprovada.\nStatus: Aprovada');
+            //Nota: O email é enviado para o donator caso o email do doador esteja verificado no mailgun.
+        }
+    });
 };
+
 
 // Formulário para editar uma doação
 donationController.formEdit = function (req, res) {
@@ -144,13 +160,19 @@ donationController.showPending = function(req, res) {
 
 // Aprova uma doação
 donationController.approve = function(req, res) {
-  Donation.findByIdAndUpdate(req.body._id, {status: 'Aprovada'}, function(err, donation){
+  Donation.findByIdAndUpdate(req.body._id, {status: 'Aprovada'}, { new: true }).populate('donator').exec(async function(err, donation){
     if(err){
       console.log('Erro ao aprovar a doação');
       res.redirect('/error');
     } else {
       console.log('Doação aprovada!');
-      res.redirect('/donations/show/' + req.body._id);
+      res.redirect('/approvals/approved');
+      // Verificar se o email de doador foi encontrado
+      var donator = await Donator.findById(donation.donator);
+      console.log("Donator email:", donator.email);
+      donatorEmail = donator.email;
+      // Enviar email para o donator
+      mailgunController.sendEmail(donatorEmail, 'Doação aprovada', 'Sua doação foi aprovada.\nStatus: Aprovada');
     }
   });
 }
@@ -169,13 +191,18 @@ donationController.showApproved = function(req, res) {
 
 // Rejeita uma doação
 donationController.reject = function(req, res) {
-  Donation.findByIdAndUpdate(req.body._id, {status: 'Rejeitada'}, function(err, donation){
+  Donation.findByIdAndUpdate(req.body._id, {status: 'Rejeitada'}, async function(err, donation){
     if(err){
       console.log('Erro ao rejeitar a doação');
       res.redirect('/error');
     } else {
       console.log('Doação rejeitada!');
-      res.redirect('/donations/show/' + req.body._id);
+      res.redirect('/approvals/rejected');
+      //Encontrar email do donator pela donation
+      let donator = await Donator.findById(donation.donator);
+      console.log("Donator email:", donator.email);
+      donatorEmail = donator.email;
+      mailgunController.sendEmail(donatorEmail, 'Doação rejeitada', 'Sua doação foi rejeitada.\nStatus: Rejeitada');
     }
   });
 }
