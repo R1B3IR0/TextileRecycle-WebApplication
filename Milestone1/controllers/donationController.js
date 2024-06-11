@@ -93,6 +93,18 @@ donationController.create = function (req, res) {
             res.redirect("/donations");
         }
     });
+    // Encontrar email do donator pela donation
+    Donator.findById(donation.donator, function (err, donator) {
+        if (err) {
+            console.error("Error finding donator:", err);
+        } else {
+            console.log("Donator email:", donator.email);
+            donatorEmail = donator.email;
+            // Enviar email para o donator
+            mailgunController.sendEmail(donatorEmail, 'Doação aprovada', 'Sua doação foi aprovada.\nStatus: Aprovada');
+            //Nota: O email é enviado para o donator caso o email do doador esteja verificado no mailgun.
+        }
+    });
 };
 
 
