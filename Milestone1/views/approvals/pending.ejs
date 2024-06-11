@@ -5,10 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Approvals</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <style>
+        .approve-btn {
+            color: white;
+            background-color: green;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+
+        .reject-btn {
+            color: white;
+            background-color: red;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+    </style>
     <script>
         async function handleApproval(action, donationId, element) {
             const response = await fetch(`/approvals/${action}/${donationId}`, {
-                method: 'POST'
+                method: 'PUT'
             });
 
             if (response.ok) {
@@ -34,34 +51,35 @@
     <div class="view-all-container">
         <h1>Pending Donations</h1>
         <table>
-        <thead>
-            <tr>
-            <th>ID</th>
-            <th>Doador</th>
-            <th>Data de Doação</th>
-            <th>Tipo de Doação</th>
-            <th>Detalhes</th>
-            <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% donations.forEach(donation => { %>
-            <tr>
-                <td><%= donation._id %></td>
-                <td><%= donation.donator.name %></td>
-                <td><%= donation.donationDate %></td>
-                <td><%= donation.typeOfDonation %></td>
-                <td><a href="/donations/show/<%= donation._id %>">Detalhes</a></td>
-                <td><a href="/approvals/approved" onclick="return approveDonation('<%= donation._id %>', this) ">Approve</a></td>
-                <td><a href="#" onclick="return rejectDonation('<%= donation._id %>', this)">Reject</a></td>  
-                </td>
-            </tr>
-            <% }); %>
-        </tbody>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Doador</th>
+                    <th>Data de Doação</th>
+                    <th>Tipo de Doação</th>
+                    <th>Detalhes</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% donations.forEach(donation => { %>
+                <tr>
+                    <td><%= donation._id %></td>
+                    <td><%= donation.donator.name %></td>
+                    <td><%= donation.donationDate %></td>
+                    <td><%= donation.typeOfDonation %></td>
+                    <td><a href="/donations/show/<%= donation._id %>">Detalhes</a></td>
+                    <td>
+                        <a href="#" class="approve-btn" onclick="return approveDonation('<%= donation._id %>', this)">Aprovar</a>
+                        <a href="#" class="reject-btn" onclick="return rejectDonation('<%= donation._id %>', this)">Rejeitar</a>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
         </table>
     </div>
     <div class="back-button">
-        <a href="/dashboard">Back</a>
+        <a href="/dashboard">Voltar</a>
     </div>
 </body>
 </html>

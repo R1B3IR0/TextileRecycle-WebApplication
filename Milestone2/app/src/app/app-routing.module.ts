@@ -10,11 +10,11 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'entity-list', component: EntityListComponent},
   { path: 'donation-add', component: DonationAddComponent},
-  { path: '**', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/donation-add', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes)],  
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
