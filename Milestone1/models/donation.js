@@ -68,6 +68,10 @@ const DonationSchema = new mongoose.Schema({
         enum: ["Pendente", "Aprovada", "Rejeitada"],
         default: "Aprovada",
     },
+    points: {
+        type: Number,
+        default: 0,
+    },
     imageProof: {
         type: String,
         validate: {
@@ -82,6 +86,7 @@ const DonationSchema = new mongoose.Schema({
     }
 }, {
     timestamps: true // Automatically adds createdAt and updatedAt fields
+
 });
 
 module.exports = mongoose.model("Donation", DonationSchema);

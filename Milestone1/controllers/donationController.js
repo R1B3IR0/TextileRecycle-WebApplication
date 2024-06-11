@@ -2,6 +2,7 @@ var Donation = require("../models/donation"); // Importa o modelo Donation
 var Donator = require("../models/donator"); // Importa o modelo Donator
 var Entity = require("../models/entity"); // Importa o modelo Entity
 var mailgunController = require("../controllers_API/donationRESTController.js");
+var utils = require("../utils/points.js");
 
 
 var donationController = {};
@@ -45,7 +46,7 @@ donationController.formCreate = async function (req, res) {
 };
 
 // Cria uma doação em resposta a um post em um formulário
-donationController.create = function (req, res) {
+donationController.create = async function (req, res) {
     // Log the request body to check its contents
     //console.log("Request body:", req.body);
 
@@ -82,6 +83,8 @@ donationController.create = function (req, res) {
     }
 
     var donation = new Donation(donationData);
+    var points = await utils.calculatePoints(donation);
+    donation.points = points;
     const {donators, entities} = req.body;
     //console.log("Attempting to create donation:", donation);
     donation.save(function (err) {
