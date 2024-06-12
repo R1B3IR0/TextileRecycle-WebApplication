@@ -3,8 +3,11 @@ let Donation = require("../models/donation"); // Importa o modelo Donation
 let Donator = require("../models/donator"); // Importa o modelo Donator
 let API_KEY = '45a1b43f375f80d2499986242c462445-51356527-f76ca7e1';
 let DOMAIN = 'sandboxfa7f75b021034c2f9524c657433c81db.mailgun.org';
+var utils = require("../utils/points.js");
 const mailgun = require('mailgun-js')
     ({ apiKey: API_KEY, domain: DOMAIN });
+
+
 
 let donationRESTController = {};
 
@@ -89,7 +92,10 @@ donationRESTController.create = async function (req, res) {
       donationData.typeOfClothing = typeOfClothingObjects;
     }
 
+
     let donation = new Donation(donationData); // Cria uma nova doação
+    var points = await utils.calculatePoints(donation); // Calcula os pontos da doação
+    donation.points = points; // Define os pontos da doação
     console.log("Attempting to create donation:", donation);
     await donation.save();
     console.log("Successfully created a donation.");

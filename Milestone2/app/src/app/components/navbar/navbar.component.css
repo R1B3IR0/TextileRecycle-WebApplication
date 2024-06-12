@@ -1,0 +1,13 @@
+/* styles.css */
+.spacer {
+    flex: 1 1 auto;
+  }
+  
+  .spacer-left {
+    flex: 1 1 auto;
+  }
+  
+  .spacer-right {
+    flex: 1 1 auto;
+  }
+  
