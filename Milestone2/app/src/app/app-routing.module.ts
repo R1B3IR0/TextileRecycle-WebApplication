@@ -4,15 +4,19 @@ import { LoginComponent } from '../app/components/login/login.component';
 import { RegisterComponent } from '../app/components/register/register.component';
 import { EntityListComponent } from '../app/components/entity-list/entity-list.component';
 import { DonationAddComponent } from '../app/components/donation-add/donation-add.component';
+import { HomeComponent } from '../app/components/home/home.component';
+
 import { DonationListComponent } from '../app/components/donation-list/donation-list.component';
 
 const routes: Routes = [
+  //{ path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
   { path: 'entity-list', component: EntityListComponent},
   { path: 'donation-add', component: DonationAddComponent},
   { path: 'donation-list', component: DonationListComponent}, // Rota protegida
-  { path: '**', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -23,6 +23,22 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { DonationListComponent } from './components/donation-list/donation-list.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 @NgModule({
@@ -33,6 +49,8 @@ import { DonationListComponent } from './components/donation-list/donation-list.
     EntityListComponent,
     DonationAddComponent,
     DonationListComponent,
+    NavbarComponent,
+    HomeComponent,
     
   ],
   imports: [
@@ -52,7 +70,20 @@ import { DonationListComponent } from './components/donation-list/donation-list.
     MatTableModule,
     MatProgressSpinnerModule,
     CommonModule,
-    MatListModule
+    MatListModule,
+    MatToolbarModule,
+    RouterModule,
+    FlexLayoutModule,
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonToggleModule
   ],
 
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: authInterceptorInterceptor, multi: true }],
