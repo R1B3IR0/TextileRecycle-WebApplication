@@ -22,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
+import { DonationListComponent } from './components/donation-list/donation-list.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { MatListModule } from '@angular/material/list';
     RegisterComponent,
     EntityListComponent,
     DonationAddComponent,
+    DonationListComponent,
     
   ],
   imports: [

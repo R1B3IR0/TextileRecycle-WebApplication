@@ -26,12 +26,14 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     if (this.loginForm.valid) {
+      
       const { email, password } = this.loginForm.value;
       this.authService.login(email, password).subscribe(
         (user: any) => {
           if (user && user.token) {
             localStorage.setItem('currentUser', JSON.stringify(user));
-            this.router.navigate([user.dashboardUrl]);
+            this.router.navigate(['/donation-add']);
+            alert('Login efetuado com sucesso!');
           } else {
             alert('Erro no login!');
           }
