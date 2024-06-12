@@ -1,0 +1,36 @@
+<!--Donations List-->
+<div class="donation-list container">
+    <!-- No Donations Message -->
+    <ng-template #noDonations>
+        <p class="no-donations-message">No donations found.</p>
+    </ng-template>
+
+    <div *ngIf="donations && donations.length > 0; else noDonations" class="table-container">
+        <table mat-table [dataSource]="donations" class="mat-elevation-z8" matSort>
+
+            <!-- Donation ID Column -->
+            <ng-container matColumnDef="donationId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Donation ID</th>
+                <td mat-cell *matCellDef="let row">{{ row.donationId }}</td>
+            </ng-container>
+
+            <!-- Donator Name Column -->
+            <ng-container matColumnDef="donatorName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Donator Name</th>
+                <td mat-cell *matCellDef="let row">{{ row.donatorName }}</td>
+            </ng-container>
+
+            <!-- Donation Date Column -->
+            <ng-container matColumnDef="donationDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Donation Date</th>
+                <td mat-cell *matCellDef="let row">{{ row.donationDate }}</td>
+            </ng-container>           
+
+            <!-- Donation Type Column -->
+            <ng-container matColumnDef="donationType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Donation Type</th>
+                <td mat-cell *matCellDef="let row">{{ row.donationType }}</td>
+            </ng-container>
+        </table>
+    </div>
+</div>

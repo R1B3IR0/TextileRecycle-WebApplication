@@ -29,6 +29,7 @@ var authREST = require('./routes_API/authREST');
 var entityREST = require('./routes_API/entityREST');
 var donationREST = require('./routes_API/donationREST');
 var donatorREST = require('./routes_API/donatorREST');
+var userREST = require('./routes_API/userREST');
 /** REST API */
 
 var app = express();
@@ -65,6 +66,7 @@ app.use('/api/v1/auth', authREST);
 app.use('/api/v1/entity', entityREST);
 app.use('/api/v1/donation', donationREST);
 app.use('/api/v1/donator', donatorREST);
+app.use('/api/v1/user', userREST);
 /** REST API */
 
 
