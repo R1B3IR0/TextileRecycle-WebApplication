@@ -17,6 +17,7 @@ export class Donation {
     public amount?: number,
     public warehouseName?: string,
     public images?: string[],
-    public status?: 'Pendente' | 'Aprovada' | 'Rejeitada'  
+    public status?: 'Pendente' | 'Aprovada' | 'Rejeitada'  ,
+    public points?: number
     ) {}
 }

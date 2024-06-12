@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Entity } from '../../models/entity';
 import { EntityRestService } from '../../services/entity-rest.service';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatListModule } from '@angular/material/list';
-
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-entity-list',
@@ -12,44 +9,46 @@ import { MatListModule } from '@angular/material/list';
   styleUrls: ['./entity-list.component.css']
 })
 export class EntityListComponent implements OnInit {
-  entities: Entity[];
-
-  // Declare as propriedades necessárias para filtragem
+  entities: Entity[] = [];
+  dataSource: MatTableDataSource<Entity> = new MatTableDataSource<Entity>([]);
   loading: boolean = false;
-  filters: any = {}; // Inicializa 'filters' como um objeto vazio
   error: boolean = false;
-
   displayedColumns: string[] = ['name', 'contact', 'email', 'description', 'address'];
+  selectedFilter: string = '';
 
-  constructor(private entityService: EntityRestService, private router: Router, private route: ActivatedRoute) {
-    this.entities = [];
-  }
+  // Defina os filtros
+  filters = [
+    { label: 'Name', value: 'name' },
+    { label: 'Contact', value: 'contact' },
+    { label: 'Email', value: 'email' },
+    { label: 'Description', value: 'description' },
+    { label: 'Locality', value: 'address.addressLocality' }
+  ];
+
+  constructor(private entityService: EntityRestService) {}
 
   ngOnInit(): void {
     this.getEntities();
   }
 
   getEntities(): void {
-    this.entityService.getEntities().subscribe((data: Entity[]) => {
-      console.log(data);
-      this.entities = data;
-    });
-  }
-
-  /*applyFilters(): void {
     this.loading = true;
-    this.entityService.getEntitiesFiltered(this.filters).subscribe(
+    this.entityService.getEntities().subscribe(
       (data: Entity[]) => {
         this.entities = data;
+        this.dataSource = new MatTableDataSource(this.entities);
         this.loading = false;
+        this.error = false; // Limpar erro se a solicitação for bem-sucedida
       },
       error => {
-        console.error('Error fetching filtered entities:', error);
-        this.error = true;
+        console.error('Error fetching entities:', error);
+        this.dataSource = new MatTableDataSource<Entity>([]);
         this.loading = false;
+        this.error = true;
       }
     );
   }
-}
-*/
+
+ 
+  
 }

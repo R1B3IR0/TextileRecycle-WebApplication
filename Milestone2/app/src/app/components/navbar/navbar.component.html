@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+    <span>Recicla Têxtil</span>
+    <span class="spacer-left"></span>
+    
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <a mat-button routerLink="/home">Home</a>
+      <a mat-button routerLink="/entity-list">Lista de Entidades</a>
+      
+      <!-- Dropdown Menu for Doações -->
+      <button mat-button [matMenuTriggerFor]="doacoesMenu">Doações</button>
+      <mat-menu #doacoesMenu="matMenu">
+        <button mat-menu-item routerLink="/donation-add">Criar Doação</button>
+        <button mat-menu-item routerLink="/donation-list">Lista de Doações</button>
+      </mat-menu>
+    </div>
+  
+    <span class="spacer-right"></span>
+    <ng-container *ngIf="!isLoggedIn">
+      <a mat-button routerLink="/login">Login</a>
+      <a mat-button routerLink="/register">Register</a>
+    </ng-container>
+    <button mat-button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+  </mat-toolbar>
+  

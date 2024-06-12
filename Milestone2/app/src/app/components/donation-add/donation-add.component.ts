@@ -51,8 +51,7 @@ export class DonationAddComponent implements OnInit {
         purchase_units: [
           {
             amount: {
-              value: '1000',
-              currency_code: 'EUR',
+              value: this.newDonation.amount?.toString(),
             },
           }
         ]
@@ -69,17 +68,17 @@ export class DonationAddComponent implements OnInit {
         return actions.order.capture().then((details: any) => {
           alert('Transaction completed by ' + details.payer.name.given_name);
 
-          // Create a donation object with the required data
-          var donationData = {
-            donator: (document.getElementById('donator') as HTMLInputElement).value,
-            entity: (document.getElementById('entity') as HTMLInputElement).value,
-            donationDate: (document.getElementById('donationDate') as HTMLInputElement).value,
-            typeOfDonation: (document.getElementById('typeOfDonation') as HTMLInputElement).value,
-            amount: (document.getElementById('amount') as HTMLInputElement).value
+          // Prepare donation data
+          const donationData = {
+            donator: this.newDonation.donator,
+            entity: this.newDonation.entity,
+            donationDate: this.newDonation.donationDate,
+            typeOfDonation: this.newDonation.typeOfDonation,
+            amount: this.newDonation.amount
           };
 
           // Send an HTTP POST request to the server to create the donation
-          fetch('/donations/create', {
+          fetch('http://localhost:3000/api/v1/donation/create', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
