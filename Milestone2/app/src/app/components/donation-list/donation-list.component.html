@@ -1,36 +1,50 @@
-<!--Donations List-->
-<div class="donation-list container">
-    <!-- No Donations Message -->
-    <ng-template #noDonations>
-        <p class="no-donations-message">No donations found.</p>
-    </ng-template>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Lista de Doações</mat-card-title>
+  </mat-card-header>
+  
+  <mat-table matSort [dataSource]="donations">
+    <!-- ID Column -->
+    <ng-container matColumnDef="_id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let donation"> {{ donation._id }} </mat-cell>
+    </ng-container>
+  
+    <!-- Donator Name Column -->
+    <ng-container matColumnDef="donatorName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Donator </mat-header-cell>
+      <mat-cell *matCellDef="let donation"> {{ donation.donator?.name }} </mat-cell>
+    </ng-container>
+  
+    <!-- Donation Date Column -->
+    <ng-container matColumnDef="donationDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Donation Date </mat-header-cell>
+      <mat-cell *matCellDef="let donation"> {{ donation.donationDate | date:'medium' }} </mat-cell>
+    </ng-container>
+  
+    <!-- Type of Donation Column -->
+    <ng-container matColumnDef="typeOfDonation">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Type of Donation </mat-header-cell>
+      <mat-cell *matCellDef="let donation"> {{ donation.typeOfDonation }} </mat-cell>
+    </ng-container>
+  
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let donation"> {{ donation.status }} </mat-cell>
+    </ng-container>
 
-    <div *ngIf="donations && donations.length > 0; else noDonations" class="table-container">
-        <table mat-table [dataSource]="donations" class="mat-elevation-z8" matSort>
+    <!-- Points Column-->
+    <ng-container matColumnDef="points">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Points </mat-header-cell>
+      <mat-cell *matCellDef="let donation"> {{ donation.points }} </mat-cell>
+    </ng-container>
+  
+    <!-- Columns displayed -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 
-            <!-- Donation ID Column -->
-            <ng-container matColumnDef="donationId">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Donation ID</th>
-                <td mat-cell *matCellDef="let row">{{ row.donationId }}</td>
-            </ng-container>
-
-            <!-- Donator Name Column -->
-            <ng-container matColumnDef="donatorName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Donator Name</th>
-                <td mat-cell *matCellDef="let row">{{ row.donatorName }}</td>
-            </ng-container>
-
-            <!-- Donation Date Column -->
-            <ng-container matColumnDef="donationDate">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Donation Date</th>
-                <td mat-cell *matCellDef="let row">{{ row.donationDate }}</td>
-            </ng-container>           
-
-            <!-- Donation Type Column -->
-            <ng-container matColumnDef="donationType">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Donation Type</th>
-                <td mat-cell *matCellDef="let row">{{ row.donationType }}</td>
-            </ng-container>
-        </table>
-    </div>
-</div>
+  
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</mat-card>

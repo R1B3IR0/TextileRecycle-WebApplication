@@ -1,0 +1,37 @@
+<div class="user-details">
+  <!-- Card para os detalhes do usuário (mantido o mesmo) -->
+  <mat-card class="user-card">
+    <mat-card-header>
+      <mat-card-title>Detalhes do Utilizador</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <div matLine><strong>Nome:</strong> {{ user.name }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div matLine><strong>Email:</strong> {{ user.email }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div matLine><strong>NIF:</strong> {{ user.nif }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div matLine><strong>Contato:</strong> {{ user.contact }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div matLine><strong>Endereço:</strong> {{ user.address }}</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Card para o total de pontos e seleção de vouchers (atualizado) -->
+  <mat-card class="points-card">
+    <mat-card-header>
+      <mat-card-title>Total de Pontos</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ points }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
