@@ -7,13 +7,14 @@
       <a mat-button routerLink="/entity-list">Lista de Entidades</a>
       
       <!-- Dropdown Menu for Doações -->
-      <button mat-button [matMenuTriggerFor]="doacoesMenu">Doações</button>
+      <button mat-button [matMenuTriggerFor]="doacoesMenu" *ngIf="isLoggedIn">Doações</button>
       <mat-menu #doacoesMenu="matMenu">
-        <button mat-menu-item routerLink="/donation-add">Criar Doação</button>
-        <button mat-menu-item routerLink="/donation-list">Lista de Doações</button>
+        <button mat-menu-item routerLink="/donation-add" *ngIf="isLoggedIn">Criar Doação</button>
       </mat-menu>
+
+      <a mat-button routerLink="/profile" *ngIf="isLoggedIn">Conta</a>
     </div>
-  
+    
     <span class="spacer-right"></span>
     <ng-container *ngIf="!isLoggedIn">
       <a mat-button routerLink="/login">Login</a>

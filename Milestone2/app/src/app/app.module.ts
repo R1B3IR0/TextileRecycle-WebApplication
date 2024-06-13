@@ -34,11 +34,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
 
 
 @NgModule({
@@ -51,6 +54,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     DonationListComponent,
     NavbarComponent,
     HomeComponent,
+    UserDetailsComponent,
+    ProfileComponent,
     
   ],
   imports: [
@@ -83,7 +88,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatButtonToggleModule
+    MatExpansionModule
   ],
 
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: authInterceptorInterceptor, multi: true }],

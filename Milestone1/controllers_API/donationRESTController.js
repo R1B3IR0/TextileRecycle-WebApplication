@@ -1,6 +1,7 @@
 let mongoose = require("mongoose");
 let Donation = require("../models/donation"); // Importa o modelo Donation
 let Donator = require("../models/donator"); // Importa o modelo Donator
+let User = require("../models/user"); // Importa o modelo User
 let API_KEY = '45a1b43f375f80d2499986242c462445-51356527-f76ca7e1';
 let DOMAIN = 'sandboxfa7f75b021034c2f9524c657433c81db.mailgun.org';
 var utils = require("../utils/points.js");
@@ -92,16 +93,21 @@ donationRESTController.create = async function (req, res) {
       donationData.typeOfClothing = typeOfClothingObjects;
     }
 
-
     let donation = new Donation(donationData); // Cria uma nova doação
-    var points = await utils.calculatePoints(donation); // Calcula os pontos da doação
-    donation.points = points; // Define os pontos da doação
+    donation.points = await utils.calculatePoints(donation); // Calcula os pontos da doação
     console.log("Attempting to create donation:", donation);
     await donation.save();
     console.log("Successfully created a donation.");
+    
+    const user = await User.findById(req.id);
+    console.log("User:", user);
+    const donator = await Donator.findOne({ email: user.email });
+    
+    // Incrementa os pontos do donator
+    await Donator.findByIdAndUpdate(donator._id, {$inc: {points: donation.points}}).exec();
+
     res.status(201).json({ message: 'Successfully created a donation.', donation });
     //Encontrar email do donator pela donation
-    let donator = await Donator.findById(donation.donator);
     console.log("Donator email:", donator.email);
     donatorEmail = donator.email;
     // Enviar email para o donator

@@ -16,7 +16,7 @@ export class Donation {
     public typeOfClothing?: TypeOfClothing[],
     public amount?: number,
     public warehouseName?: string,
-    public images?: string[],
+    public images?: string,
     public status?: 'Pendente' | 'Aprovada' | 'Rejeitada'  ,
     public points?: number
     ) {}

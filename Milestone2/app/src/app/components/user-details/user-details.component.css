@@ -1,0 +1,36 @@
+.user-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-details mat-card {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.user-details .points-card {
+  background-color: #e1bee7; /* Customize background color */
+}
+
+.user-details .donations-card {
+  background-color: #bbdefb; /* Customize background color */
+}
+
+.user-details mat-card-content {
+  font-size: 16px;
+}
+
+.user-details mat-card-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-details mat-card-content li {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-details mat-card-content li:last-child {
+  border-bottom: none;
+}

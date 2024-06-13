@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,17 +6,18 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   isLoggedIn = false;
   doacoesMenu: any;
 
-  constructor(private router: Router) {
-    // Adicione a lógica de autenticação aqui
-    this.isLoggedIn = !!localStorage.getItem('token');
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.isLoggedIn = !!localStorage.getItem('currentUser');
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
     this.isLoggedIn = false;
     this.router.navigate(['/home']);
   }

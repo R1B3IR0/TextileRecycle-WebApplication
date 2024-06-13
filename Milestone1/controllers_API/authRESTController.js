@@ -160,35 +160,38 @@ authController.register = async function(req, res, next) {
     }
 };
 
-/*
-authController.getProfile = async function(req, res, next) {
+authController.getProfile = async function (req, res, next) {
+    let id;
+    const token = req.headers["x-access-token"];
+  
+    if (!token) {
+      return res.status(401).json({ auth: false, message: "No token provided." });
+    }
+  
     try {
-        const userId = req.id; // ID do usuário extraído do token
-        const user = await User.findById(userId); // Encontrar usuário pelo ID
-
-        if (!user) {
-            return res.status(404).json({ message: "User not found" });
+      jwt.verify(token, config.secret, function (err, decoded) {
+        if (err) {
+          return res.status(401).json({ auth: false, message: "Unauthorized" });
         }
-
-        // Dependendo da lógica do seu aplicativo, você pode querer retornar apenas algumas informações do perfil do usuário
-        const userProfile = {
-            id: user._id,
-            name: user.name,
-            email: user.email,
-            role: user.role
-            // Adicione mais campos conforme necessário
-        };
-
-        res.status(200).json(userProfile);
-    } catch (error) {
-        console.error("Error getting user profile:", error);
-        res.status(500).json({ message: "Internal server error" });
+        id = decoded.id;
+      });
+  
+      const user = await User.findById(id).exec();
+      if (!user) {
+        return res.status(404).json({ auth: false, message: "User not found" });
+      }
+      req.email = user.email; // Adiciona o email do usuário ao objeto req
+      next(); // Chama o próximo middleware (userRESTController.getAllDonations)
+    } catch (err) {
+      return res
+        .status(500)
+        .json({ message: "Error retrieving user", error: err });
     }
 };
-*/
+
 // Verify if the user is logged in
 authController.verifyToken = function(req, res, next) {
-    const authToken = req.headers['auth-token'];
+    const authToken = req.headers['x-access-token'];
     if (authToken) {
         jwt.verify(authToken, config.secret, function(err, decoded) {
             if (err) {

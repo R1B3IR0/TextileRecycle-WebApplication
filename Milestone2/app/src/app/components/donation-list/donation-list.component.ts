@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Donation } from '../../models/donation';
 import { UserRestService } from '../../services/user-rest.service';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatListModule } from '@angular/material/list';
+
 
 @Component({
   selector: 'app-donation-list',
@@ -11,8 +10,9 @@ import { MatListModule } from '@angular/material/list';
   styleUrls: ['./donation-list.component.css']
 })
 export class DonationListComponent implements OnInit {
-  donations: Donation[]; 
-
+  donations: Donation[];
+  displayedColumns: string[] = ['_id', 'donatorName', 'donationDate', 'typeOfDonation', 'status', 'points'];
+  
   constructor(private userRestService: UserRestService, private router: Router, private route: ActivatedRoute) {
     this.donations = [];
   }
@@ -25,6 +25,8 @@ export class DonationListComponent implements OnInit {
     this.userRestService.getDonations().subscribe((data: Donation[]) => {
       console.log(data);
       this.donations = data;
+    }, (error) => {
+      console.log(error);
     });
   }
 }

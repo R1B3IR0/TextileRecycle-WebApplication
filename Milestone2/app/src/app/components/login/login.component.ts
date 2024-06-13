@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
         (user: any) => {
           if (user && user.token) {
             localStorage.setItem('currentUser', JSON.stringify(user));
-            this.router.navigate(['/donation-add']);
             alert('Login efetuado com sucesso!');
+            this.router.navigate(['/home']);
           } else {
             alert('Erro no login!');
           }

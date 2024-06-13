@@ -10,4 +10,8 @@
   .spacer-right {
     flex: 1 1 auto;
   }
+
+  .mat-toolbar {
+    background-color: #00695C
+  }
   
