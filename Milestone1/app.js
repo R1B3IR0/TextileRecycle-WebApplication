@@ -12,7 +12,7 @@ mongoose.Promise = global.Promise;
 mongoose.set('strictQuery', true);
 
 // Connect to MongoDB
-mongoose.connect('***REMOVED***/?retryWrites=true&w=majority&appName=Cluster0', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.kukd408.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() =>  console.log('connection successful to database'))
   .catch((err) => console.error(err));
   
